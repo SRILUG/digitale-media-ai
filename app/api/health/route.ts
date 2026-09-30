@@ -1,0 +1,1 @@
+import {NextResponse} from "next/server";export async function GET(){return NextResponse.json({ok:true,service:"digitale-media-ai",timestamp:new Date().toISOString(),modules:["website","command-center","ai-orchestration","crm","content","campaigns","research","reporting"]})}
