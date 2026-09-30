@@ -33,7 +33,7 @@ export default function Home() {
           <a href="#industries">Industries</a>
           <a href="#experiences">Experiences</a>
           <a href="#about">About</a>
-          <a href="#contact" className="navAction">Start a project <b>↗</b></a>
+          <a href="/start" className="navAction">Start a project <b>↗</b></a>
         </div>
         <button className="menu" onClick={() => setMenu(!menu)}>{menu ? "CLOSE" : "MENU"}</button>
       </header>
@@ -48,7 +48,7 @@ export default function Home() {
           </div>
           <div className="heroSide">
             <p>We build brands, digital experiences and growth systems for businesses that want to be noticed—and remembered.</p>
-            <a className="lineLink" href="#contact">Tell us what you're building <span>↗</span></a>
+            <a className="lineLink" href="/start">Tell us what you're building <span>↗</span></a>
           </div>
         </div>
         <div className="scrollCue">SCROLL <span>↓</span></div>
@@ -85,7 +85,7 @@ export default function Home() {
           {work.map(([num, label, title, desc], i) => (
             <article className={"workItem wi" + i} key={num}>
               <div className="workVisual"><span>{label}</span><strong>{num}</strong><div className="visualMark">{i === 0 ? "↗" : i === 1 ? "✦" : "AI"}</div></div>
-              <div className="workCopy"><small>{label}</small><h3>{title}</h3><p>{desc}</p><a href="#contact">View project ↗</a></div>
+              <div className="workCopy"><small>{label}</small><h3>{title}</h3><p>{desc}</p><a href="/start">View project ↗</a></div>
             </article>
           ))}
         </div>
@@ -107,7 +107,7 @@ export default function Home() {
           <div className="kicker">05 / EXPERIENCES</div>
           <h2>BIG MOMENTS.<br /><i>BIGGER STORIES.</i></h2>
           <p>For weddings, red carpets, corporate events and launches, we build the digital world around the moment—before, during and after.</p>
-          <a className="limeBtn" href="#contact">Build an experience ↗</a>
+          <a className="limeBtn" href="/start">Build an experience ↗</a>
         </div>
         <div className="experienceRight">
           {events.map((name, i) => <div key={name}><span>0{i + 1}</span><strong>{name}</strong><b>↗</b></div>)}
