@@ -139,7 +139,7 @@ export default function StartProject() {
         <div className="intakeGlow" />
         <header className="intakeNav"><Link href="/" className="intakeLogo">DIGITALE<span>®</span></Link><span>PROJECT DIAGNOSTIC</span></header>
         <section className="successScreen">
-          <div className="monoLabel">BRIEF RECEIVED / DGT-{briefId || "RECEIVED"}</div>
+          <div className="monoLabel">BRIEF RECEIVED / {briefId || "RECEIVED"}</div>
           <h1>Now we know<br /><i>where to start.</i></h1>
           <p>Your project context is with the DIGITALE team. We’ll review the brief and come back with the right next step—not a generic sales pitch.</p>
           <div className="successActions"><Link href="/start">Review brief ↗</Link><Link href="/">Return to DIGITALE ↗</Link></div>
