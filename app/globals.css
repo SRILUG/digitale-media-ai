@@ -83,3 +83,53 @@
 .homeHeroFoot{padding-bottom:18px}
 .homeHeroScrollLine{width:40px}
 }
+
+
+/* DIGITALE homepage — work / system / practice refinement */
+.homeWork{background:#080a0f}
+.homeWork .homeSectionIntro{margin-bottom:65px}
+.editorialProjects{gap:22px}
+.editorialProject{border-color:#242b36;background:#0a0d12;transition:border-color .35s ease,transform .35s ease}
+.editorialProject:hover{border-color:#3b4c63;transform:translateY(-3px)}
+.editorialVisual{min-height:560px;background:#0b111b;isolation:isolate}
+.editorialVisual:before{transition:transform .8s ease,opacity .8s ease}
+.editorialProject:hover .editorialVisual:before{transform:scale(1.14) translate(-2%,4%);opacity:.82}
+.editorialMark{font:800 clamp(72px,11vw,170px)/.8 Inter,sans-serif;letter-spacing:-.11em}
+.editorialCopy{padding:48px 38px}
+.editorialCopy h3{font-size:clamp(30px,3vw,46px);letter-spacing:-.055em}
+.editorialCopy p{max-width:330px}
+.editorialCopy a{transition:color .2s ease}
+.editorialCopy a:hover{color:#fff}
+
+.systemSection{background:#090c11}
+.systemHead{margin-bottom:55px}
+.systemToggle{border-bottom:1px solid #252d39;padding-bottom:14px}
+.systemToggle button{border:0;border-bottom:1px solid transparent;padding:9px 0;margin-right:28px}
+.systemToggle button.active{border-color:#69aaff;background:none}
+.systemDiagram{min-height:330px;border-color:#252e3b;background:#070a0f;position:relative;overflow:hidden}
+.systemDiagram:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 50%,rgba(76,144,255,.08),transparent 48%)}
+.systemBus{position:relative;z-index:1}
+.systemBus div{border-color:#34587f;background:linear-gradient(180deg,#0c1520,#090d13);transition:background .3s ease}
+.systemBus div:hover{background:#0e1a28}
+.vendorStack{position:relative;z-index:1}
+.vendorStack div{transition:border-color .25s ease,transform .25s ease}
+.vendorStack div:hover{border-color:#425064;transform:translateY(-2px)}
+
+.practiceRows{border-top-color:#303845}
+.practiceRow{border-bottom-color:#303845}
+.practiceRow>button{padding:31px 0}
+.practiceRow>button strong{font-size:clamp(25px,3vw,42px);letter-spacing:-.045em}
+.practiceRow>button em{transition:transform .25s ease,color .25s ease}
+.practiceRow.open>button em{color:#69aaff}
+.practiceBody{padding-bottom:40px}
+.practiceBody>div span{transition:border-color .2s ease,color .2s ease}
+.practiceBody>div span:hover{border-color:#4c6785;color:#dce9fa}
+
+@media(max-width:850px){
+.editorialVisual{min-height:330px}
+.editorialCopy{padding:32px 24px 38px}
+.systemToggle{overflow-x:auto;white-space:nowrap}
+.systemToggle button{margin-right:20px}
+.practiceRow>button{padding:24px 0}
+.practiceRow>button strong{font-size:24px}
+}
