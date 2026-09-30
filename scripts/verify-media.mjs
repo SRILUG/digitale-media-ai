@@ -14,13 +14,6 @@ if (!fs.existsSync(mediaRoot)) {
   process.exit(0);
 }
 
-const rules = [
-  { test: /\.(mp4|webm)$/i, max: manifest.rules.hero.video.maxBytes, label: "hero video" },
-  { test: /\.webp$/i, max: manifest.rules.hero.desktop.maxBytes, label: "WebP" },
-  { test: /\.avif$/i, max: manifest.rules.editorialWork.desktop.maxBytes, label: "AVIF" },
-  { test: /showreel-poster\.webp$/i, max: manifest.rules.hero.poster.maxBytes, label: "hero poster" },
-];
-
 const files = [];
 function walk(dir) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -31,13 +24,55 @@ function walk(dir) {
 }
 walk(mediaRoot);
 
+function limitFor(file) {
+  const relative = path.relative(mediaRoot, file).replaceAll("\\", "/");
+  const lower = relative.toLowerCase();
+  const ext = path.extname(lower);
+
+  if (ext === ".mp4" || ext === ".webm") {
+    return { max: manifest.rules.hero.video.maxBytes, label: "hero video" };
+  }
+
+  if (lower === "hero/showreel-poster.webp") {
+    return { max: manifest.rules.hero.poster.maxBytes, label: "hero poster" };
+  }
+
+  if (lower.startsWith("hero/")) {
+    return lower.includes("mobile")
+      ? { max: manifest.rules.hero.mobile.maxBytes, label: "hero mobile" }
+      : { max: manifest.rules.hero.desktop.maxBytes, label: "hero desktop" };
+  }
+
+  if (lower.startsWith("work/")) {
+    return lower.includes("mobile")
+      ? { max: manifest.rules.editorialWork.mobile.maxBytes, label: "editorial mobile" }
+      : { max: manifest.rules.editorialWork.desktop.maxBytes, label: "editorial desktop" };
+  }
+
+  if (lower.startsWith("cases/")) {
+    return lower.includes("detail")
+      ? { max: manifest.rules.caseStudy.detail.maxBytes, label: "case detail" }
+      : { max: manifest.rules.caseStudy.hero.maxBytes, label: "case hero" };
+  }
+
+  if (lower.startsWith("experiences/")) {
+    return lower.includes("mobile")
+      ? { max: manifest.rules.experiences.mobile.maxBytes, label: "experience mobile" }
+      : { max: manifest.rules.experiences.desktop.maxBytes, label: "experience desktop" };
+  }
+
+  return null;
+}
+
 const violations = [];
 for (const file of files) {
-  const rule = rules.find((candidate) => candidate.test.test(file));
+  const rule = limitFor(file);
   if (!rule) continue;
   const bytes = fs.statSync(file).size;
   if (bytes > rule.max) {
-    violations.push(`${path.relative(root, file)}: ${bytes} bytes > ${rule.max} bytes (${rule.label})`);
+    violations.push(
+      `${path.relative(root, file)}: ${bytes} bytes > ${rule.max} bytes (${rule.label})`
+    );
   }
 }
 
