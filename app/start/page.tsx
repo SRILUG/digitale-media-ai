@@ -119,7 +119,11 @@ export default function StartProject() {
     try {
       const response = await fetch("/api/project-intake", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
       const result = await response.json().catch(() => ({}));
-      if (result.id) sessionStorage.setItem("digitale-brief-id", result.id);
+      if (!response.ok || !result.id) {
+        setSaving(false);
+        return;
+      }
+      sessionStorage.setItem("digitale-brief-id", result.id);
     } catch {}
     localStorage.removeItem("digitale-project-diagnostic");
     setSubmitted(true);
