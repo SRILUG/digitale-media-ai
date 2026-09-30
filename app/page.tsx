@@ -2,7 +2,6 @@ import HeroCinematic from "@/components/home/hero-cinematic";
 import WorkEditorial from "@/components/home/work-editorial";
 import SystemComparison from "@/components/home/system-comparison";
 import PracticesAccordion from "@/components/home/practices-accordion";
-import CaseUrbanrise from "@/components/home/case-urbanrise";
 import ExperiencesShowcase from "@/components/home/experiences-showcase";
 import AIInfrastructure from "@/components/home/ai-infrastructure";
 import CtaDiagnostic from "@/components/home/cta-diagnostic";
@@ -17,7 +16,6 @@ export default function Home() {
       <WorkEditorial />
       <SystemComparison />
       <PracticesAccordion />
-      <CaseUrbanrise />
       <ExperiencesShowcase />
       <AIInfrastructure />
       <section className="insightSection">
