@@ -4,12 +4,9 @@ import Image from "next/image";
 import styles from "./home-art-directed.module.css";
 
 const work = [
-  { number: "01", label: "BRAND × GROWTH", title: "Make attention
-worth something.", note: "Brand systems, campaigns and distribution built around a commercial objective.", tone: "lime" },
-  { number: "02", label: "EXPERIENCE × CULTURE", title: "Make the moment
-travel.", note: "Launches, entertainment and live experiences designed for the room and everything after it.", tone: "violet" },
-  { number: "03", label: "TECHNOLOGY × PRODUCT", title: "Make the system
-compound.", note: "Digital products, automation and intelligence that turn activity into a learning loop.", tone: "blue" },
+  { number: "01", label: "BRAND × GROWTH", title: "Make attention worth something.", note: "Brand systems, campaigns and distribution built around a commercial objective.", tone: "lime" },
+  { number: "02", label: "EXPERIENCE × CULTURE", title: "Make the moment travel.", note: "Launches, entertainment and live experiences designed for the room and everything after it.", tone: "violet" },
+  { number: "03", label: "TECHNOLOGY × PRODUCT", title: "Make the system compound.", note: "Digital products, automation and intelligence that turn activity into a learning loop.", tone: "blue" },
 ];
 
 const capabilities = [
