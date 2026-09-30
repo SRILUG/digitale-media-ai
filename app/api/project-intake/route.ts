@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { generateDiagnosticId } from "@/lib/id";
 import { RawIntakeSchema, normalizeIntake } from "@/lib/intake-schema";
+import { dispatchLeadNotification } from "@/lib/notifications";
 
 export const runtime = "nodejs";
 
@@ -52,37 +53,61 @@ export async function POST(req: NextRequest) {
     const supabaseUrl = process.env.SUPABASE_URL;
     const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-    if (supabaseUrl && supabaseServiceKey) {
-      const { createClient } = await import("@supabase/supabase-js");
+    // Persistence is the source of truth. Never return a success response
+    // unless a real database insert has been attempted successfully.
+    if (!supabaseUrl || !supabaseServiceKey) {
+      console.error(
+        "[DATABASE_CONFIG_ERROR] SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required",
+      );
 
-      const supabase = createClient(supabaseUrl, supabaseServiceKey, {
-        auth: {
-          persistSession: false,
-          autoRefreshToken: false,
-        },
+      return NextResponse.json(
+        { ok: false, error: "Intake persistence is not configured" },
+        { status: 503 },
+      );
+    }
+
+    const { createClient } = await import("@supabase/supabase-js");
+
+    const supabase = createClient(supabaseUrl, supabaseServiceKey, {
+      auth: {
+        persistSession: false,
+        autoRefreshToken: false,
+      },
+    });
+
+    const { error: dbError } = await supabase
+      .from("project_intakes")
+      .insert([record]);
+
+    if (dbError) {
+      console.error("[DATABASE_INSERT_ERROR]", {
+        id: submissionId,
+        code: dbError.code,
+        message: dbError.message,
       });
 
-      const { error: dbError } = await supabase
-        .from("project_intakes")
-        .insert([record]);
+      return NextResponse.json(
+        { ok: false, error: "Persistence failed" },
+        { status: 500 },
+      );
+    }
 
-      if (dbError) {
-        console.error("[DATABASE_INSERT_ERROR]", {
-          id: submissionId,
-          code: dbError.code,
-          message: dbError.message,
-        });
+    // Notification is deliberately after persistence. Slack failures are
+    // isolated inside the dispatcher and can never turn a stored lead into
+    // a failed client submission.
+    const slackWebhookUrl = process.env.INTERNAL_SLACK_WEBHOOK_URL;
+    const supabaseProjectId = process.env.SUPABASE_PROJECT_ID;
 
-        return NextResponse.json(
-          { ok: false, error: "Persistence failed" },
-          { status: 500 },
-        );
-      }
+    if (slackWebhookUrl) {
+      await dispatchLeadNotification(
+        record,
+        slackWebhookUrl,
+        supabaseProjectId,
+      );
     } else {
       console.log(
-        `[INTAKE:RECORD_PREPARED] ID: ${submissionId} (Awaiting DB Credentials)`,
+        `[NOTIFICATION:SKIPPED] Brief ${submissionId} — INTERNAL_SLACK_WEBHOOK_URL not configured`,
       );
-      console.log(JSON.stringify(record, null, 2));
     }
 
     return NextResponse.json(
