@@ -1,7 +1,22 @@
+import Image from "next/image";
+import { MediaFrame } from "@/components/ui/media-frame";
+
 export default function CaseUrbanrise() {
   return (
     <section className="caseSection">
-      <div className="caseVisual"><span>PRIVATE CLIENT / REAL ESTATE</span><strong>URBANRISE</strong><i>CASE / 01</i></div>
+      <MediaFrame aspectRatio="aspect-[16/9]" className="caseVisual">
+        <Image
+          src="/media/cases/urbanrise-hero.avif"
+          alt="Urbanrise case study"
+          fill
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          className="object-cover"
+          loading="lazy"
+        />
+        <span className="relative z-10">PRIVATE CLIENT / REAL ESTATE</span>
+        <strong className="relative z-10">URBANRISE</strong>
+        <i className="relative z-10">CASE / 01</i>
+      </MediaFrame>
       <div className="caseContent">
         <p className="homeEyebrow">HERO CASE STUDY / FULL-FUNNEL GROWTH</p>
         <h2>FROM LEAD<br /><em>VOLUME</em><br />TO DEMAND.</h2>
