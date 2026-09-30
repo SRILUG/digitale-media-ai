@@ -1,0 +1,2 @@
+import {NextRequest,NextResponse} from "next/server";import {agentRegistry,AgentName} from "@/lib/ai/agents";
+export async function POST(req:NextRequest){const body=await req.json();const agent=body.agent as AgentName;if(!agent||!agentRegistry[agent])return NextResponse.json({error:"Unknown agent"},{status:400});return NextResponse.json({accepted:true,agent,goal:body.goal||"No goal supplied",approvalRequired:agentRegistry[agent].approvalRequired,status:"queued"})}
