@@ -1,0 +1,21 @@
+.section{padding:120px 8vw;border-bottom:1px solid #20232e;background:#0b0e13;color:#f4f6f8}
+.header{display:grid;grid-template-columns:1fr .8fr;gap:8vw;align-items:end;margin-bottom:65px}
+.kicker{display:inline-flex;align-items:center;gap:12px;font:9px "JetBrains Mono",monospace;letter-spacing:.2em;color:#718096}
+.kicker:before{content:"";width:34px;height:1px;background:#6fa8ff}
+.header h2{font-size:clamp(58px,7.5vw,116px);line-height:.82;letter-spacing:-.08em;margin:28px 0 0;font-weight:800}
+.header h2 em{font-style:normal;color:#f5f6f7;background:linear-gradient(90deg,#f5f6f7,#6fa8ff 70%,#06b6d4);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.intro{max-width:440px}
+.intro p{color:#8b95a5;line-height:1.75;font-size:15px;margin:0 0 28px}
+.story{display:inline-block;border:1px solid #3a4658;padding:13px 17px;color:#dce5f2;font:9px "JetBrains Mono",monospace;letter-spacing:.16em}
+.story span{color:#6fa8ff;margin-left:25px}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.card{border:1px solid #252d39;background:#090c11;overflow:hidden}
+.portrait{position:relative;aspect-ratio:4/5;background:#11151d;overflow:hidden}
+.image{object-fit:cover;object-position:center top;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.card:hover .image{transform:scale(1.025)}
+.cardBody{padding:27px 28px 30px}
+.cardBody h3{font-size:clamp(25px,2.3vw,36px);line-height:1;margin:0 0 12px;letter-spacing:-.04em;font-weight:600}
+.role{display:block;color:#6fa8ff;font:9px "JetBrains Mono",monospace;letter-spacing:.2em;margin-bottom:8px}
+.discipline{display:block;color:#657286;font:8px "JetBrains Mono",monospace;letter-spacing:.12em}
+.cardBody p{max-width:520px;color:#8994a5;font-size:13px;line-height:1.7;margin:22px 0 0}
+@media(max-width:800px){.section{padding:85px 7vw}.header{grid-template-columns:1fr;gap:35px;margin-bottom:45px}.header h2{font-size:clamp(52px,14vw,84px)}.cards{grid-template-columns:1fr}.cardBody{padding:24px}.portrait{aspect-ratio:4/5}}
