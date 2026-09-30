@@ -133,3 +133,44 @@
 .practiceRow>button{padding:24px 0}
 .practiceRow>button strong{font-size:24px}
 }
+
+
+/* DIGITALE homepage — experiences / engine room art direction */
+.experienceSection{min-height:900px;background:#07090d}
+.experienceBackdrop{background:radial-gradient(circle at 72% 38%,rgba(0,206,255,.18),transparent 20%),radial-gradient(circle at 35% 70%,rgba(74,102,255,.13),transparent 28%),linear-gradient(120deg,#07090d,#0b111a 55%,#07090d);overflow:hidden}
+.experienceBackdrop:before,.experienceBackdrop:after{content:"";position:absolute;border:1px solid rgba(115,174,255,.10);border-radius:50%;width:48vw;aspect-ratio:1;animation:experienceDrift 14s ease-in-out infinite}
+.experienceBackdrop:after{width:27vw;border-color:rgba(0,210,255,.12);animation-delay:-5s}
+@keyframes experienceDrift{50%{transform:translate(2vw,-1vw) rotate(8deg);opacity:.72}100%{transform:translate(0) rotate(0)}}
+.experienceBackdrop span{font-size:clamp(190px,34vw,520px);letter-spacing:-.14em;color:rgba(255,255,255,.022);transform:translateX(-3%)}
+.experienceContent{padding-top:135px}
+.experienceContent h2{font-size:clamp(70px,9vw,142px);letter-spacing:-.09em}
+.experienceContent>p{font-size:15px;color:#99a5b6}
+.experienceList{max-width:760px;margin-top:62px;border-top-color:#2b3543}
+.experienceList div{padding:21px 0;border-bottom-color:#2b3543;transition:padding-left .25s ease,border-color .25s ease}
+.experienceList div:hover{padding-left:10px;border-color:#4c6787}
+.experienceList strong{font-size:18px;letter-spacing:-.02em}
+.experienceList b{font-weight:400;color:#69aaff}
+.experienceCta{border-color:#3a4a60;transition:background .25s ease,color .25s ease,border-color .25s ease}
+.experienceCta:hover{background:#f3f6fa;color:#080a0f;border-color:#f3f6fa}
+.aiSection{background:#06080c;position:relative;overflow:hidden}
+.aiSection:after{content:"";position:absolute;width:50vw;height:50vw;right:-20vw;top:5%;border:1px solid rgba(94,155,255,.08);border-radius:50%;pointer-events:none}
+.aiHead{margin-bottom:70px}
+.aiHead h2{font-size:clamp(70px,9vw,145px)}
+.aiConsole{border-color:#26313f;box-shadow:0 25px 80px rgba(0,0,0,.2)}
+.consoleBar{background:#0a0e14}
+.consoleBar span:last-child{color:#61c6b2}
+.consoleRow{transition:background .25s ease}
+.consoleRow:hover{background:#0b1119}
+.consoleRow strong{letter-spacing:.12em}
+.consoleRow b{color:#69aaff}
+
+@media(max-width:850px){
+.experienceSection{min-height:820px}
+.experienceContent{padding-top:90px}
+.experienceContent h2{font-size:16vw}
+.experienceList{margin-top:42px}
+.experienceList div{padding:17px 0}
+.aiHead h2{font-size:16vw}
+.aiConsole{overflow:hidden}
+.consoleRow{grid-template-columns:38px 1fr 20px;padding:23px 14px}
+}
