@@ -1,46 +1,104 @@
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
+import { generateDiagnosticId } from "@/lib/id";
+import { RawIntakeSchema, normalizeIntake } from "@/lib/intake-schema";
 
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const idempotent = new Map<string, { id: string; expires: number }>();
+export const runtime = "nodejs";
 
-function clean(value: unknown, max = 5000) {
-  return typeof value === "string" ? value.trim().slice(0, max) : "";
-}
-
-export async function POST(request: Request) {
+export async function POST(req: NextRequest) {
   try {
-    const payload = await request.json();
-    const email = clean(payload?.email, 320).toLowerCase();
-    const source = clean(payload?.source, 120) || "project-diagnostic";
+    const json = await req.json().catch(() => null);
 
-    if (!email || !emailPattern.test(email)) {
-      return NextResponse.json({ ok: false, error: "A valid email is required." }, { status: 400 });
+    if (!json) {
+      return NextResponse.json(
+        { ok: false, error: "Malformed JSON payload" },
+        { status: 400 },
+      );
     }
 
-    const honeypot = clean(payload?.website_confirm, 200);
-    if (honeypot) {
-      return NextResponse.json({ ok: false, error: "Invalid submission." }, { status: 400 });
+    const parseResult = RawIntakeSchema.safeParse(json);
+
+    if (!parseResult.success) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: "Validation failed",
+          details: parseResult.error.flatten().fieldErrors,
+        },
+        { status: 400 },
+      );
     }
 
-    const fingerprint = `${source}:${email}`;
-    const now = Date.now();
-    const existing = idempotent.get(fingerprint);
-    if (existing && existing.expires > now) {
-      return NextResponse.json({ ok: true, id: existing.id, duplicate: true });
+    // Bots that populate the hidden honeypot are acknowledged without
+    // creating a real lead or revealing that the submission was discarded.
+    if (parseResult.data.bot_field) {
+      return NextResponse.json(
+        { ok: true, id: "DGT-HONEYPOT" },
+        { status: 200 },
+      );
     }
 
-    const id = "DGT-" + Math.floor(1000 + Math.random() * 9000);
-    idempotent.set(fingerprint, { id, expires: now + 10 * 60 * 1000 });
+    const forwarded = req.headers.get("x-forwarded-for");
+    const ip = forwarded
+      ? forwarded.split(",")[0].trim() || null
+      : req.headers.get("x-real-ip") ?? null;
+    const userAgent = req.headers.get("user-agent") ?? null;
 
-    console.log("DIGITALE PROJECT INTAKE", {
-      id,
-      source,
-      email,
-      payload: Object.fromEntries(Object.entries(payload || {}).map(([key,value]) => [key, typeof value === "string" ? value.slice(0, 5000) : value]))
+    const submissionId = generateDiagnosticId();
+    const record = normalizeIntake(submissionId, parseResult.data, {
+      ip,
+      userAgent,
     });
 
-    return NextResponse.json({ ok: true, id });
-  } catch {
-    return NextResponse.json({ ok: false, error: "Invalid request." }, { status: 400 });
+    const supabaseUrl = process.env.SUPABASE_URL;
+    const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+    if (supabaseUrl && supabaseServiceKey) {
+      const { createClient } = await import("@supabase/supabase-js");
+
+      const supabase = createClient(supabaseUrl, supabaseServiceKey, {
+        auth: {
+          persistSession: false,
+          autoRefreshToken: false,
+        },
+      });
+
+      const { error: dbError } = await supabase
+        .from("project_intakes")
+        .insert([record]);
+
+      if (dbError) {
+        console.error("[DATABASE_INSERT_ERROR]", {
+          id: submissionId,
+          code: dbError.code,
+          message: dbError.message,
+        });
+
+        return NextResponse.json(
+          { ok: false, error: "Persistence failed" },
+          { status: 500 },
+        );
+      }
+    } else {
+      console.log(
+        `[INTAKE:RECORD_PREPARED] ID: ${submissionId} (Awaiting DB Credentials)`,
+      );
+      console.log(JSON.stringify(record, null, 2));
+    }
+
+    return NextResponse.json(
+      {
+        ok: true,
+        id: submissionId,
+        message: "Brief received. Routing to practice lead.",
+      },
+      { status: 201 },
+    );
+  } catch (error) {
+    console.error("[UNCAUGHT_INTAKE_ERROR]", error);
+
+    return NextResponse.json(
+      { ok: false, error: "Internal server error" },
+      { status: 500 },
+    );
   }
 }
