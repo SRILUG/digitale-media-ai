@@ -73,6 +73,7 @@ export default function StartProject() {
   const [data, setData] = useState<FormState>(initial);
   const [submitted, setSubmitted] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const total = 8;
   const practice = data.practice || "not-sure";
@@ -117,15 +118,27 @@ export default function StartProject() {
   async function submit() {
     if (!canContinue) return;
     setSaving(true);
+    setSubmitError("");
     try {
       const response = await fetch("/api/project-intake", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
       const result = await response.json().catch(() => ({}));
       if (!response.ok || !result.id) {
+        const detail = result?.details
+          ? Object.entries(result.details as Record<string, string[]>)
+              .map(([field, messages]) => `${field}: ${messages.join(", ")}`)
+              .join(" · ")
+          : result?.error || `Request failed (${response.status})`;
+        setSubmitError(detail);
         setSaving(false);
         return;
       }
       sessionStorage.setItem("digitale-brief-id", result.id);
-    } catch {}
+    } catch (error) {
+      console.error("[PROJECT_INTAKE_SUBMIT_ERROR]", error);
+      setSubmitError("Could not reach the intake server. Make sure the local Next.js server is running and try again.");
+      setSaving(false);
+      return;
+    }
     localStorage.removeItem("digitale-project-diagnostic");
     setSubmitted(true);
     setSaving(false);
@@ -198,6 +211,8 @@ export default function StartProject() {
           {step === 7 && <Step title="What would success look like?"><textarea autoFocus value={data.success} onChange={e => update({success:e.target.value})} placeholder="Tell us what needs to be different 6–12 months from now." /></Step>}
 
           {step === 8 && <Step title="Where should we reach you?"><div className="fieldGrid"><Field label="Name"><input autoFocus value={data.name} onChange={e => update({name:e.target.value})} placeholder="Your name" /></Field><Field label="Work email"><input type="email" value={data.email} onChange={e => update({email:e.target.value})} placeholder="you@company.com" /></Field><Field label="Phone / WhatsApp"><input value={data.phone} onChange={e => update({phone:e.target.value})} placeholder="+91..." /></Field><Field label="Role"><input value={data.role} onChange={e => update({role:e.target.value})} placeholder="Founder, CMO, Marketing Lead..." /></Field></div></Step>}
+
+          {submitError && <div role="alert" className="intakeSubmitError">{submitError}</div>}
 
           <div className="intakeActions">
             <button className="backBtn" disabled={step===1} onClick={() => setStep(s => Math.max(1,s-1))}>← Back</button>
