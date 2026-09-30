@@ -8,6 +8,7 @@ export const RawIntakeSchema = z.object({
   user_agent: z.never({ message: "Client is forbidden from providing user_agent" }).optional(),
 
   practice: z.enum(["growth", "creative", "technology", "experiences", "not-sure", "not_sure"]),
+  focus: z.array(z.string().max(100)).max(20).default([]),
   practiceFocus: z.string().max(200).optional(),
   scope: z.string().max(300).optional(),
 
@@ -59,7 +60,7 @@ export function normalizeIntake(
   return {
     id,
     practice: raw.practice === "not-sure" ? "not_sure" : raw.practice,
-    practice_focus: raw.practiceFocus?.trim() || null,
+    practice_focus: raw.practiceFocus?.trim() || (raw.focus.length ? raw.focus.join(", ") : null),
     scope: raw.scope?.trim() || null,
     business_name: raw.company.trim(),
     website: raw.website?.trim() || null,
