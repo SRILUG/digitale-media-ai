@@ -28,7 +28,7 @@ type FormState = {
 const initial: FormState = {
   practice: "", focus: [], scope: "", company: "", website: "", industry: "",
   geography: "", currency: "INR", budget: "", timeline: "", success: "",
-  name: "", email: "", phone: "", role: ""
+  name: "", email: "", phone: "", role: "", bot_field: ""
 };
 
 const focusMap: Record<Exclude<Practice, "">, string[]> = {
