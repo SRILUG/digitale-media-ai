@@ -22,17 +22,28 @@ export default function HomeArtDirected() {
   return (
     <main className={styles.page}>
       <header className={styles.nav}>
-        <a href="/" className={styles.logo}>DIGITALE<span>®</span></a>
+        <a href="/" className={styles.logo} aria-label="Digitale Media"><img src="/media/brand/digitale-media-logo.png" alt="Digitale Media" /></a>
         <nav>
           <a href="#work">Work</a>
-          <a href="#capabilities">Capabilities</a>
+          <a href="#capabilities">Services</a>
           <a href="#experiences">Experiences</a>
-          <a href="#founders">Founders</a>
+          <a href="#insights">Insights</a>
+          <a href="#founders">About</a>
+          <a href="/start">Contact</a>
         </nav>
         <a className={styles.navCta} href="/start">Start a project <span>↗</span></a>
       </header>
 
       <section className={styles.hero}>
+        <div className={styles.heroCopy}>
+          <div className={styles.heroEyebrow}><span /> CREATIVE MEDIA × TECHNOLOGY × PRODUCTION × EXPERIENCES</div>
+          <h1>IDEAS<br />CREATE<br /><em>IMPACT.</em></h1>
+          <p>Creative media, technology and experiences built around ideas that move people.</p>
+          <div className={styles.heroActions}>
+            <a href="/start" className={styles.primaryButton}>START A PROJECT <span>→</span></a>
+            <a href="#showreel" className={styles.secondaryButton}>▶ &nbsp; WATCH SHOWREEL</a>
+          </div>
+        </div>
         <div className={styles.heroMedia}>
           <video autoPlay muted loop playsInline poster="/media/hero/showreel-poster.webp">
             <source src="/media/hero/showreel.webm" type="video/webm" />
@@ -40,19 +51,12 @@ export default function HomeArtDirected() {
           </video>
         </div>
         <div className={styles.heroShade} />
-        <div className={styles.heroTop}>
-          <span>CREATIVE × GROWTH × TECHNOLOGY</span>
-          <span>HYDERABAD / INDIA</span>
+        <div className={styles.heroSide}>
+          <span>FROM<br />IDEA<br />TO<br />IMPACT</span>
+          <b>01</b>
         </div>
-        <div className={styles.heroTitle}>
-          <div className={styles.heroLine}><span>ONE</span><span>TEAM.</span></div>
-          <div className={styles.heroLine}><span>REAL</span><i>GROWTH.</i></div>
-        </div>
-        <div className={styles.heroBottom}>
-          <p>We build brands, digital products, growth systems and experiences — as one connected thing.</p>
-          <a href="/start">BUILD SOMETHING <span>↗</span></a>
-          <span className={styles.scroll}>SCROLL ↓</span>
-        </div>
+        <div className={styles.heroTagline}>Media<br />Technology<br />People<br />Experiences</div>
+        <a id="showreel" className={styles.scroll} href="#capabilities">↓ &nbsp; SCROLL TO EXPLORE</a>
       </section>
 
       <section className={styles.statement}>
@@ -126,7 +130,7 @@ export default function HomeArtDirected() {
         </div>
       </section>
 
-      <section className={styles.engine}>
+      <section className={styles.engine} id="insights">
         <div className={styles.sectionHead}><span>05 / ENGINE ROOM</span><span>INTELLIGENCE / INFRASTRUCTURE</span></div>
         <div className={styles.engineGrid}>
           <div><p>AI IS NOT<br />THE PITCH.</p><h2>IT'S THE<br /><em>ENGINE.</em></h2></div>
