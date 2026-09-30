@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "verify:media": "node scripts/verify-media.mjs",
-    "prebuild": "npm run verify:media"
+    "prebuild": "npm run verify:media",
+    "verify:media:strict": "node scripts/verify-media.mjs --strict"
   },
   "dependencies": {
     "next": "latest",
