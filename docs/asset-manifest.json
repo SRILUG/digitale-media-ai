@@ -1,22 +1,95 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "rules": {
     "hero": {
-      "desktop": {"ratio": "16:9", "maxWidth": 1920, "format": "webp", "maxBytes": 450000},
-      "mobile": {"ratio": "4:5", "maxWidth": 1080, "format": "webp", "maxBytes": 300000},
-      "video": {"ratio": "16:9", "maxWidth": 1920, "formats": ["webm","mp4"], "maxBytes": 4000000, "durationSeconds": 12}
+      "desktop": {
+        "ratio": "16:9",
+        "maxWidth": 1920,
+        "format": "webp",
+        "maxBytes": 450000
+      },
+      "mobile": {
+        "ratio": "4:5",
+        "maxWidth": 1080,
+        "format": "webp",
+        "maxBytes": 300000
+      },
+      "poster": {
+        "ratio": "16:9",
+        "maxWidth": 1920,
+        "format": "webp",
+        "maxBytes": 120000
+      },
+      "video": {
+        "ratio": "16:9",
+        "maxWidth": 1920,
+        "formats": [
+          "webm",
+          "mp4"
+        ],
+        "maxBytes": 4000000,
+        "durationSeconds": 12
+      }
     },
     "editorialWork": {
-      "desktop": {"ratio": "16:9", "maxWidth": 1920, "format": "avif", "maxBytes": 500000},
-      "mobile": {"ratio": "4:5", "maxWidth": 1080, "format": "avif", "maxBytes": 350000}
+      "desktop": {
+        "ratio": "16:9",
+        "maxWidth": 1920,
+        "formats": [
+          "avif",
+          "webp"
+        ],
+        "maxBytes": 500000
+      },
+      "mobile": {
+        "ratio": "4:5",
+        "maxWidth": 1080,
+        "formats": [
+          "avif",
+          "webp"
+        ],
+        "maxBytes": 350000
+      }
     },
     "caseStudy": {
-      "hero": {"ratio": "16:9", "maxWidth": 2400, "format": "avif", "maxBytes": 700000},
-      "detail": {"ratio": "3:2", "maxWidth": 1800, "format": "avif", "maxBytes": 450000}
+      "hero": {
+        "ratio": "16:9",
+        "maxWidth": 2400,
+        "formats": [
+          "avif",
+          "webp"
+        ],
+        "maxBytes": 700000
+      },
+      "detail": {
+        "ratio": "3:2",
+        "maxWidth": 1800,
+        "formats": [
+          "avif",
+          "webp"
+        ],
+        "maxBytes": 450000
+      }
     },
     "experiences": {
-      "desktop": {"ratio": "16:9", "maxWidth": 1920, "format": "avif", "maxBytes": 500000},
-      "mobile": {"ratio": "4:5", "maxWidth": 1080, "format": "avif", "maxBytes": 350000}
+      "desktop": {
+        "ratio": "16:9",
+        "maxWidth": 1920,
+        "formats": [
+          "avif",
+          "webp"
+        ],
+        "maxBytes": 500000
+      },
+      "mobile": {
+        "ratio": "4:5",
+        "maxWidth": 1080,
+        "formats": [
+          "avif",
+          "webp"
+        ],
+        "maxBytes": 350000
+      }
     }
   },
   "implementation": {
@@ -28,10 +101,35 @@
     "preloadVideoOnlyWhenVisible": true
   },
   "slots": [
-    {"id":"home.hero.reel","status":"pending","source":"DIGITALE showreel"},
-    {"id":"work.urbanrise.hero","status":"pending","source":"verified client asset"},
-    {"id":"work.consumer.hero","status":"pending","source":"verified client asset"},
-    {"id":"work.experiences.hero","status":"pending","source":"verified production asset"},
-    {"id":"case.urbanrise.detail-01","status":"pending","source":"verified client asset"}
+    {
+      "id": "home.hero.reel",
+      "status": "pending",
+      "source": "DIGITALE showreel"
+    },
+    {
+      "id": "home.hero.poster",
+      "status": "pending",
+      "source": "exact initial showreel frame"
+    },
+    {
+      "id": "work.urbanrise.hero",
+      "status": "pending",
+      "source": "verified client asset"
+    },
+    {
+      "id": "work.consumer.hero",
+      "status": "pending",
+      "source": "verified client asset"
+    },
+    {
+      "id": "work.experiences.hero",
+      "status": "pending",
+      "source": "verified production asset"
+    },
+    {
+      "id": "case.urbanrise.detail-01",
+      "status": "pending",
+      "source": "verified client asset"
+    }
   ]
-}
+}\n
