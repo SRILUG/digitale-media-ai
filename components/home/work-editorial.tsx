@@ -2,9 +2,9 @@ import Image from "next/image";
 import { MediaFrame } from "@/components/ui/media-frame";
 
 const projects = [
-  { n:"01", type:"REAL ESTATE / GROWTH", title:"URBANRISE", line:"A connected acquisition system across intelligence, creative, media and sales.", tone:"estate", image:"/media/work/urbanrise.webp", alt:"Urbanrise project work" },
-  { n:"02", type:"CONSUMER / BRAND + GROWTH", title:"GLOBAL CONSUMER BRAND", line:"Brand identity, content and paid distribution built as one commercial system.", tone:"consumer" },
-  { n:"03", type:"EXPERIENCE / CULTURE", title:"ENTERTAINMENT GALA & LAUNCH", line:"A live cultural moment extended into content, broadcast and digital reach.", tone:"culture" },
+  { n:"01", type:"BRAND / GROWTH", title:"CONSUMER BRAND SYSTEM", line:"Brand identity, content and paid distribution built as one commercial system.", tone:"consumer" },
+  { n:"02", type:"EXPERIENCE / CULTURE", title:"ENTERTAINMENT LAUNCH", line:"A live cultural moment extended into content, broadcast and digital reach.", tone:"culture" },
+  { n:"03", type:"TECHNOLOGY / PRODUCT", title:"DIGITAL PRODUCT", line:"A focused digital experience designed around discovery, conversion and measurable action.", tone:"technology" },
 ];
 
 export default function WorkEditorial() {
@@ -29,13 +29,13 @@ export default function WorkEditorial() {
                 />
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center bg-[#111622]">
-                  <div className="editorialMark">{p.n === "02" ? "×" : "LIVE"}</div>
+                  <div className="editorialMark">{p.n === "02" ? "LIVE" : p.n === "03" ? "DIGITAL" : "×"}</div>
                 </div>
               )}
               <span className="relative z-10">{p.type}</span>
               <strong className="relative z-10">{p.n}</strong>
             </MediaFrame>
-            <div className="editorialCopy"><small>{p.type}</small><h3>{p.title}</h3><p>{p.line}</p><a href="/work">Read the teardown <span>↗</span></a></div>
+            <div className="editorialCopy"><small>{p.type}</small><h3>{p.title}</h3><p>{p.line}</p><a href="/work">Read the work <span>↗</span></a></div>
           </article>
         ))}
       </div>
