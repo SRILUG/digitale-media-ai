@@ -1,5 +1,5 @@
 {
-  "version": "1.2",
+  "version": "1.3",
   "rules": {
     "hero": {
       "desktop": { "ratio": "16:9", "maxWidth": 1920, "format": "webp", "maxBytes": 450000 },
@@ -11,13 +11,13 @@
       "desktop": { "ratio": "16:9", "maxWidth": 1920, "formats": ["avif","webp"], "maxBytes": 358400 },
       "mobile": { "ratio": "4:5", "maxWidth": 1080, "formats": ["avif","webp"], "maxBytes": 358400 }
     },
-    "caseStudy": {
-      "hero": { "ratio": "16:9", "maxWidth": 2400, "formats": ["avif","webp"], "maxBytes": 256000 },
-      "detail": { "ratio": "3:2", "maxWidth": 1800, "formats": ["avif","webp"], "maxBytes": 450000 }
-    },
     "experiences": {
       "desktop": { "ratio": "16:9", "maxWidth": 1920, "formats": ["avif","webp"], "maxBytes": 500000 },
       "mobile": { "ratio": "4:5", "maxWidth": 1080, "formats": ["avif","webp"], "maxBytes": 350000 }
+    },
+    "founders": {
+      "desktop": { "ratio": "4:5", "maxWidth": 1600, "formats": ["avif","webp"], "maxBytes": 450000 },
+      "mobile": { "ratio": "4:5", "maxWidth": 1080, "formats": ["avif","webp"], "maxBytes": 300000 }
     }
   },
   "implementation": {
@@ -32,7 +32,11 @@
     "hero_video_webm": { "path": "public/media/hero/showreel.webm", "max_kb": 4096 },
     "hero_video_mp4": { "path": "public/media/hero/showreel.mp4", "max_kb": 4096 },
     "hero_poster": { "path": "public/media/hero/showreel-poster.webp", "max_kb": 120 },
-    "editorial_urbanrise": { "path": "public/media/work/urbanrise.webp", "max_kb": 350 },
-    "case_urbanrise_hero": { "path": "public/media/cases/urbanrise-hero.avif", "max_kb": 250 }
+    "work_consumer_brand": { "path": "public/media/work/consumer-brand.webp", "max_kb": 350 },
+    "work_entertainment_launch": { "path": "public/media/work/entertainment-launch.webp", "max_kb": 350 },
+    "work_digital_product": { "path": "public/media/work/digital-product.webp", "max_kb": 350 },
+    "experience_hero": { "path": "public/media/experiences/experience-hero.avif", "max_kb": 500 },
+    "founder_uma": { "path": "public/media/founders/uma-saravana-kumar.webp", "max_kb": 450 },
+    "founder_siva": { "path": "public/media/founders/siva-veerapaneni.webp", "max_kb": 450 }
   }
 }
