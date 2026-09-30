@@ -83,7 +83,8 @@ export default function StartProject() {
     const validPractice = requested && ["growth","creative","technology","experiences","not-sure"].includes(requested) ? requested : null;
     const saved = localStorage.getItem("digitale-project-diagnostic");
     if (saved) {
-      try { setData(JSON.parse(saved)); } catch {}
+      try { setData((v) => ({ ...v, ...JSON.parse(saved), ...(validPractice ? { practice: validPractice, focus: [] } : {}) })); } catch {}
+      if (validPractice) setStep(2);
     } else {
       setData((v) => ({ ...v, currency: inferCurrency(), ...(validPractice ? { practice: validPractice } : {}) }));
       if (validPractice) setStep(2);
@@ -116,7 +117,9 @@ export default function StartProject() {
     if (!canContinue) return;
     setSaving(true);
     try {
-      await fetch("/api/project-intake", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
+      const response = await fetch("/api/project-intake", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
+      const result = await response.json().catch(() => ({}));
+      if (result.id) sessionStorage.setItem("digitale-brief-id", result.id);
     } catch {}
     localStorage.removeItem("digitale-project-diagnostic");
     setSubmitted(true);
@@ -134,7 +137,7 @@ export default function StartProject() {
           <div className="monoLabel">BRIEF RECEIVED / DGT-{briefId || "RECEIVED"}</div>
           <h1>Now we know<br /><i>where to start.</i></h1>
           <p>Your project context is with the DIGITALE team. We’ll review the brief and come back with the right next step—not a generic sales pitch.</p>
-          <div className="successActions"><a href="https://wa.me/" target="_blank" rel="noreferrer">Chat on WhatsApp ↗</a><Link href="/">Return to DIGITALE ↗</Link></div>
+          <div className="successActions"><Link href="/start">Review brief ↗</Link><Link href="/">Return to DIGITALE ↗</Link></div>
         </section>
       </main>
     );
