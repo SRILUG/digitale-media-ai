@@ -78,11 +78,15 @@ export default function StartProject() {
   const focuses = focusMap[practice];
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const requested = params.get("practice") as Practice | null;
+    const validPractice = requested && ["growth","creative","technology","experiences","not-sure"].includes(requested) ? requested : null;
     const saved = localStorage.getItem("digitale-project-diagnostic");
     if (saved) {
       try { setData(JSON.parse(saved)); } catch {}
     } else {
-      setData((v) => ({ ...v, currency: inferCurrency() }));
+      setData((v) => ({ ...v, currency: inferCurrency(), ...(validPractice ? { practice: validPractice } : {}) }));
+      if (validPractice) setStep(2);
     }
   }, []);
 
@@ -119,13 +123,15 @@ export default function StartProject() {
     setSaving(false);
   }
 
+  const briefId = typeof window !== "undefined" ? sessionStorage.getItem("digitale-brief-id") : null;
+
   if (submitted) {
     return (
       <main className="intakePage">
         <div className="intakeGlow" />
         <header className="intakeNav"><Link href="/" className="intakeLogo">DIGITALE<span>®</span></Link><span>PROJECT DIAGNOSTIC</span></header>
         <section className="successScreen">
-          <div className="monoLabel">BRIEF RECEIVED / DGT-{Math.floor(1000 + Math.random() * 9000)}</div>
+          <div className="monoLabel">BRIEF RECEIVED / DGT-{briefId || "RECEIVED"}</div>
           <h1>Now we know<br /><i>where to start.</i></h1>
           <p>Your project context is with the DIGITALE team. We’ll review the brief and come back with the right next step—not a generic sales pitch.</p>
           <div className="successActions"><a href="https://wa.me/" target="_blank" rel="noreferrer">Chat on WhatsApp ↗</a><Link href="/">Return to DIGITALE ↗</Link></div>
