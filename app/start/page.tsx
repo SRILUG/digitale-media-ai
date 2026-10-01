@@ -178,7 +178,7 @@ export default function StartProject() {
             <p>{step === 1 ? "Tell us what you are trying to build. We’ll route the conversation to the right DIGITALE practice." : "The better the context, the better the first conversation."}</p>
           </div>
           <div className="intakeProgress"><span style={{ width: progress + "%" }} /></div>
-          <div className="directLine">Prefer a direct line? <a href="https://wa.me/" target="_blank" rel="noreferrer">WhatsApp us ↗</a></div>
+          <div className="directLine">Prefer a direct line? Tell us in the brief and we’ll take it from there.</div>
         </aside>
 
         <section className="intakeCard">
