@@ -60,10 +60,11 @@ export default function HomeArtDirected() {
           <Link href="/work">Work</Link>
           <Link href="/services">Services</Link>
           <Link href="/experiences">Experiences</Link>
-          <Link href="/about">People</Link>
+          <Link href="/about">About</Link>
           <Link href="/insights">Insights</Link>
           <Link href="/start">Start a project ↗</Link>
         </nav>
+        <Link href="/start" className={styles.mobileStart}>Start ↗</Link>
       </header>
 
       <section className={styles.hero}>
