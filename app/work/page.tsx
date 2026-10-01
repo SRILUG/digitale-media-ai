@@ -11,7 +11,7 @@ const projects = [
 
 export default function Work() {
  return <main className={`${styles.page} dgPage`}>
-  <header className={styles.header}><Link href="/" className={styles.back}>← DIGITALE MEDIA</Link><span>SELECTED WORK</span><span>2026</span></header>
+  <SiteHeader current="work" />
   <section className={styles.hero}><span>THE WORK / 001</span><h1>IDEAS<br/><em>IN MOTION.</em></h1><p>Selected directions across creative, digital, growth and experiences. Built to show the thinking without inventing the story.</p></section>
   <div className={styles.filters}><span>FILTER</span><a href="#all">ALL</a><a href="#creative">CREATIVE</a><a href="#digital">DIGITAL</a><a href="#growth">GROWTH</a><a href="#experiences">EXPERIENCES</a></div>
   <section id="all" className={styles.list}>{projects.map((p,i)=><Link href={"/work/"+p.slug} key={p.slug} className={styles.project} data-tone={p.tone}>
