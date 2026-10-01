@@ -146,3 +146,26 @@
   .cadence{min-height:68svh}
   .finalCta{min-height:72vh}
 }
+
+/* Mobile QA refinement */
+@media(max-width:760px){
+  .logo{width:145px;height:50px;flex-basis:145px}
+  .mobileStart{padding:11px 15px}
+  .hero{min-height:calc(100svh - 0px);padding-top:92px;padding-bottom:28px}
+  .heroCopy{padding-bottom:3vh}
+  .heroCopy h1{font-size:17.5vw;line-height:.84;letter-spacing:-.095em;margin:18px 0 22px}
+  .heroCopy p{max-width:310px;font-size:12.5px;line-height:1.5;margin-bottom:22px}
+  .heroActions{gap:14px}
+  .primaryButton{padding:13px 16px}
+  .textButton{display:none}
+  .heroMedia{top:42%;opacity:.72}
+  .heroOrb{width:70vw;height:70vw;right:-9%;top:8%;opacity:.55}
+  .heroFrame{width:72vw;height:43vh;right:6%;top:8%;opacity:.72}
+  .heroFrameWord{font-size:22vw}
+  .heroSlash{width:62vw;right:-10%;top:57%;opacity:.75}
+  .heroCaption{bottom:15px;font-size:7px}
+  .footer{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;line-height:1.6;padding:24px 7vw}
+  .footer span:first-child{grid-column:1/-1}
+  .footer span:nth-child(2){grid-column:1/-1;max-width:270px}
+  .footer span:last-child{grid-column:1/-1}
+}
