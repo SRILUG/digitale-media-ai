@@ -6,6 +6,7 @@ import styles from "./home-art-directed.module.css";
 
 const work = [
   {
+    slug: "brand-worlds",
     number: "01",
     label: "BRAND / CAMPAIGN",
     title: <>MAKE THEM<br /><em>REMEMBER.</em></>,
@@ -14,6 +15,7 @@ const work = [
     visual: "MOVE",
   },
   {
+    slug: "digital-systems",
     number: "02",
     label: "DIGITAL / SYSTEMS",
     title: <>MAKE IT<br /><em>USEFUL.</em></>,
@@ -22,6 +24,7 @@ const work = [
     visual: "BUILD",
   },
   {
+    slug: "live-experiences",
     number: "03",
     label: "EXPERIENCES / LIVE",
     title: <>MAKE THE<br /><em>MOMENT MATTER.</em></>,
@@ -129,7 +132,7 @@ export default function HomeArtDirected() {
                 <span>{item.label}</span>
                 <h3>{item.title}</h3>
                 <p>{item.note}</p>
-                <Link href="/work">Explore ↗</Link>
+                <Link href={`/work/${item.slug}`}>Explore ↗</Link>
               </div>
             </article>
           ))}
