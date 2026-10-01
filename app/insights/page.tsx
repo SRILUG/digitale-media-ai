@@ -17,3 +17,4 @@ export default function Insights(){return <main className={`${styles.page} dgPag
 <section className={styles.newsletter}><small>KEEP THINKING</small><h2>NO NOISE.<br/><em>JUST IDEAS.</em></h2><p>For now, the best way to start a conversation is to bring the problem.</p><Link href="/start">START A PROJECT ↗</Link></section>
 <footer><span>DIGITALE MEDIA®</span><span>CREATIVE × GROWTH × TECHNOLOGY × EXPERIENCES</span><span>2026</span></footer>
 </main>
+}
