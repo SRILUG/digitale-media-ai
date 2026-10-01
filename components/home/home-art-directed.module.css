@@ -169,3 +169,38 @@
   .footer span:nth-child(2){grid-column:1/-1;max-width:270px}
   .footer span:last-child{grid-column:1/-1}
 }
+
+
+/* Final homepage composition pass */
+.cadence{
+  min-height:auto;
+  padding-top:8vw;
+  padding-bottom:8vw;
+  display:grid;
+  grid-template-columns:.42fr 1fr;
+  column-gap:8vw;
+  align-items:start;
+}
+.cadence .kicker{padding-top:1.1vw}
+.cadenceWords{margin-top:0}
+.peopleIntro{grid-template-columns:1.2fr .8fr;gap:10vw}
+.founderGrid{gap:20px}
+.founderGrid article>div:first-child{height:46vw;max-height:700px}
+.sivaPlaceholder,.umaPortrait{min-height:520px}
+.experiences .expImage{background:radial-gradient(circle at 50% 45%,#6b3a20 0,#21130d 28%,#030303 66%)}
+.expOrb{background:radial-gradient(circle,#ff9b3d 0,rgba(240,107,24,.32) 34%,transparent 70%);opacity:.9}
+@media(max-width:760px){
+  .cadence{
+    display:flex;
+    min-height:68svh;
+    padding-top:14vw;
+    padding-bottom:14vw;
+  }
+  .cadenceWords{margin-top:11vw}
+  .peopleIntro{grid-template-columns:1fr;gap:30px}
+  .founderGrid article>div:first-child{height:105vw;min-height:0}
+  .sivaPlaceholder,.umaPortrait{min-height:0}
+  .experiences .expImage{background:radial-gradient(circle at 50% 45%,#704025 0,#21130d 32%,#030303 70%)}
+  .expOrb{width:54vw;height:54vw;opacity:1}
+  .expGhost{color:#fff;opacity:.075}
+}
