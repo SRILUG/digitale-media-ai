@@ -7,3 +7,15 @@
 .projectCopy small{font:9px monospace;letter-spacing:.1em;color:#888}.projectCopy h2{font-size:clamp(55px,6.5vw,105px);line-height:.8;letter-spacing:-.09em;margin:22px 0 25px}.projectCopy p{max-width:430px;font-size:14px;line-height:1.6;color:#777;margin-bottom:35px}.project[data-tone="dark"] .projectCopy p,.project[data-tone="warm"] .projectCopy p{color:#aaa}.projectCopy span{font:9px monospace;letter-spacing:.1em;border-bottom:1px solid currentColor;padding-bottom:7px}
 .end{background:#050505;color:#fff;padding:13vw 5vw;min-height:75vh;display:grid;align-content:center}.end>span,.end>a{font:9px monospace;letter-spacing:.12em;color:#aaa}.end h2{font-size:clamp(70px,9vw,145px);line-height:.76;letter-spacing:-.1em;margin:7vw 0}.end>a{color:#fff;width:max-content;border-bottom:1px solid #555;padding-bottom:10px}.page footer{background:#050505;color:#666;border-top:1px solid #222;padding:22px 5vw;display:flex;justify-content:space-between;font:8px monospace;letter-spacing:.1em}
 @media(max-width:760px){.header{height:70px;padding:0 6vw;font-size:8px}.header span:nth-child(2){display:none}.hero{display:block;padding:18vw 7vw 16vw;min-height:72vh}.hero h1{font-size:21vw;margin:20vw 0 10vw}.hero p{font-size:13px}.filters{padding:17px 7vw;gap:20px}.list{padding:0 7vw}.project,.project:nth-child(even){display:flex;flex-direction:column;gap:12vw;min-height:auto;padding:18vw 0}.project:nth-child(even) .projectVisual{order:0}.project[data-tone="dark"],.project[data-tone="warm"],.project[data-tone="cream"]{margin:0 -7vw;padding-left:7vw;padding-right:7vw}.projectVisual{width:100%;height:90vw;min-height:0}.projectVisual b{font-size:24vw}.projectCopy h2{font-size:16vw}.projectCopy p{font-size:13px}.end{padding:18vw 7vw;min-height:80vh}.end h2{font-size:18vw;margin:18vw 0 10vw}.page footer{display:block;line-height:2.8;padding:24px 7vw}}
+@media(max-width:760px){
+ .hero{padding:22vw 7vw 14vw;min-height:auto}
+ .hero h1{font-size:20vw;margin:18vw 0 10vw}
+ .hero p{font-size:12px;line-height:1.5}
+ .filters{position:sticky;top:68px;z-index:8;background:rgba(251,251,249,.96);backdrop-filter:blur(12px)}
+ .project{gap:9vw;padding:15vw 0}
+ .projectVisual{height:68vw}
+ .projectCopy h2{font-size:14.5vw;margin:14vw 0 7vw}
+ .projectCopy p{font-size:11.5px;line-height:1.55}
+ .end{min-height:65vh;padding:18vw 7vw}
+ .end h2{font-size:17vw;margin:16vw 0 9vw}
+}
