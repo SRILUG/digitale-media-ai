@@ -57,7 +57,7 @@ export default function HomeArtDirected() {
           <img src="/media/brand/digitale-media-logo.webp" alt="Digitale Media" />
         </Link>
         <nav aria-label="Primary">
-          <a href="#work">Work</a>
+          <Link href="/work">Work</Link>
           <Link href="/services">Services</Link>
           <Link href="/experiences">Experiences</Link>
           <Link href="/about">People</Link>
