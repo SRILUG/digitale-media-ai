@@ -9,7 +9,7 @@ const stories=[
 {n:"04",tag:"BRAND / STRATEGY",title:"A BRAND IS A SYSTEM, NOT A LOGO",desc:"The identity is only the visible layer. The real brand lives in every interaction that follows.",slug:"brand-as-system"}
 ];
 
-export default function Insights(){return <main className={styles.page}>
+export default function Insights(){return <main className={`${styles.page} dgPage`}>
 <header><Link href="/">← DIGITALE MEDIA</Link><span>INSIGHTS</span><Link href="/start">START A PROJECT ↗</Link></header>
 <section className={styles.hero}><small>THINKING / 005</small><h1>THINGS<br/><em>WORTH THINKING.</em></h1><p>Ideas, observations and practical thinking from the intersection of creative, growth, technology and experiences.</p></section>
 <section className={styles.feature}><div><small>FEATURED / 01</small><h2>THE BEST<br/>SYSTEMS ARE<br/><em>CONNECTED.</em></h2></div><p>When creative, growth, technology and experience operate as separate departments, the customer feels the seams. The opportunity is to make the seams disappear.</p></section>
