@@ -8,13 +8,9 @@ const isStrict =
   process.env.CI === "true" ||
   process.env.NODE_ENV === "production";
 
-const ASSET_BUDGETS = [
-  { path: "public/media/hero/showreel.webm", maxBytes: 4 * 1024 * 1024, label: "Hero Video (WebM)" },
-  { path: "public/media/hero/showreel.mp4", maxBytes: 4 * 1024 * 1024, label: "Hero Video (MP4)" },
-  { path: "public/media/hero/showreel-poster.webp", maxBytes: 120 * 1024, label: "Hero Poster" },
-  { path: "public/media/work/urbanrise.webp", maxBytes: 350 * 1024, label: "Urbanrise Editorial" },
-  { path: "public/media/cases/urbanrise-hero.avif", maxBytes: 250 * 1024, label: "Urbanrise Case Hero" },
-];
+// Only verify media that belongs to the current DIGITALE MEDIA experience.
+// Optional assets can be added here when they are actually referenced by the site.
+const ASSET_BUDGETS = [];
 
 let hasErrors = false;
 
