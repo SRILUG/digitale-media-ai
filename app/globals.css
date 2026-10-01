@@ -204,3 +204,16 @@
 .experienceCta b{font-weight:400;color:#69aaff}
 .experienceCta:hover{background:#f3f6fa;color:#080a0f;border-color:#f3f6fa}.experienceCta:hover b{color:#0870d8}
 @media(max-width:850px){.experienceContent{padding:88px 7vw 35px}.experienceIntro{grid-template-columns:1fr;gap:35px;margin:55px 0 48px}.experienceContent h2{font-size:16vw}.experienceItem{grid-template-columns:38px 1fr 20px;padding:21px 0}.experienceItemMain{grid-template-columns:1fr;gap:8px}.experienceItem p{font-size:11px}.experienceBottom{align-items:flex-start;gap:25px;flex-direction:column}.experienceRingOne{width:90vw;right:-35vw;top:23%;opacity:.6}.experienceRingTwo{width:52vw;right:-8vw;top:35%}.experienceCrossOne{right:15%}.experienceCrossTwo{display:none}.experienceBackdrop span{font-size:54vw;top:38%}}
+
+/* DIGITALE motion system */
+@keyframes digitalePageIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes digitaleRise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes digitaleScale{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
+@keyframes digitaleMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.dgPage{animation:digitalePageIn .7s cubic-bezier(.22,.61,.36,1) both;transform-origin:50% 0}
+.dgPage section{animation:digitaleRise .85s cubic-bezier(.22,.61,.36,1) both;animation-timeline:view();animation-range:entry 0% cover 18%}
+.dgPage a,.dgPage button{transition:transform .25s cubic-bezier(.22,.61,.36,1),opacity .25s ease,background-color .25s ease,border-color .25s ease}
+.dgPage a:hover{transform:translateY(-2px)}
+.dgPage img{transition:transform .7s cubic-bezier(.22,.61,.36,1)}
+.dgPage a:hover img{transform:scale(1.02)}
+@media(prefers-reduced-motion:reduce){.dgPage,.dgPage section{animation:none!important}.dgPage a,.dgPage button,.dgPage img{transition:none!important}}
