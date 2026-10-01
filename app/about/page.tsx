@@ -20,3 +20,4 @@ export default function About(){return <main className={`${styles.page} dgPage`}
 <section className={styles.cta}><small>THE NEXT CHAPTER</small><h2>LET'S MAKE<br/><em>SOMETHING MATTER.</em></h2><p>Bring the problem. We'll figure out what it needs to become.</p><Link href="/start">START A PROJECT ↗</Link></section>
 <footer><span>DIGITALE MEDIA®</span><span>CREATIVE × GROWTH × TECHNOLOGY × EXPERIENCES</span><span>2026</span></footer>
 </main>
+}
