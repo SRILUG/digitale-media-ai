@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { MediaFrame } from "@/components/ui/media-frame";
 
-const projects = [
+const projects: Array<{ n:string; type:string; title:string; line:string; tone:string; image?:string; alt?:string }> = [
   { n:"01", type:"BRAND / GROWTH", title:"CONSUMER BRAND SYSTEM", line:"Brand identity, content and paid distribution built as one commercial system.", tone:"consumer" },
   { n:"02", type:"EXPERIENCE / CULTURE", title:"ENTERTAINMENT LAUNCH", line:"A live cultural moment extended into content, broadcast and digital reach.", tone:"culture" },
   { n:"03", type:"TECHNOLOGY / PRODUCT", title:"DIGITAL PRODUCT", line:"A focused digital experience designed around discovery, conversion and measurable action.", tone:"technology" },
