@@ -59,7 +59,7 @@ export default function HomeArtDirected() {
         <nav aria-label="Primary">
           <a href="#work">Work</a>
           <Link href="/services">Services</Link>
-          <a href="#experiences">Experiences</a>
+          <Link href="/experiences">Experiences</Link>
           <a href="#people">People</a>
           <Link href="/start">Start a project ↗</Link>
         </nav>
