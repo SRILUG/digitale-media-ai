@@ -10,7 +10,7 @@ const services=[
 ];
 
 export default function Services(){return <main className={`${styles.page} dgPage`}>
-<header><Link href="/">← DIGITALE MEDIA</Link><span>SERVICES</span><Link href="/start">START A PROJECT ↗</Link></header>
+<SiteHeader current="services" />
 <section className={styles.hero}><small>WHAT WE DO / 002</small><h1>NO<br/><em>BOXES.</em></h1><p>We don't sell isolated services. We connect creative, growth, technology and experiences around the problem that needs solving.</p></section>
 <section className={styles.system}><span>ONE TEAM. ONE SYSTEM.</span><h2>CREATIVE × GROWTH ×<br/>TECHNOLOGY × <em>EXPERIENCE</em></h2><div className={styles.flow}><span>PROBLEM</span><b>→</b><span>STRATEGY</span><b>→</b><span>MAKE</span><b>→</b><span>LAUNCH</span><b>→</b><span>LEARN</span></div></section>
 <section className={styles.services}>{services.map(s=><article key={s.n}><div className={styles.serviceTop}><span>{s.n}</span><small>{s.name}</small></div><h2>{s.name}</h2><p className={styles.line}>{s.line}</p><ul>{s.items.map(x=><li key={x}>{x}<b>↗</b></li>)}</ul><Link href={"/start?practice="+s.name.toLowerCase()}>BUILD WITH US ↗</Link></article>)}</section>
