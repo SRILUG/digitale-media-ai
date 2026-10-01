@@ -51,7 +51,7 @@ export default function HomeArtDirected() {
     <main className={styles.page}>
       <header className={styles.nav}>
         <Link href="/" className={styles.logo} aria-label="Digitale Media">
-          <img src="/media/brand/digitale-media-logo.png" alt="Digitale Media" />
+          <img src="/media/brand/digitale-media-logo.webp" alt="Digitale Media" />
         </Link>
         <nav aria-label="Primary">
           <a href="#work">Work</a>
