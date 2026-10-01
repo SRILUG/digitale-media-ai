@@ -6,10 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "tsc --noEmit",
     "verify:media": "node scripts/verify-media.mjs",
-    "prebuild": "npm run verify:media",
-    "verify:media:strict": "node scripts/verify-media.mjs --strict"
+    "verify": "npm run lint && npm run verify:media",
+    "prebuild": "npm run verify:media"
   },
   "dependencies": {
     "next": "latest",
