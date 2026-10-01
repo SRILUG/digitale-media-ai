@@ -547,3 +547,45 @@
     line-height:1.4;
   }
 }
+
+
+/* Mobile next-section polish: transformation */
+@media(max-width:760px){
+  .transformation{
+    padding:16vw 7vw 17vw;
+  }
+  .transformationIntro{
+    display:block;
+  }
+  .transformationIntro .kicker{
+    display:block;
+    margin-bottom:18px;
+  }
+  .transformationIntro h2{
+    font-size:12.6vw;
+    line-height:.86;
+    letter-spacing:-.085em;
+    margin:0;
+  }
+  .transformationSteps{
+    margin-top:12vw;
+    grid-template-columns:1fr 1fr;
+  }
+  .transformationSteps div{
+    min-height:132px;
+    padding:18px 12px 15px 0;
+  }
+  .transformationSteps div:not(:first-child){
+    padding-left:13px;
+  }
+  .transformationSteps strong{
+    font-size:19px;
+    letter-spacing:-.05em;
+    margin:22px 0 8px;
+  }
+  .transformationSteps p{
+    max-width:115px;
+    font-size:9.5px;
+    line-height:1.4;
+  }
+}
