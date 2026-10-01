@@ -72,11 +72,17 @@ export default function HomeArtDirected() {
             <a href="#work" className={styles.textButton}>SEE THE WORK ↓</a>
           </div>
         </div>
+
         <div className={styles.heroMedia} aria-hidden="true">
-          <video autoPlay muted loop playsInline poster="/media/hero/showreel-poster.webp">
-            <source src="/media/hero/showreel.webm" type="video/webm" />
-            <source src="/media/hero/showreel.mp4" type="video/mp4" />
-          </video>
+          <div className={styles.heroVisual}>
+            <div className={styles.heroOrb} />
+            <div className={styles.heroFrame}>
+              <div className={styles.heroFrameTop}><span>DGT / 01</span><span>IDEA IN MOTION</span></div>
+              <div className={styles.heroFrameWord}>MOVE</div>
+              <div className={styles.heroFrameBottom}><span>CREATIVE × DIGITAL</span><span>2026</span></div>
+            </div>
+            <div className={styles.heroSlash} />
+          </div>
         </div>
         <div className={styles.heroCaption}>MAKING THEM MATTER IS WHAT WE DO.</div>
       </section>
@@ -116,7 +122,8 @@ export default function HomeArtDirected() {
               <div className={styles.workVisual}>
                 <span>{item.number}</span>
                 <strong>{item.label}</strong>
-                <div>{item.visual}</div>
+                <div className={styles.workVisualWord}>{item.visual}</div>
+                <i />
               </div>
               <div className={styles.workCopy}>
                 <span>{item.label}</span>
@@ -155,7 +162,8 @@ export default function HomeArtDirected() {
       <section id="experiences" className={styles.experiences}>
         <div className={styles.expImage}>
           <span className={styles.expGhost}>LIVE</span>
-          <span className={styles.expMark}>EXPERIENCE</span>
+          <span className={styles.expMark}>EXPERIENCE / 01</span>
+          <div className={styles.expOrb} />
         </div>
         <div className={styles.expContent}>
           <div className={styles.sectionHeadDark}><span>THE PHYSICAL WORLD</span><span>EXPERIENCES</span></div>
@@ -191,7 +199,16 @@ export default function HomeArtDirected() {
             <div className={styles.founderMeta}><h3>Siva Veerapaneni</h3><span>FOUNDER</span><p>BRAND / CREATIVE / EXPERIENCES</p></div>
           </article>
           <article>
-            <div className={styles.umaPortrait}><Image src="/media/founders/uma-saravana-kumar.webp" alt="Gudali Uma Saravana Kumar" fill sizes="(max-width: 800px) 100vw, 50vw" /></div>
+            <div className={styles.umaPortrait}>
+              <Image
+                src="/media/founders/uma-saravana-kumar.webp"
+                alt="Gudali Uma Saravana Kumar"
+                fill
+                sizes="(max-width: 800px) 100vw, 50vw"
+                onError={(event) => { event.currentTarget.style.display = "none"; }}
+              />
+              <span>USK</span>
+            </div>
             <div className={styles.founderMeta}><h3>Gudali Uma Saravana Kumar</h3><span>FOUNDER</span><p>PRODUCT / AI / GROWTH</p></div>
           </article>
         </div>
@@ -218,7 +235,7 @@ export default function HomeArtDirected() {
       <footer className={styles.footer}>
         <span>DIGITALE MEDIA®</span>
         <span>CREATIVE × GROWTH × TECHNOLOGY × EXPERIENCES</span>
-        <span>HYDERABAD / INDIA · 2026</span>
+        <span>2026</span>
       </footer>
     </main>
   );
