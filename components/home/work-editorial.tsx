@@ -22,7 +22,7 @@ export default function WorkEditorial() {
               {p.image ? (
                 <Image
                   src={p.image}
-                  alt={p.alt}
+                  alt={p.alt ?? p.title}
                   fill
                   sizes="(max-width: 768px) 100vw, 85vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
