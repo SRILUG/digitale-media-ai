@@ -1,10 +1,10 @@
 import "./globals.css";
-
 export const metadata = {
-  title: "DIGITALE — Creative × Growth × Technology",
-  description: "One team. One system. Real growth. DIGITALE builds brands, experiences and acquisition systems for ambitious businesses.",
+ title: "DIGITALE MEDIA — Creative × Growth × Technology × Experiences",
+ description: "DIGITALE MEDIA connects creative, growth, technology and experiences around the work that matters.",
+ metadataBase: new URL("https://digitale-media.com"),
+ openGraph: { title:"DIGITALE MEDIA — Ideas Have A Life.", description:"Creative × Growth × Technology × Experiences.", type:"website", siteName:"DIGITALE MEDIA" },
+ twitter: { card:"summary_large_image", title:"DIGITALE MEDIA — Ideas Have A Life.", description:"Creative × Growth × Technology × Experiences." },
+ icons: { icon:"/icon.svg" },
 };
-
-export default function RootLayout({children}:{children:React.ReactNode}) {
-  return <html lang="en"><body>{children}</body></html>;
-}
+export default function RootLayout({children}:{children:React.ReactNode}) { return <html lang="en"><body>{children}</body></html>; }
