@@ -11,7 +11,7 @@ const experiences=[
  {n:"06",name:"ENTERTAINMENT",line:"Make the moment move.",desc:"Artist-led, culture-led and entertainment experiences built with production discipline and creative energy."}
 ];
 
-export default function Experiences(){return <main className={styles.page}>
+export default function Experiences(){return <main className={`${styles.page} dgPage`}>
 <header><Link href="/">← DIGITALE MEDIA</Link><span>EXPERIENCES</span><Link href="/start?practice=experiences">START A PROJECT ↗</Link></header>
 <section className={styles.hero}><div><small>THE PHYSICAL WORLD / 003</small><h1>MAKE THE<br/><em>MOMENT.</em></h1></div><p>Some ideas should not live on a screen. We create the spaces, stages, stories and experiences people remember — from the first concept to the final cue.</p><div className={styles.heroVisual}><span>EXPERIENCE / DGT</span><b>LIVE</b><i/></div></section>
 <section className={styles.statement}><small>THE SYSTEM</small><h2>CONCEPT → CREATIVE →<br/>PRODUCTION → <em>MOMENT</em></h2><p>One team across strategy, creative direction, production, content and the digital layer that keeps the experience moving after the room is gone.</p></section>
