@@ -10,7 +10,7 @@ const stories=[
 ];
 
 export default function Insights(){return <main className={`${styles.page} dgPage`}>
-<header><Link href="/">← DIGITALE MEDIA</Link><span>INSIGHTS</span><Link href="/start">START A PROJECT ↗</Link></header>
+<SiteHeader current="insights" />
 <section className={styles.hero}><small>THINKING / 005</small><h1>THINGS<br/><em>WORTH THINKING.</em></h1><p>Ideas, observations and practical thinking from the intersection of creative, growth, technology and experiences.</p></section>
 <section className={styles.feature}><div><small>FEATURED / 01</small><h2>THE BEST<br/>SYSTEMS ARE<br/><em>CONNECTED.</em></h2></div><p>When creative, growth, technology and experience operate as separate departments, the customer feels the seams. The opportunity is to make the seams disappear.</p></section>
 <section className={styles.list}>{stories.map(s=><Link href={"/insights/"+s.slug} key={s.slug} className={styles.story}><span>{s.n}</span><div><small>{s.tag}</small><h2>{s.title}</h2><p>{s.desc}</p></div><b>READ ↗</b></Link>)}</section>
