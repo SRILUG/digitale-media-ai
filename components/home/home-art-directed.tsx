@@ -198,7 +198,15 @@ export default function HomeArtDirected() {
         </div>
         <div className={styles.founderGrid}>
           <article>
-            <div className={styles.sivaPlaceholder}><span>SV</span><small>PORTRAIT COMING SOON</small></div>
+            <div className={styles.sivaPlaceholder}>
+              <Image
+                src="/media/founders/siva-veerapaneni.webp"
+                alt="Siva Veerapaneni"
+                fill
+                sizes="(max-width: 800px) 100vw, 50vw"
+                loading="eager"
+              />
+            </div>
             <div className={styles.founderMeta}><h3>Siva Veerapaneni</h3><span>FOUNDER</span><p>BRAND / CREATIVE / EXPERIENCES</p></div>
           </article>
           <article>
