@@ -210,6 +210,7 @@ export default function HomeArtDirected() {
                 alt="Gudali Uma Saravana Kumar"
                 fill
                 sizes="(max-width: 800px) 100vw, 50vw"
+                loading="eager"
                 onError={(event) => { event.currentTarget.style.display = "none"; }}
               />
               <span>USK</span>
@@ -238,9 +239,9 @@ export default function HomeArtDirected() {
       </section>
 
       <footer className={styles.footer}>
-        <span>DIGITALE MEDIA®</span>
+        <span>© 2026 DIGITALE MEDIA. ALL RIGHTS RESERVED.</span>
         <span>CREATIVE × GROWTH × TECHNOLOGY × EXPERIENCES</span>
-        <span>2026</span>
+        <span>digitalemedia.group</span>
       </footer>
     </main>
   );
