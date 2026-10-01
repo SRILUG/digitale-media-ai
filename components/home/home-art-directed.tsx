@@ -12,7 +12,6 @@ const work = [
     title: <>MAKE THEM<br /><em>REMEMBER.</em></>,
     note: "Brand worlds, campaigns and content shaped around the idea that needs to travel.",
     tone: "paper",
-    visual: "MOVE",
   },
   {
     slug: "digital-systems",
@@ -21,7 +20,6 @@ const work = [
     title: <>MAKE IT<br /><em>USEFUL.</em></>,
     note: "Websites, products, automation and digital systems built around the problem, not the service.",
     tone: "black",
-    visual: "BUILD",
   },
   {
     slug: "live-experiences",
@@ -30,7 +28,6 @@ const work = [
     title: <>MAKE THE<br /><em>MOMENT MATTER.</em></>,
     note: "Launches, productions, celebrations and physical experiences designed for the room and beyond it.",
     tone: "warm",
-    visual: "LIVE",
   },
 ];
 
@@ -83,7 +80,6 @@ export default function HomeArtDirected() {
             <div className={styles.heroOrb} />
             <div className={styles.heroFrame}>
               <div className={styles.heroFrameTop}><span>DGT / 01</span><span>IDEA IN MOTION</span></div>
-              <div className={styles.heroFrameWord}>MOVE</div>
               <div className={styles.heroFrameBottom}><span>CREATIVE × DIGITAL</span><span>2026</span></div>
             </div>
             <div className={styles.heroSlash} />
@@ -127,7 +123,6 @@ export default function HomeArtDirected() {
               <div className={styles.workVisual}>
                 <span>{item.number}</span>
                 <strong>{item.label}</strong>
-                <div className={styles.workVisualWord}>{item.visual}</div>
                 <i />
               </div>
               <div className={styles.workCopy}>
@@ -166,7 +161,6 @@ export default function HomeArtDirected() {
 
       <section id="experiences" className={styles.experiences}>
         <div className={styles.expImage}>
-          <span className={styles.expGhost}>LIVE</span>
           <span className={styles.expMark}>EXPERIENCE / 01</span>
           <div className={styles.expOrb} />
         </div>
