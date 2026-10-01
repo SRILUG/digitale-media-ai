@@ -61,6 +61,7 @@ export default function HomeArtDirected() {
           <Link href="/services">Services</Link>
           <Link href="/experiences">Experiences</Link>
           <Link href="/about">People</Link>
+          <Link href="/insights">Insights</Link>
           <Link href="/start">Start a project ↗</Link>
         </nav>
       </header>
