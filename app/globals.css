@@ -220,3 +220,8 @@
 
 /* Production baseline */
 html{scroll-behavior:smooth}body{margin:0;background:#fbfbf9;color:#11110f}button,input,textarea,select{font:inherit}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+
+/* Mobile project intake interaction hardening */
+.intakeCard{position:relative;z-index:2}
+.practiceChoice{position:relative;z-index:3;pointer-events:auto;touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
