@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SiteHeader from "@/components/site/site-header";
 import styles from "./insights.module.css";
 
 const stories=[
