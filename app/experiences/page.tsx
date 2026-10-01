@@ -20,3 +20,4 @@ export default function Experiences(){return <main className={`${styles.page} dg
 <section className={styles.cta}><small>THE NEXT MOMENT</small><h2>WHAT SHOULD<br/><em>PEOPLE FEEL?</em></h2><Link href="/start?practice=experiences">PLAN THE EXPERIENCE ↗</Link></section>
 <footer><span>DIGITALE MEDIA®</span><span>CREATIVE × GROWTH × TECHNOLOGY × EXPERIENCES</span><span>2026</span></footer>
 </main>
+}
