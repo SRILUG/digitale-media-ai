@@ -51,7 +51,7 @@ const experienceTypes = [
 
 export default function HomeArtDirected() {
   return (
-    <main className={styles.page}>
+    <main className={`${styles.page} dgPage`}>
       <header className={styles.nav}>
         <Link href="/" className={styles.logo} aria-label="Digitale Media">
           <img src="/media/brand/digitale-media-logo.webp" alt="Digitale Media" />
