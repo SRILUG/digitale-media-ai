@@ -1,36 +1,20 @@
-# DIGITALE MEDIA — AI Growth Operating System
+# DIGITALE MEDIA
 
-DIGITALE MEDIA is being built as an AI-first digital growth agency platform: public-facing agency experience + internal command center + automation layer.
+Creative × Growth × Technology × Experiences.
 
-## Current foundation
+A founder-led agency website and project-intake system built with Next.js, TypeScript and Supabase.
 
-- Premium public agency site at `/`
-- Internal AI command center at `/command`
-- Modular navigation for leads, clients, content, campaigns, research, projects, proposals and reports
-- Environment contract for future integrations
-- Responsive dark, premium visual system
-- Human-in-the-loop operating model: AI prepares and executes permitted work; humans retain control over sensitive actions
+## Routes
 
-## Product architecture
-
-### Experience layer
-Next.js + TypeScript + responsive design.
-
-### Intelligence layer
-Agent orchestration for:
-- lead qualification
-- market and competitor research
-- content planning and production
-- campaign analysis
-- proposal/report generation
-- client communication
-- operational follow-up
-
-### Data layer
-PostgreSQL/Supabase with structured entities for clients, leads, campaigns, projects, content, tasks, approvals, reports and agent runs. Vector search can be added for client memory and research retrieval.
-
-### Integration layer
-Official APIs for WhatsApp, Meta, Google Ads/Analytics, email, payments and other approved services. Credentials belong in environment variables and are never committed.
+- `/` — homepage
+- `/work` — selected work
+- `/services` — capabilities
+- `/experiences` — live experiences
+- `/about` — founders and philosophy
+- `/insights` — editorial thinking
+- `/start` — project diagnostic
+- `/api/project-intake` — validated lead intake
+- `/api/health` — health check
 
 ## Local development
 
@@ -39,17 +23,25 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:3000`.
+## Verification
 
-## Next build phases
+```bash
+npm run verify
+npm run build
+```
 
-1. Authentication + role-based access
-2. Database schema + migrations
-3. Real AI agent runtime and tool registry
-4. Lead capture + CRM
-5. Client portal + approvals
-6. Content/campaign workflows
-7. WhatsApp and channel integrations
-8. Analytics + reporting
-9. Billing/proposals/invoices
-10. Production deployment and observability
+`verify` runs TypeScript checking and media validation before production builds.
+
+## Project intake
+
+The intake flow validates submissions server-side, stores accepted briefs in Supabase and can dispatch a Slack notification when the webhook is configured.
+
+Required server environment variables are documented in `.env.example`.
+
+## Production checklist
+
+- Configure production Supabase credentials.
+- Configure the Slack webhook if lead alerts are required.
+- Set the canonical domain in metadata, robots and sitemap if the production domain changes.
+- Replace founder placeholders with approved photography when available.
+- Run `npm run verify && npm run build` before deployment.
