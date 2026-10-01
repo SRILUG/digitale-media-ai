@@ -6,6 +6,7 @@ import styles from "./home-art-directed.module.css";
 
 const work = [
   {
+    visual: "BRAND",
     slug: "brand-worlds",
     number: "01",
     label: "BRAND / CAMPAIGN",
@@ -14,6 +15,7 @@ const work = [
     tone: "paper",
   },
   {
+    visual: "DIGITAL",
     slug: "digital-systems",
     number: "02",
     label: "DIGITAL / SYSTEMS",
@@ -22,6 +24,7 @@ const work = [
     tone: "black",
   },
   {
+    visual: "EXPERIENCES",
     slug: "live-experiences",
     number: "03",
     label: "EXPERIENCES / LIVE",
@@ -123,6 +126,7 @@ export default function HomeArtDirected() {
               <div className={styles.workVisual}>
                 <span>{item.number}</span>
                 <strong>{item.label}</strong>
+                <div className={styles.workVisualWord}>{item.visual}</div>
                 <i />
               </div>
               <div className={styles.workCopy}>
