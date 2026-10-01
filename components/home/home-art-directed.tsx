@@ -1,110 +1,150 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./home-art-directed.module.css";
 
 const work = [
-  { number: "01", label: "BRAND × GROWTH", title: "Make attention worth something.", note: "Brand systems, campaigns and distribution built around a commercial objective.", tone: "lime" },
-  { number: "02", label: "EXPERIENCE × CULTURE", title: "Make the moment travel.", note: "Launches, entertainment and live experiences designed for the room and everything after it.", tone: "violet" },
-  { number: "03", label: "TECHNOLOGY × PRODUCT", title: "Make the system compound.", note: "Digital products, automation and intelligence that turn activity into a learning loop.", tone: "blue" },
+  {
+    number: "01",
+    label: "BRAND / CAMPAIGN",
+    title: <>MAKE THEM<br /><em>REMEMBER.</em></>,
+    note: "Brand worlds, campaigns and content shaped around the idea that needs to travel.",
+    tone: "paper",
+    visual: "MOVE",
+  },
+  {
+    number: "02",
+    label: "DIGITAL / SYSTEMS",
+    title: <>MAKE IT<br /><em>USEFUL.</em></>,
+    note: "Websites, products, automation and digital systems built around the problem, not the service.",
+    tone: "black",
+    visual: "BUILD",
+  },
+  {
+    number: "03",
+    label: "EXPERIENCES / LIVE",
+    title: <>MAKE THE<br /><em>MOMENT MATTER.</em></>,
+    note: "Launches, productions, celebrations and physical experiences designed for the room and beyond it.",
+    tone: "warm",
+    visual: "LIVE",
+  },
 ];
 
 const capabilities = [
-  ["01", "CREATIVE", "Make people notice.", "Brand, campaigns, content, film, creators."],
-  ["02", "GROWTH", "Make attention move.", "Performance, search, CRO, CRM, analytics."],
-  ["03", "TECHNOLOGY", "Make the machine work.", "Web, products, AI, automation, data."],
-  ["04", "EXPERIENCES", "Make it memorable.", "Launches, galas, activations, celebrations."],
+  ["01", "CREATIVE", "Brand, campaigns, content, film, creators."],
+  ["02", "GROWTH", "Performance, search, CRO, CRM, analytics."],
+  ["03", "TECHNOLOGY", "Web, products, AI, automation, data."],
+  ["04", "EXPERIENCES", "Launches, activations, productions, celebrations."],
 ];
 
-const experienceTypes = ["PRODUCT LAUNCHES", "CORPORATE GALAS", "RED CARPETS", "ACTIVATIONS", "PRIVATE CELEBRATIONS"];
+const experienceTypes = [
+  "PRODUCT LAUNCHES",
+  "CORPORATE EVENTS",
+  "RED CARPETS",
+  "ACTIVATIONS",
+  "WEDDINGS & CELEBRATIONS",
+];
 
 export default function HomeArtDirected() {
   return (
     <main className={styles.page}>
       <header className={styles.nav}>
-        <a href="/" className={styles.logo} aria-label="Digitale Media"><img src="/media/brand/digitale-media-logo.png" alt="Digitale Media" /></a>
-        <nav>
+        <Link href="/" className={styles.logo} aria-label="Digitale Media">
+          <img src="/media/brand/digitale-media-logo.png" alt="Digitale Media" />
+        </Link>
+        <nav aria-label="Primary">
           <a href="#work">Work</a>
           <a href="#capabilities">Services</a>
           <a href="#experiences">Experiences</a>
-          <a href="#insights">Insights</a>
-          <a href="#founders">About</a>
-          <a href="/start">Contact</a>
+          <a href="#people">People</a>
+          <Link href="/start">Start a project ↗</Link>
         </nav>
-        <a className={styles.navCta} href="/start">Start a project <span>↗</span></a>
       </header>
 
       <section className={styles.hero}>
         <div className={styles.heroCopy}>
-          <div className={styles.heroEyebrow}><span /> CREATIVE MEDIA × TECHNOLOGY × PRODUCTION × EXPERIENCES</div>
-          <h1>IDEAS<br />CREATE<br /><em>IMPACT.</em></h1>
-          <p>Creative media, technology and experiences built around ideas that move people.</p>
+          <span className={styles.kicker}>CREATIVE MEDIA × TECHNOLOGY × EXPERIENCES</span>
+          <h1>IDEAS<br />HAVE<br /><em>A LIFE.</em></h1>
+          <p>We turn ideas into brands, stories, products, growth and experiences people remember.</p>
           <div className={styles.heroActions}>
-            <a href="/start" className={styles.primaryButton}>START A PROJECT <span>→</span></a>
-            <a href="#showreel" className={styles.secondaryButton}>▶ &nbsp; WATCH SHOWREEL</a>
+            <Link href="/start" className={styles.primaryButton}>START A PROJECT <span>↗</span></Link>
+            <a href="#work" className={styles.textButton}>SEE THE WORK ↓</a>
           </div>
         </div>
-        <div className={styles.heroMedia}>
+        <div className={styles.heroMedia} aria-hidden="true">
           <video autoPlay muted loop playsInline poster="/media/hero/showreel-poster.webp">
             <source src="/media/hero/showreel.webm" type="video/webm" />
             <source src="/media/hero/showreel.mp4" type="video/mp4" />
           </video>
         </div>
-        <div className={styles.heroShade} />
-        <div className={styles.heroSide}>
-          <span>FROM<br />IDEA<br />TO<br />IMPACT</span>
-          <b>01</b>
-        </div>
-        <div className={styles.heroTagline}>Media<br />Technology<br />People<br />Experiences</div>
-        <a id="showreel" className={styles.scroll} href="#capabilities">↓ &nbsp; SCROLL TO EXPLORE</a>
+        <div className={styles.heroCaption}>MAKING THEM MATTER IS WHAT WE DO.</div>
       </section>
 
-      <section className={styles.statement}>
-        <span className={styles.index}>01 / THE IDEA</span>
-        <div>
-          <p>Most agencies sell a discipline.</p>
-          <h2>We connect the disciplines<br /><em>around the outcome.</em></h2>
+      <section className={styles.blackStatement}>
+        <div className={styles.sceneWord}>IDEA</div>
+        <div className={styles.blackStatementCopy}>
+          <span className={styles.kickerLight}>THE BEGINNING</span>
+          <h2>AN IDEA<br /><em>WANTS TO MOVE.</em></h2>
+          <p>Into a story. Into culture. Into a screen, a room, a product, a conversation.</p>
         </div>
-        <div className={styles.statementFoot}><span>CREATIVE</span><b>×</b><span>GROWTH</span><b>×</b><span>TECHNOLOGY</span><b>×</b><span>EXPERIENCE</span></div>
       </section>
 
-      <section className={styles.work} id="work">
-        <div className={styles.sectionHead}><span>02 / SELECTED WORK</span><span>THE WORK IS THE PROOF</span></div>
+      <section className={styles.transformation}>
+        <div className={styles.transformationIntro}>
+          <span className={styles.kicker}>FROM THE FIRST THOUGHT</span>
+          <h2>IDEA → STORY →<br /><em>ATTENTION → IMPACT</em></h2>
+        </div>
+        <div className={styles.transformationSteps}>
+          <div><span>01</span><strong>IDEA</strong><p>The thing worth saying.</p></div>
+          <div><span>02</span><strong>STORY</strong><p>The shape people can feel.</p></div>
+          <div><span>03</span><strong>ATTENTION</strong><p>The reason they stop.</p></div>
+          <div><span>04</span><strong>IMPACT</strong><p>What happens next.</p></div>
+        </div>
+      </section>
+
+      <section id="work" className={styles.work}>
+        <div className={styles.sectionHead}><span>SELECTED WORK</span><span>ONE STORY AT A TIME</span></div>
         <div className={styles.workIntro}>
-          <h2>WORK<br /><em>WITH A JOB.</em></h2>
-          <p>Not decoration. Not activity. Every idea has somewhere to go — attention, demand, conversion, experience or learning.</p>
+          <h2>THE WORK<br /><em>HAS A JOB.</em></h2>
+          <p>Not decoration. Not activity for activity’s sake. We make the idea move toward something.</p>
         </div>
+
         <div className={styles.workList}>
           {work.map((item) => (
-            <article className={styles.workCard} data-tone={item.tone} key={item.number}>
+            <article key={item.number} className={styles.workStory} data-tone={item.tone}>
               <div className={styles.workVisual}>
                 <span>{item.number}</span>
                 <strong>{item.label}</strong>
-                <div className={styles.visualWord}>{item.number === "01" ? "MOVE" : item.number === "02" ? "LIVE" : "BUILD"}</div>
+                <div>{item.visual}</div>
               </div>
               <div className={styles.workCopy}>
                 <span>{item.label}</span>
-                <h3>{item.title.split("\n").map((line) => <span key={line}>{line}</span>)}</h3>
+                <h3>{item.title}</h3>
                 <p>{item.note}</p>
-                <a href="/work">View work <span>↗</span></a>
+                <Link href="/work">Explore ↗</Link>
               </div>
             </article>
           ))}
         </div>
       </section>
 
-      <section className={styles.capabilities} id="capabilities">
-        <div className={styles.sectionHead}><span>03 / WHAT WE DO</span><span>ONE SYSTEM / FOUR FORCES</span></div>
-        <div className={styles.capIntro}>
-          <p>ONE COMPANY.</p>
-          <h2>FOUR WAYS<br /><em>TO MOVE.</em></h2>
+      <section id="capabilities" className={styles.conviction}>
+        <div className={styles.sectionHead}><span>THE CONVICTION</span><span>NO BOXES</span></div>
+        <div className={styles.convictionGrid}>
+          <div>
+            <h2>WE DON’T<br />START WITH<br /><em>SERVICES.</em></h2>
+          </div>
+          <div>
+            <p className={styles.bigSerif}>Bring us the problem. We’ll figure out what it needs to become.</p>
+            <p className={styles.smallCopy}>A film. A brand. A digital product. A growth engine. A live experience. Sometimes one of them. Often more than one.</p>
+          </div>
         </div>
         <div className={styles.capList}>
-          {capabilities.map(([n, name, line, detail]) => (
+          {capabilities.map(([n, name, detail]) => (
             <article key={n}>
               <span>{n}</span>
               <h3>{name}</h3>
-              <strong>{line}</strong>
               <p>{detail}</p>
               <b>↗</b>
             </article>
@@ -112,57 +152,74 @@ export default function HomeArtDirected() {
         </div>
       </section>
 
-      <section className={styles.experiences} id="experiences">
+      <section id="experiences" className={styles.experiences}>
         <div className={styles.expImage}>
-          <div className={styles.expGlow} />
-          <span>LIVE</span>
+          <span className={styles.expGhost}>LIVE</span>
+          <span className={styles.expMark}>EXPERIENCE</span>
         </div>
         <div className={styles.expContent}>
-          <div className={styles.sectionHead}><span>04 / EXPERIENCES</span><span>BRAND × CULTURE × LIVE</span></div>
-          <div className={styles.expTitle}>
-            <p>FROM THE ROOM<br />TO THE FEED.</p>
-            <h2>MAKE THE<br /><em>MOMENT MOVE.</em></h2>
-          </div>
+          <div className={styles.sectionHeadDark}><span>THE PHYSICAL WORLD</span><span>EXPERIENCES</span></div>
+          <p className={styles.expLead}>Some things shouldn’t live on a screen.</p>
+          <h2>MAKE THE<br /><em>MOMENT MOVE.</em></h2>
           <div className={styles.expTypes}>
-            {experienceTypes.map((item, i) => <div key={item}><span>0{i + 1}</span><strong>{item}</strong><b>↗</b></div>)}
+            {experienceTypes.map((item, i) => (
+              <div key={item}><span>0{i + 1}</span><strong>{item}</strong><b>↗</b></div>
+            ))}
           </div>
-          <a className={styles.expCta} href="/start?practice=experiences">Build an experience <span>↗</span></a>
+          <Link href="/start?practice=experiences" className={styles.lightButton}>BUILD AN EXPERIENCE ↗</Link>
         </div>
       </section>
 
-      <section className={styles.engine} id="insights">
-        <div className={styles.sectionHead}><span>05 / ENGINE ROOM</span><span>INTELLIGENCE / INFRASTRUCTURE</span></div>
+      <section className={styles.engine}>
+        <div className={styles.sectionHead}><span>THE INVISIBLE BACKBONE</span><span>TECHNOLOGY</span></div>
         <div className={styles.engineGrid}>
-          <div><p>AI IS NOT<br />THE PITCH.</p><h2>IT'S THE<br /><em>ENGINE.</em></h2></div>
-          <div className={styles.engineOrb}><span>AI</span><i /><i /><i /></div>
-          <p className={styles.engineText}>Research faster. Test more. Route better. Learn continuously. The audience sees better work; the intelligence stays backstage.</p>
+          <div><span className={styles.kicker}>THE IDEA DOESN’T END</span><h2>WHEN IT<br /><em>LAUNCHES.</em></h2></div>
+          <p className={styles.bigSerif}>Technology stays backstage — making research faster, products smarter and every next decision better informed.</p>
         </div>
-        <div className={styles.engineFlow}><span>RESEARCH</span><b>→</b><span>CREATE</span><b>→</b><span>DISTRIBUTE</span><b>→</b><span>LEARN</span><b>↺</b></div>
+        <div className={styles.engineFlow}><span>RESEARCH</span><b>→</b><span>BUILD</span><b>→</b><span>LAUNCH</span><b>→</b><span>MEASURE</span><b>→</b><span>LEARN</span></div>
       </section>
 
-      <section className={styles.founders} id="founders">
-        <div className={styles.sectionHead}><span>06 / FOUNDERS</span><span>THE PEOPLE BUILDING DIGITALE</span></div>
-        <div className={styles.founderIntro}><h2>BUILT BY<br /><em>BUILDERS.</em></h2><p>Creative instinct, product thinking and commercial obsession — in the same room.</p></div>
+      <section id="people" className={styles.people}>
+        <div className={styles.sectionHead}><span>THE PEOPLE BEHIND THE WORK</span><span>FOUNDERS</span></div>
+        <div className={styles.peopleIntro}>
+          <h2>BUILT BY<br /><em>PEOPLE.</em></h2>
+          <p>Two perspectives. One company. Creative instinct, product thinking and the willingness to make the idea real.</p>
+        </div>
         <div className={styles.founderGrid}>
           <article>
-            <div className={styles.sivaPlaceholder}><span>SV</span><small>PORTRAIT / COMING SOON</small></div>
-            <div><h3>Siva Veerapaneni</h3><span>FOUNDER</span><p>BRAND / CREATIVE / EXPERIENCES</p></div>
+            <div className={styles.sivaPlaceholder}><span>SV</span><small>PORTRAIT COMING SOON</small></div>
+            <div className={styles.founderMeta}><h3>Siva Veerapaneni</h3><span>FOUNDER</span><p>BRAND / CREATIVE / EXPERIENCES</p></div>
           </article>
           <article>
             <div className={styles.umaPortrait}><Image src="/media/founders/uma-saravana-kumar.webp" alt="Gudali Uma Saravana Kumar" fill sizes="(max-width: 800px) 100vw, 50vw" /></div>
-            <div><h3>Gudali Uma Saravana Kumar</h3><span>FOUNDER</span><p>PRODUCT / AI / GROWTH</p></div>
+            <div className={styles.founderMeta}><h3>Gudali Uma Saravana Kumar</h3><span>FOUNDER</span><p>PRODUCT / AI / GROWTH</p></div>
           </article>
+        </div>
+      </section>
+
+      <section className={styles.cadence}>
+        <span className={styles.kicker}>OUR RHYTHM</span>
+        <div className={styles.cadenceWords}>
+          <span>THINK.</span>
+          <span>MAKE.</span>
+          <span>LAUNCH.</span>
+          <span>LEARN.</span>
+          <span><em>REPEAT.</em></span>
         </div>
       </section>
 
       <section className={styles.finalCta}>
-        <span>07 / START HERE</span>
-        <h2>WHAT ARE<br /><em>WE BUILDING?</em></h2>
-        <p>A brand to launch. A market to enter. A product to build. An experience to create.</p>
-        <a href="/start">START A PROJECT <span>↗</span></a>
+        <span className={styles.kickerLight}>THE NEXT CHAPTER</span>
+        <h2>WHAT ARE YOU<br />TRYING TO MAKE<br /><em>MATTER?</em></h2>
+        <p>A brand to launch. A product to build. A market to enter. An experience to create.</p>
+        <Link href="/start">START A PROJECT <span>↗</span></Link>
       </section>
 
-      <footer className={styles.footer}><span>DIGITALE MEDIA®</span><span>CREATIVE × GROWTH × TECHNOLOGY</span><span>HYDERABAD / INDIA · 2026</span></footer>
+      <footer className={styles.footer}>
+        <span>DIGITALE MEDIA®</span>
+        <span>CREATIVE × GROWTH × TECHNOLOGY × EXPERIENCES</span>
+        <span>HYDERABAD / INDIA · 2026</span>
+      </footer>
     </main>
   );
 }
