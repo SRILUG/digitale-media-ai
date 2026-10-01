@@ -19,3 +19,5 @@
  .cta h2{font-size:19vw;margin:17vw 0 11vw}
  .cta p{font-size:12px}
 }
+/* Founder portraits */
+.siva img{object-fit:cover;object-position:center top;z-index:1}.siva span{display:none}
