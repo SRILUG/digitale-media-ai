@@ -17,3 +17,4 @@ export default function Services(){return <main className={`${styles.page} dgPag
 <section className={styles.closing}><small>THE RIGHT MIX DEPENDS ON THE PROBLEM.</small><h2>BRING THE<br/><em>PROBLEM.</em></h2><p>We'll figure out what it needs to become — and build the system around it.</p><Link href="/start">START A PROJECT ↗</Link></section>
 <footer><span>DIGITALE MEDIA®</span><span>CREATIVE × GROWTH × TECHNOLOGY × EXPERIENCES</span><span>2026</span></footer>
 </main>
+}
