@@ -60,7 +60,7 @@ export default function HomeArtDirected() {
           <a href="#work">Work</a>
           <Link href="/services">Services</Link>
           <Link href="/experiences">Experiences</Link>
-          <a href="#people">People</a>
+          <Link href="/about">People</Link>
           <Link href="/start">Start a project ↗</Link>
         </nav>
       </header>
