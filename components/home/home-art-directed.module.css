@@ -450,3 +450,100 @@
   }
   .footer span{max-width:280px}
 }
+
+/* Mobile final polish: hero + statement */
+@media(max-width:760px){
+  .hero{
+    min-height:100svh;
+    height:100svh;
+    padding-top:78px;
+    padding-bottom:24px;
+    align-items:flex-start;
+  }
+  .heroCopy{
+    padding:0;
+    margin-top:27svh;
+  }
+  .heroCopy h1{
+    font-size:17.2vw;
+    line-height:.82;
+    letter-spacing:-.095em;
+    margin:16px 0 20px;
+  }
+  .heroCopy p{
+    max-width:285px;
+    color:#4f4d48;
+    margin-bottom:22px;
+  }
+  .heroMedia{
+    top:20%;
+    opacity:1;
+    pointer-events:none;
+  }
+  .heroMedia:after{
+    background:linear-gradient(
+      180deg,
+      var(--paper) 0%,
+      rgba(251,251,249,.9) 25%,
+      rgba(251,251,249,.32) 56%,
+      rgba(251,251,249,0) 78%
+    );
+  }
+  .heroFrame{
+    width:70vw;
+    height:39vh;
+    right:4%;
+    top:5%;
+    opacity:.22;
+    border-color:rgba(255,255,255,.55);
+  }
+  .heroFrameWord{
+    font-size:16vw;
+    opacity:.65;
+  }
+  .heroOrb{
+    width:68vw;
+    height:68vw;
+    right:-12%;
+    top:2%;
+    opacity:.3;
+  }
+  .heroSlash{
+    width:52vw;
+    right:-10%;
+    top:54%;
+    opacity:.55;
+  }
+  .heroCaption{
+    bottom:12px;
+    opacity:.7;
+  }
+
+  .blackStatement{
+    min-height:78svh;
+    padding:17vw 7vw 16vw;
+    display:flex;
+    align-items:center;
+  }
+  .sceneWord{
+    font-size:32vw;
+    right:-5vw;
+    top:11%;
+    opacity:.55;
+  }
+  .blackStatementCopy{
+    margin-top:7vh;
+    max-width:100%;
+  }
+  .blackStatementCopy h2{
+    font-size:15.2vw;
+    line-height:.84;
+    letter-spacing:-.085em;
+    margin:18px 0 25px;
+  }
+  .blackStatementCopy p{
+    max-width:300px;
+    font-size:18px;
+    line-height:1.4;
+  }
+}
