@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import SiteHeader from "@/components/site/site-header";
 import styles from "./about.module.css";
 
 const principles=[
