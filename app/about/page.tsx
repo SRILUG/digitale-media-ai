@@ -7,6 +7,7 @@ import styles from "./about.module.css";
 export const metadata = createPageMetadata(
  "About",
  "Meet the founders of DIGITALE MEDIA and the thinking behind one team connecting creative, growth, technology and experiences.",
+ "/about",
 );
 
 const principles=[

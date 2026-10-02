@@ -6,6 +6,7 @@ import styles from "./insights.module.css";
 export const metadata = createPageMetadata(
  "Insights",
  "Ideas and practical thinking across creative, growth, technology and experiences.",
+ "/insights",
 );
 
 const stories=[

@@ -6,6 +6,7 @@ import styles from "./services.module.css";
 export const metadata = createPageMetadata(
  "Services",
  "Creative, growth, technology and experiences connected around the problem that needs solving.",
+ "/services",
 );
 
 const services=[

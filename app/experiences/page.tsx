@@ -6,6 +6,7 @@ import styles from "./experiences.module.css";
 export const metadata = createPageMetadata(
  "Experiences",
  "Concept, creative direction and production for corporate events, launches, red carpets, activations and celebrations.",
+ "/experiences",
 );
 
 const experiences=[

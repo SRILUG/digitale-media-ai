@@ -6,6 +6,7 @@ import styles from "./work.module.css";
 export const metadata = createPageMetadata(
  "Work",
  "Explore DIGITALE MEDIA's editorial directions across brand, digital systems, growth and live experiences.",
+ "/work",
 );
 
 const projects = [
