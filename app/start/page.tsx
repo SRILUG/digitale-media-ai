@@ -185,33 +185,16 @@ export default function StartProject() {
           <input aria-hidden="true" tabIndex={-1} autoComplete="off" value={data.bot_field} onChange={e => update({bot_field:e.target.value})} name="website_confirm" style={{ position: "absolute", left: "-10000px", width: 1, height: 1, opacity: 0 }} />
           {step === 1 && <Step title="What are you looking to build?"><div className="practiceGrid">
             {([["growth","Growth","Acquisition, demand, conversion and performance."],["creative","Creative","Brand, campaigns, content and production."],["technology","Technology","Web, products, AI and automation."],["experiences","Experiences","Launches, activations, events and live production."],["not-sure","Not sure","I know the problem, but not the answer yet."]] as const).map(([id,title,desc]) =>
-              <button
+              <Link
                 key={id}
-                type="button"
+                href={"/start?practice=" + id}
                 className={"practiceChoice " + (data.practice === id ? "selected" : "")}
-                onTouchEnd={(e) => {
-                  e.preventDefault();
+                onClick={() => {
                   update({ practice: id, focus: [] });
-                  setStep(2);
-                }}
-                onPointerUp={(e) => {
-                  e.preventDefault();
-                  update({ practice: id, focus: [] });
-                  setStep(2);
-                }}
-                onMouseUp={(e) => {
-                  e.preventDefault();
-                  update({ practice: id, focus: [] });
-                  setStep(2);
-                }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  update({ practice: id, focus: [] });
-                  setStep(2);
                 }}
               >
                 <span>{id === "not-sure" ? "05" : "0" + (["growth","creative","technology","experiences"].indexOf(id)+1)}</span><strong>{title}</strong><small>{desc}</small><b>↗</b>
-              </button>
+              </Link>
             )}
           </div></Step>}
 
