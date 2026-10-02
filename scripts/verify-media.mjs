@@ -3,14 +3,12 @@
 import { statSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
 
-const isStrict =
-  process.argv.includes("--strict") ||
-  process.env.CI === "true" ||
-  process.env.NODE_ENV === "production";
-
-// Only verify media that belongs to the current DIGITALE MEDIA experience.
-// Optional assets can be added here when they are actually referenced by the site.
-const ASSET_BUDGETS = [];
+const ASSET_BUDGETS = [
+  { path: "public/media/brand/digitale-media-logo.webp", label: "Brand logo", maxBytes: 100_000 },
+  { path: "public/media/brand/digitale-media-logo-og.png", label: "Open Graph logo export", maxBytes: 100_000 },
+  { path: "public/media/founders/siva-veerapaneni.webp", label: "Siva Veerapaneni portrait", maxBytes: 450_000 },
+  { path: "public/media/founders/uma-saravana-kumar.webp", label: "Uma Saravana Kumar portrait", maxBytes: 450_000 },
+];
 
 let hasErrors = false;
 
@@ -18,16 +16,19 @@ for (const asset of ASSET_BUDGETS) {
   const fullPath = resolve(process.cwd(), asset.path);
 
   if (!existsSync(fullPath)) {
-    if (isStrict) {
-      console.error(`[VERIFY:FAIL] Missing required production asset: ${asset.path}`);
-      hasErrors = true;
-    } else {
-      console.warn(`[VERIFY:WARN] Asset not present (dev mode): ${asset.path}`);
-    }
+    console.error(`[VERIFY:FAIL] Missing required site asset: ${asset.path}`);
+    hasErrors = true;
     continue;
   }
 
-  const { size } = statSync(fullPath);
+  const file = statSync(fullPath);
+  if (!file.isFile()) {
+    console.error(`[VERIFY:FAIL] Required media path is not a file: ${asset.path}`);
+    hasErrors = true;
+    continue;
+  }
+
+  const { size } = file;
   if (size > asset.maxBytes) {
     console.error(
       `[VERIFY:FAIL] Oversized asset ${asset.path}: ${(size / 1024).toFixed(1)} KB exceeds ${(asset.maxBytes / 1024).toFixed(0)} KB`

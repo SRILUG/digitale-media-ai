@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./home-art-directed.module.css";
@@ -54,7 +52,7 @@ export default function HomeArtDirected() {
     <main className={`${styles.page} dgPage`}>
       <header className={styles.nav}>
         <Link href="/" className={styles.logo} aria-label="Digitale Media">
-          <img src="/media/brand/digitale-media-logo.webp" alt="Digitale Media" />
+          <Image src="/media/brand/digitale-media-logo.webp" alt="" width={270} height={70} sizes="(max-width: 760px) 132px, 205px" />
         </Link>
         <nav aria-label="Primary">
           <Link href="/work">Work</Link>
@@ -69,7 +67,7 @@ export default function HomeArtDirected() {
 
       <section className={styles.hero}>
         <div className={styles.heroCopy}>
-          <span className={styles.kicker}>CREATIVE MEDIA × TECHNOLOGY × EXPERIENCES</span>
+          <span className={styles.kicker}>CREATIVE × GROWTH × TECHNOLOGY × EXPERIENCES</span>
           <h1>IDEAS<br />HAVE<br /><em>A LIFE.</em></h1>
           <p>We turn ideas into brands, stories, products, growth and experiences people remember.</p>
           <div className={styles.heroActions}>
@@ -203,8 +201,7 @@ export default function HomeArtDirected() {
                 src="/media/founders/siva-veerapaneni.webp"
                 alt="Siva Veerapaneni"
                 fill
-                sizes="(max-width: 800px) 100vw, 50vw"
-                loading="eager"
+                sizes="(max-width: 760px) 100vw, 50vw"
               />
             </div>
             <div className={styles.founderMeta}><h3>Siva Veerapaneni</h3><span>FOUNDER</span><p>BRAND / CREATIVE / EXPERIENCES</p></div>
@@ -215,9 +212,7 @@ export default function HomeArtDirected() {
                 src="/media/founders/uma-saravana-kumar.webp"
                 alt="Gudali Uma Saravana Kumar"
                 fill
-                sizes="(max-width: 800px) 100vw, 50vw"
-                loading="eager"
-                onError={(event) => { event.currentTarget.style.display = "none"; }}
+                sizes="(max-width: 760px) 100vw, 50vw"
               />
               <span>USK</span>
             </div>

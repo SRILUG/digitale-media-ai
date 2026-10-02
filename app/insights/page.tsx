@@ -1,6 +1,12 @@
 import Link from "next/link";
+import { createPageMetadata } from "@/lib/seo";
 import SiteHeader from "@/components/site/site-header";
 import styles from "./insights.module.css";
+
+export const metadata = createPageMetadata(
+ "Insights",
+ "Ideas and practical thinking across creative, growth, technology and experiences.",
+);
 
 const stories=[
 {n:"01",tag:"AI / PRODUCT",title:"WHAT AI CHANGES INSIDE A PRODUCT TEAM",desc:"A practical look at where intelligence belongs in research, workflows, products and decision systems.",slug:"ai-product"},

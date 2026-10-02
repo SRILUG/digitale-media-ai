@@ -1,6 +1,12 @@
 import Link from "next/link";
+import { createPageMetadata } from "@/lib/seo";
 import SiteHeader from "@/components/site/site-header";
 import styles from "./work.module.css";
+
+export const metadata = createPageMetadata(
+ "Work",
+ "Explore DIGITALE MEDIA's editorial directions across brand, digital systems, growth and live experiences.",
+);
 
 const projects = [
  {slug:"brand-worlds",number:"01",type:"BRAND / CAMPAIGN",title:"MAKE THEM REMEMBER.",intro:"Brand worlds, campaigns and content built around the idea that needs to travel.",tone:"light"},

@@ -15,3 +15,14 @@
  .closing h2{font-size:20vw;margin:17vw 0 10vw}
  .closing p{font-size:12px}
 }
+@media(min-width:761px) and (max-width:1100px){
+ .services article{grid-template-columns:70px minmax(0,1fr);grid-template-rows:auto auto auto auto}
+ .serviceTop{grid-row:1/5}
+ .services h2,.line,.services ul,.services article>a{grid-column:2}
+ .services h2{grid-row:auto;font-size:clamp(58px,8vw,100px)}
+ .services ul{margin-top:3vw}
+ .services article>a{margin-top:24px}
+}
+@media(max-width:760px){
+ .services h2{font-size:clamp(44px,13vw,64px);overflow-wrap:anywhere}
+}

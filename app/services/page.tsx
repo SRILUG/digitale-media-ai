@@ -1,6 +1,12 @@
 import Link from "next/link";
+import { createPageMetadata } from "@/lib/seo";
 import SiteHeader from "@/components/site/site-header";
 import styles from "./services.module.css";
+
+export const metadata = createPageMetadata(
+ "Services",
+ "Creative, growth, technology and experiences connected around the problem that needs solving.",
+);
 
 const services=[
 {n:"01",name:"CREATIVE",line:"Turn the idea into a world people can recognize.",items:["Brand strategy","Identity & campaigns","Social & content","Film & production","Creator partnerships"]},

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 
@@ -56,6 +57,7 @@ const budgetMap: Record<Currency, string[]> = {
 };
 
 const currencySymbols: Record<Currency, string> = { INR: "₹", AED: "AED", USD: "$", GBP: "£", EUR: "€" };
+const practices: Exclude<Practice, "">[] = ["growth", "creative", "technology", "experiences", "not-sure"];
 
 function inferCurrency(): Currency {
   if (typeof navigator === "undefined") return "INR";
@@ -74,6 +76,7 @@ export default function StartProject() {
   const [submitted, setSubmitted] = useState(false);
   const [saving, setSaving] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [briefId, setBriefId] = useState<string | null>(null);
 
   const total = 8;
   const practice = data.practice || "not-sure";
@@ -81,21 +84,56 @@ export default function StartProject() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const requested = params.get("practice") as Practice | null;
-    const validPractice = requested && ["growth","creative","technology","experiences","not-sure"].includes(requested) ? requested : null;
-    const saved = localStorage.getItem("digitale-project-diagnostic");
+    const requestedPractice = params.get("practice");
+    const validPractice = practices.find((value) => value === requestedPractice);
+    const requestedFocus = params.get("focus");
+    const validFocus = validPractice
+      ? focusMap[validPractice].find((value) => value.toLowerCase() === requestedFocus?.toLowerCase())
+      : undefined;
+    let saved: string | null = null;
+    try {
+      saved = localStorage.getItem("digitale-project-diagnostic");
+    } catch (error) {
+      console.error("[PROJECT_INTAKE_STORAGE_READ_ERROR]", error);
+    }
+
     if (saved) {
-      try { setData((v) => ({ ...v, ...JSON.parse(saved), ...(validPractice ? { practice: validPractice, focus: [] } : {}) })); } catch {}
+      try {
+        setData((v) => ({
+          ...v,
+          ...JSON.parse(saved) as Partial<FormState>,
+          ...(validPractice ? { practice: validPractice, focus: validFocus ? [validFocus] : [] } : {}),
+        }));
+      } catch (error) {
+        console.error("[PROJECT_INTAKE_STORAGE_PARSE_ERROR]", error);
+        setData((v) => ({
+          ...v,
+          currency: inferCurrency(),
+          ...(validPractice ? { practice: validPractice, focus: validFocus ? [validFocus] : [] } : {}),
+        }));
+      }
       if (validPractice) setStep(2);
     } else {
-      setData((v) => ({ ...v, currency: inferCurrency(), ...(validPractice ? { practice: validPractice } : {}) }));
+      setData((v) => ({ ...v, currency: inferCurrency(), ...(validPractice ? { practice: validPractice, focus: validFocus ? [validFocus] : [] } : {}) }));
       if (validPractice) setStep(2);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("digitale-project-diagnostic", JSON.stringify(data));
+    try {
+      localStorage.setItem("digitale-project-diagnostic", JSON.stringify(data));
+    } catch (error) {
+      console.error("[PROJECT_INTAKE_STORAGE_WRITE_ERROR]", error);
+    }
   }, [data]);
+
+  useEffect(() => {
+    try {
+      setBriefId(sessionStorage.getItem("digitale-brief-id"));
+    } catch (error) {
+      console.error("[PROJECT_INTAKE_SESSION_READ_ERROR]", error);
+    }
+  }, []);
 
   const progress = Math.round((step / total) * 100);
   const update = (patch: Partial<FormState>) => setData((v) => ({ ...v, ...patch }));
@@ -108,7 +146,11 @@ export default function StartProject() {
     if (step === 5) return Boolean(data.budget);
     if (step === 6) return Boolean(data.timeline);
     if (step === 7) return Boolean(data.success.trim());
-    return Boolean(data.name.trim() && data.email.trim() && data.phone.trim());
+    return Boolean(
+      data.name.trim() &&
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email.trim()) &&
+      data.phone.trim(),
+    );
   }, [data, step]);
 
   function toggleFocus(value: string) {
@@ -121,10 +163,14 @@ export default function StartProject() {
     setSubmitError("");
     try {
       const response = await fetch("/api/project-intake", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
-      const result = await response.json().catch(() => ({}));
-      if (!response.ok || !result.id) {
+      const result: {
+        id?: unknown;
+        details?: Record<string, string[]>;
+        error?: string;
+      } | null = await response.json().catch(() => null);
+      if (!response.ok || typeof result?.id !== "string" || !result.id) {
         const detail = result?.details
-          ? Object.entries(result.details as Record<string, string[]>)
+          ? Object.entries(result.details)
               .map(([field, messages]) => `${field}: ${messages.join(", ")}`)
               .join(" · ")
           : result?.error || `Request failed (${response.status})`;
@@ -132,30 +178,37 @@ export default function StartProject() {
         setSaving(false);
         return;
       }
-      sessionStorage.setItem("digitale-brief-id", result.id);
+      setBriefId(result.id);
+      try {
+        sessionStorage.setItem("digitale-brief-id", result.id);
+      } catch (error) {
+        console.error("[PROJECT_INTAKE_SESSION_WRITE_ERROR]", error);
+      }
     } catch (error) {
       console.error("[PROJECT_INTAKE_SUBMIT_ERROR]", error);
-      setSubmitError("Could not reach the intake server. Make sure the local Next.js server is running and try again.");
+      setSubmitError("We couldn't reach the intake service. Your brief is still here; please try again in a moment.");
       setSaving(false);
       return;
     }
-    localStorage.removeItem("digitale-project-diagnostic");
+    try {
+      localStorage.removeItem("digitale-project-diagnostic");
+    } catch (error) {
+      console.error("[PROJECT_INTAKE_STORAGE_CLEAR_ERROR]", error);
+    }
     setSubmitted(true);
     setSaving(false);
   }
-
-  const briefId = typeof window !== "undefined" ? sessionStorage.getItem("digitale-brief-id") : null;
 
   if (submitted) {
     return (
       <main className="intakePage">
         <div className="intakeGlow" />
-        <header className="intakeNav"><Link href="/" className="intakeLogo">DIGITALE<span>®</span></Link><span>PROJECT DIAGNOSTIC</span></header>
+        <header className="intakeNav"><Link href="/" className="intakeLogo" aria-label="DIGITALE MEDIA"><Image src="/media/brand/digitale-media-logo.webp" alt="" width={270} height={70} sizes="176px" /></Link><span>PROJECT DIAGNOSTIC</span></header>
         <section className="successScreen">
           <div className="monoLabel">BRIEF RECEIVED / {briefId || "RECEIVED"}</div>
           <h1>Now we know<br /><i>where to start.</i></h1>
           <p>Your project context is with the DIGITALE team. We’ll review the brief and come back with the right next step—not a generic sales pitch.</p>
-          <div className="successActions"><Link href="/start">Review brief ↗</Link><Link href="/">Return to DIGITALE ↗</Link></div>
+          <div className="successActions"><Link href="/start">Start another brief ↗</Link><Link href="/">Return to DIGITALE ↗</Link></div>
         </section>
       </main>
     );
@@ -165,7 +218,7 @@ export default function StartProject() {
     <main className="intakePage">
       <div className="intakeGlow" />
       <header className="intakeNav">
-        <Link href="/" className="intakeLogo">DIGITALE<span>®</span></Link>
+        <Link href="/" className="intakeLogo" aria-label="DIGITALE MEDIA"><Image src="/media/brand/digitale-media-logo.webp" alt="" width={270} height={70} sizes="176px" /></Link>
         <span>PROJECT DIAGNOSTIC</span>
         <Link href="/" className="closeIntake">CLOSE ×</Link>
       </header>
@@ -177,7 +230,16 @@ export default function StartProject() {
             <h1>{step === 1 ? "Let's build the right system." : step === 2 ? "Start with the problem." : step === 7 ? "Define the outcome." : "Give us the context."}</h1>
             <p>{step === 1 ? "Tell us what you are trying to build. We’ll route the conversation to the right DIGITALE practice." : "The better the context, the better the first conversation."}</p>
           </div>
-          <div className="intakeProgress"><span style={{ width: progress + "%" }} /></div>
+          <div
+            className="intakeProgress"
+            role="progressbar"
+            aria-label="Project diagnostic progress"
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={progress}
+          >
+            <span style={{ width: progress + "%" }} />
+          </div>
           <div className="directLine">Prefer a direct line? Tell us in the brief and we’ll take it from there.</div>
         </aside>
 
@@ -189,8 +251,10 @@ export default function StartProject() {
                 key={id}
                 href={"/start?practice=" + id}
                 className={"practiceChoice " + (data.practice === id ? "selected" : "")}
+                aria-current={data.practice === id ? "step" : undefined}
                 onClick={() => {
                   update({ practice: id, focus: [] });
+                  setStep(2);
                 }}
               >
                 <span>{id === "not-sure" ? "05" : "0" + (["growth","creative","technology","experiences"].indexOf(id)+1)}</span><strong>{title}</strong><small>{desc}</small><b>↗</b>
@@ -199,10 +263,10 @@ export default function StartProject() {
           </div></Step>}
 
           {step === 2 && <Step title={practice === "not-sure" ? "What best describes your situation?" : "What do you need help with?"}>
-            <div className="optionList">{focuses.map((x, i) => <button key={x} className={"option " + (data.focus.includes(x) ? "selected" : "")} onClick={() => toggleFocus(x)}><span>0{i+1}</span><strong>{x}</strong><b>{data.focus.includes(x) ? "✓" : "↗"}</b></button>)}</div>
+            <div className="optionList">{focuses.map((x, i) => <button key={x} type="button" aria-pressed={data.focus.includes(x)} className={"option " + (data.focus.includes(x) ? "selected" : "")} onClick={() => toggleFocus(x)}><span>0{i+1}</span><strong>{x}</strong><b>{data.focus.includes(x) ? "✓" : "↗"}</b></button>)}</div>
           </Step>}
 
-          {step === 3 && <Step title={practice === "experiences" ? "Tell us about the experience." : "What should we know about the challenge?"}><textarea autoFocus value={data.scope} onChange={e => update({scope:e.target.value})} placeholder={scopePlaceholder[practice]} /></Step>}
+          {step === 3 && <Step title={practice === "experiences" ? "Tell us about the experience." : "What should we know about the challenge?"}><textarea aria-label="Project scope and context" autoFocus value={data.scope} onChange={e => update({scope:e.target.value})} placeholder={scopePlaceholder[practice]} /></Step>}
 
           {step === 4 && <Step title="Who are we building this for?"><div className="fieldGrid">
             <Field label="Company / Brand"><input autoFocus value={data.company} onChange={e => update({company:e.target.value})} placeholder="Your company" /></Field>
@@ -211,11 +275,11 @@ export default function StartProject() {
             <Field label="Operating market"><input value={data.geography} onChange={e => update({geography:e.target.value})} placeholder="India, UAE, Global..." /></Field>
           </div></Step>}
 
-          {step === 5 && <Step title="What scale are we talking about?"><div className="currencyBar">{(["INR","AED","USD","GBP","EUR"] as Currency[]).map(c => <button key={c} className={data.currency === c ? "active" : ""} onClick={() => update({currency:c,budget:""})}>{currencySymbols[c]} {c}</button>)}</div><div className="optionList">{budgetMap[data.currency].map((x, i) => <button key={x} className={"option " + (data.budget === x ? "selected" : "")} onClick={() => update({budget:x})}><span>0{i+1}</span><strong>{x}</strong><b>{data.budget === x ? "✓" : "↗"}</b></button>)}</div></Step>}
+          {step === 5 && <Step title="What scale are we talking about?"><div className="currencyBar">{(["INR","AED","USD","GBP","EUR"] as Currency[]).map(c => <button type="button" key={c} aria-pressed={data.currency === c} className={data.currency === c ? "active" : ""} onClick={() => update({currency:c,budget:""})}>{currencySymbols[c]} {c}</button>)}</div><div className="optionList">{budgetMap[data.currency].map((x, i) => <button type="button" key={x} aria-pressed={data.budget === x} className={"option " + (data.budget === x ? "selected" : "")} onClick={() => update({budget:x})}><span>0{i+1}</span><strong>{x}</strong><b>{data.budget === x ? "✓" : "↗"}</b></button>)}</div></Step>}
 
-          {step === 6 && <Step title="When do you want to move?"><div className="optionList">{["Immediately","Within 30 days","1–3 months","3–6 months","6+ months","Just exploring"].map((x,i)=><button key={x} className={"option " + (data.timeline===x ? "selected" : "")} onClick={() => update({timeline:x})}><span>0{i+1}</span><strong>{x}</strong><b>{data.timeline===x?"✓":"↗"}</b></button>)}</div></Step>}
+          {step === 6 && <Step title="When do you want to move?"><div className="optionList">{["Immediately","Within 30 days","1–3 months","3–6 months","6+ months","Just exploring"].map((x,i)=><button type="button" key={x} aria-pressed={data.timeline===x} className={"option " + (data.timeline===x ? "selected" : "")} onClick={() => update({timeline:x})}><span>0{i+1}</span><strong>{x}</strong><b>{data.timeline===x?"✓":"↗"}</b></button>)}</div></Step>}
 
-          {step === 7 && <Step title="What would success look like?"><textarea autoFocus value={data.success} onChange={e => update({success:e.target.value})} placeholder="Tell us what needs to be different 6–12 months from now." /></Step>}
+          {step === 7 && <Step title="What would success look like?"><textarea aria-label="What success would look like" autoFocus value={data.success} onChange={e => update({success:e.target.value})} placeholder="Tell us what needs to be different 6–12 months from now." /></Step>}
 
           {step === 8 && <Step title="Where should we reach you?"><div className="fieldGrid"><Field label="Name"><input autoFocus value={data.name} onChange={e => update({name:e.target.value})} placeholder="Your name" /></Field><Field label="Work email"><input type="email" value={data.email} onChange={e => update({email:e.target.value})} placeholder="you@company.com" /></Field><Field label="Phone / WhatsApp"><input value={data.phone} onChange={e => update({phone:e.target.value})} placeholder="+91..." /></Field><Field label="Role"><input value={data.role} onChange={e => update({role:e.target.value})} placeholder="Founder, CMO, Marketing Lead..." /></Field></div></Step>}
 

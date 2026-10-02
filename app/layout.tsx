@@ -1,9 +1,11 @@
 import "./globals.css";
 export const metadata = {
-  title: "DIGITALE MEDIA — Creative × Growth × Technology × Experiences",
+  title: {
+    default: "DIGITALE MEDIA — Ideas Have A Life",
+    template: "%s | DIGITALE MEDIA",
+  },
   description: "DIGITALE MEDIA is a creative growth and technology studio building brands, digital products and experiences that move people.",
   metadataBase: new URL("https://digitalemedia.group"),
-  alternates: { canonical: "/" },
   openGraph: {
     title: "DIGITALE MEDIA — Creative × Growth × Technology × Experiences",
     description: "One team. One system. Real growth.",
