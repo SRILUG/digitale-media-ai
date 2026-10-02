@@ -95,7 +95,8 @@ export async function POST(req: NextRequest) {
     // Notification is deliberately after persistence. Slack failures are
     // isolated inside the dispatcher and can never turn a stored lead into
     // a failed client submission.
-    const slackWebhookUrl = process.env.INTERNAL_SLACK_WEBHOOK_URL;
+    const slackWebhookUrl =
+      process.env.SLACK_WEBHOOK_URL || process.env.INTERNAL_SLACK_WEBHOOK_URL;
     const supabaseProjectId = process.env.SUPABASE_PROJECT_ID;
 
     if (slackWebhookUrl) {
@@ -106,7 +107,7 @@ export async function POST(req: NextRequest) {
       );
     } else {
       console.log(
-        `[NOTIFICATION:SKIPPED] Brief ${submissionId} — INTERNAL_SLACK_WEBHOOK_URL not configured`,
+        `[NOTIFICATION:SKIPPED] Brief ${submissionId} — Slack webhook not configured`,
       );
     }
 
