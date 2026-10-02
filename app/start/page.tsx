@@ -189,12 +189,26 @@ export default function StartProject() {
                 key={id}
                 type="button"
                 className={"practiceChoice " + (data.practice === id ? "selected" : "")}
+                onTouchEnd={(e) => {
+                  e.preventDefault();
+                  update({ practice: id, focus: [] });
+                  setStep(2);
+                }}
                 onPointerUp={(e) => {
                   e.preventDefault();
                   update({ practice: id, focus: [] });
                   setStep(2);
                 }}
-                onClick={(e) => e.preventDefault()}
+                onMouseUp={(e) => {
+                  e.preventDefault();
+                  update({ practice: id, focus: [] });
+                  setStep(2);
+                }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  update({ practice: id, focus: [] });
+                  setStep(2);
+                }}
               >
                 <span>{id === "not-sure" ? "05" : "0" + (["growth","creative","technology","experiences"].indexOf(id)+1)}</span><strong>{title}</strong><small>{desc}</small><b>↗</b>
               </button>
