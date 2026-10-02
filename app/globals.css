@@ -225,3 +225,12 @@ html{scroll-behavior:smooth}body{margin:0;background:#fbfbf9;color:#11110f}butto
 /* Mobile project intake interaction hardening */
 .intakeCard{position:relative;z-index:2}
 .practiceChoice{position:relative;z-index:3;pointer-events:auto;touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+
+/* Mobile intake hit-test hardening */
+@media(max-width:800px){
+  .intakeAside{pointer-events:none}
+  .intakeCard{position:relative;z-index:10;pointer-events:auto}
+  .stepContent{position:relative;z-index:11;pointer-events:auto}
+  .practiceGrid{position:relative;z-index:12;pointer-events:auto}
+  .practiceChoice{position:relative;z-index:13;display:block;width:100%;pointer-events:auto;-webkit-appearance:none;appearance:none}
+}
