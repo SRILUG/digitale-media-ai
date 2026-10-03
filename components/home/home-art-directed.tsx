@@ -2,247 +2,487 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./home-art-directed.module.css";
 
-const work = [
+const navigation = [
+  ["WORK", "/work"],
+  ["SERVICES", "/services"],
+  ["EXPERIENCES", "/experiences"],
+  ["ABOUT", "/about"],
+] as const;
+
+const projects = [
   {
-    visual: "BRAND",
     slug: "brand-worlds",
     number: "01",
-    label: "BRAND / CAMPAIGN",
-    title: <>MAKE THEM<br /><em>REMEMBER.</em></>,
-    note: "Brand worlds, campaigns and content shaped around the idea that needs to travel.",
-    tone: "paper",
+    category: "BRAND / CAMPAIGN",
+    title: "MAKE THEM REMEMBER.",
+    description:
+      "Brand worlds, campaigns and content built around the idea that needs to travel.",
+    visual: "REMEMBER",
+    tone: "brand",
   },
   {
-    visual: "DIGITAL",
     slug: "digital-systems",
     number: "02",
-    label: "DIGITAL / SYSTEMS",
-    title: <>MAKE IT<br /><em>USEFUL.</em></>,
-    note: "Websites, products, automation and digital systems built around the problem, not the service.",
-    tone: "black",
+    category: "DIGITAL / SYSTEMS",
+    title: "MAKE IT USEFUL.",
+    description:
+      "Websites, products, automation and digital systems built around real problems.",
+    visual: "USEFUL",
+    tone: "digital",
   },
   {
-    visual: "EXPERIENCES",
     slug: "live-experiences",
     number: "03",
-    label: "EXPERIENCES / LIVE",
-    title: <>MAKE THE<br /><em>MOMENT MATTER.</em></>,
-    note: "Launches, productions, celebrations and physical experiences designed for the room and beyond it.",
-    tone: "warm",
+    category: "EXPERIENCES / LIVE",
+    title: "MAKE THE MOMENT MATTER.",
+    description:
+      "Launches, productions, activations and celebrations designed for the room and beyond it.",
+    visual: "MOMENT",
+    tone: "live",
+  },
+  {
+    slug: "growth-engine",
+    number: "04",
+    category: "GROWTH / PERFORMANCE",
+    title: "MAKE DEMAND MOVE.",
+    description:
+      "Search, performance, conversion and measurement connected into one operating system.",
+    visual: "DEMAND",
+    tone: "growth",
   },
 ];
 
 const capabilities = [
-  ["01", "CREATIVE", "Brand, campaigns, content, film, creators."],
-  ["02", "GROWTH", "Performance, search, CRO, CRM, analytics."],
-  ["03", "TECHNOLOGY", "Web, products, AI, automation, data."],
-  ["04", "EXPERIENCES", "Launches, activations, productions, celebrations."],
+  {
+    number: "01",
+    title: "STRATEGY",
+    detail: "Positioning / Research / Direction / Growth",
+    expanded: "Find the sharpest problem, define the opportunity and give every discipline a shared direction.",
+    visual: "DEFINE",
+  },
+  {
+    number: "02",
+    title: "CREATIVE",
+    detail: "Brand / Campaigns / Content / Film",
+    expanded: "Build the identity, story and creative work people can recognise, feel and remember.",
+    visual: "MAKE",
+  },
+  {
+    number: "03",
+    title: "DIGITAL",
+    detail: "Web / Products / AI / Automation / Data",
+    expanded: "Create useful digital experiences and the technology that helps ideas travel further.",
+    visual: "BUILD",
+  },
+  {
+    number: "04",
+    title: "EXPERIENCE",
+    detail: "Culture / Space / People / Live production",
+    expanded: "Shape the live environment, production and details that turn an idea into a shared moment.",
+    visual: "LIVE",
+  },
+  {
+    number: "05",
+    title: "EXECUTION",
+    detail: "Production / Launch / Measurement / Learning",
+    expanded: "Bring every part into the world, then learn from what happens and carry it forward.",
+    visual: "DELIVER",
+  },
 ];
 
 const experienceTypes = [
-  "PRODUCT LAUNCHES",
-  "CORPORATE EVENTS",
-  "RED CARPETS",
-  "ACTIVATIONS",
   "WEDDINGS & CELEBRATIONS",
+  "RED CARPET EVENTS",
+  "CORPORATE EVENTS",
+  "PRODUCT LAUNCHES",
+  "BRAND ACTIVATIONS",
+  "LIVE EXPERIENCES",
+];
+
+const technologyLayers = ["WEB", "AI", "AUTOMATION", "DATA", "DIGITAL PRODUCTS"];
+
+const founders = [
+  {
+    name: "SIVA VEERAPANENI",
+    discipline: "BRAND / CREATIVE / EXPERIENCES",
+    image: "/media/founders/siva-veerapaneni.webp",
+    alt: "Siva Veerapaneni",
+    number: "01",
+  },
+  {
+    name: "UMA SARAVANA KUMAR GUDALI",
+    discipline: "PRODUCT / AI / GROWTH",
+    image: "/media/founders/uma-saravana-kumar.webp",
+    alt: "Uma Saravana Kumar Gudali",
+    number: "02",
+  },
 ];
 
 export default function HomeArtDirected() {
   return (
-    <main className={`${styles.page} dgPage`}>
+    <main className={styles.page}>
       <header className={styles.nav}>
-        <Link href="/" className={styles.logo} aria-label="Digitale Media">
-          <Image src="/media/brand/digitale-media-logo.webp" alt="" width={270} height={70} sizes="(max-width: 760px) 132px, 205px" />
+        <Link href="/" className={styles.logo} aria-label="DIGITALE MEDIA home">
+          <Image
+            src="/media/brand/digitale-media-logo.webp"
+            alt=""
+            width={270}
+            height={70}
+            sizes="(max-width: 600px) 142px, 184px"
+            priority
+          />
         </Link>
-        <nav aria-label="Primary">
-          <Link href="/work">Work</Link>
-          <Link href="/services">Services</Link>
-          <Link href="/experiences">Experiences</Link>
-          <Link href="/about">About</Link>
-          <Link href="/insights">Insights</Link>
-          <Link href="/start">Start a project ↗</Link>
+        <nav className={styles.desktopNav} aria-label="Primary navigation">
+          {navigation.map(([label, href]) => (
+            <Link href={href} key={href}>{label}</Link>
+          ))}
         </nav>
-        <Link href="/start" className={styles.mobileStart}>Start ↗</Link>
+        <Link href="/start" className={styles.navCta}>
+          START A PROJECT <span aria-hidden="true">↗</span>
+        </Link>
+        <details className={styles.mobileMenu}>
+          <summary aria-label="Open navigation menu">MENU <span aria-hidden="true">+</span></summary>
+          <nav className={styles.mobilePanel} aria-label="Mobile navigation">
+            {navigation.map(([label, href]) => (
+              <Link href={href} key={href}>{label}</Link>
+            ))}
+            <Link href="/start">START A PROJECT ↗</Link>
+          </nav>
+        </details>
       </header>
 
-      <section className={styles.hero}>
-        <div className={styles.heroCopy}>
-          <span className={styles.kicker}>CREATIVE × GROWTH × TECHNOLOGY × EXPERIENCES</span>
-          <h1>IDEAS<br />HAVE<br /><em>A LIFE.</em></h1>
-          <p>We turn ideas into brands, stories, products, growth and experiences people remember.</p>
-          <div className={styles.heroActions}>
-            <Link href="/start" className={styles.primaryButton}>START A PROJECT <span>↗</span></Link>
-            <a href="#work" className={styles.textButton}>SEE THE WORK ↓</a>
+      <section className={styles.hero} aria-labelledby="hero-title">
+        <div className={styles.heroBackdrop} aria-hidden="true">
+          <div className={styles.heroArchitecture}>
+            <span className={styles.heroArchitectureFrame} />
+            <span className={styles.heroArchitecturePlane} />
+            <span className={styles.heroArchitectureLine} />
           </div>
+          <span className={styles.heroVisualNote}>SPACE / LIGHT / IN MOTION</span>
+          <span className={styles.heroGrain} />
         </div>
-
-        <div className={styles.heroMedia} aria-hidden="true">
-          <div className={styles.heroVisual}>
-            <div className={styles.heroOrb} />
-            <div className={styles.heroFrame}>
-              <div className={styles.heroFrameTop}><span>DGT / 01</span><span>IDEA IN MOTION</span></div>
-              <div className={styles.heroFrameBottom}><span>CREATIVE × DIGITAL</span><span>2026</span></div>
+        <div className={styles.heroContent}>
+          <div className={styles.heroMeta}>
+            <span>DIGITALE MEDIA</span>
+            <span>CREATIVE × GROWTH × TECHNOLOGY × EXPERIENCES</span>
+          </div>
+          <h1 id="hero-title">
+            <span>IDEAS</span>
+            <span className={styles.heroLife}>HAVE <em>A LIFE.</em></span>
+          </h1>
+          <div className={styles.heroBottom}>
+            <p>Ideas move when every discipline moves together.</p>
+            <div className={styles.heroActions}>
+              <Link href="/start" className={styles.buttonLight}>
+                START A PROJECT <span aria-hidden="true">↗</span>
+              </Link>
+              <Link href="/work" className={styles.heroExplore}>
+                EXPLORE WORK <span aria-hidden="true">↓</span>
+              </Link>
             </div>
-            <div className={styles.heroSlash} />
+          </div>
+          <div className={styles.heroFoot}>
+            <span>HYDERABAD, INDIA · 2026</span>
+            <span>01 — OPENING</span>
           </div>
         </div>
-        <div className={styles.heroCaption}>MAKING THEM MATTER IS WHAT WE DO.</div>
+        <span className={styles.heroSeal} aria-hidden="true">01 <span>/ 09</span></span>
       </section>
 
-      <section className={styles.blackStatement}>
-        <div className={styles.sceneWord}>IDEA</div>
-        <div className={styles.blackStatementCopy}>
-          <span className={styles.kickerLight}>THE BEGINNING</span>
-          <h2>AN IDEA<br /><em>WANTS TO MOVE.</em></h2>
-          <p>Into a story. Into culture. Into a screen, a room, a product, a conversation.</p>
+      <section className={styles.transition} aria-labelledby="transition-title">
+        <div className={styles.transitionVisual} aria-hidden="true">
+          <span className={styles.transitionFrame} />
+          <span className={styles.transitionLight} />
+          <span className={styles.transitionIndex}>A THOUGHT / TAKING SHAPE</span>
+          <strong>01</strong>
+        </div>
+        <div className={styles.transitionCopy}>
+          <div className={styles.sectionLabel}>
+            <span>02 / MANIFESTO</span>
+            <span>ONE CONNECTED PRACTICE</span>
+          </div>
+          <h2 id="transition-title">AN IDEA<br /><em>WANTS TO MOVE.</em></h2>
+          <p>
+            Four disciplines, moving together from the first thought to the
+            finished work.
+          </p>
+          <div className={styles.ideaFlow} aria-label="Idea becomes story, attention, and impact">
+            <span>IDEA</span><i aria-hidden="true">→</i>
+            <span>STORY</span><i aria-hidden="true">→</i>
+            <span>ATTENTION</span><i aria-hidden="true">→</i>
+            <span>IMPACT</span>
+          </div>
         </div>
       </section>
 
-      <section className={styles.transformation}>
-        <div className={styles.transformationIntro}>
-          <span className={styles.kicker}>FROM THE FIRST THOUGHT</span>
-          <h2>IDEA → STORY →<br /><em>ATTENTION → IMPACT</em></h2>
+      <section className={styles.work} id="work" aria-labelledby="work-title">
+        <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`}>
+          <span>03 / SELECTED WORK</span>
+          <span>EXISTING EDITORIAL DIRECTIONS</span>
         </div>
-        <div className={styles.transformationSteps}>
-          <div><span>01</span><strong>IDEA</strong><p>The thing worth saying.</p></div>
-          <div><span>02</span><strong>STORY</strong><p>The shape people can feel.</p></div>
-          <div><span>03</span><strong>ATTENTION</strong><p>The reason they stop.</p></div>
-          <div><span>04</span><strong>IMPACT</strong><p>What happens next.</p></div>
+        <div className={styles.workHeading}>
+          <h2 id="work-title">BUILT TO<br /><em>BE SEEN.</em></h2>
+          <p>
+            Each direction begins with a purpose. Explore the work without
+            the noise.
+          </p>
         </div>
-      </section>
-
-      <section id="work" className={styles.work}>
-        <div className={styles.sectionHead}><span>SELECTED WORK</span><span>ONE STORY AT A TIME</span></div>
-        <div className={styles.workIntro}>
-          <h2>THE WORK<br /><em>HAS A JOB.</em></h2>
-          <p>Not decoration. Not activity for activity’s sake. We make the idea move toward something.</p>
-        </div>
-
-        <div className={styles.workList}>
-          {work.map((item) => (
-            <article key={item.number} className={styles.workStory} data-tone={item.tone}>
-              <div className={styles.workVisual}>
-                <span>{item.number}</span>
-                <strong>{item.label}</strong>
-                <div className={styles.workVisualWord}>{item.visual}</div>
-                <i />
-              </div>
-              <div className={styles.workCopy}>
-                <span>{item.label}</span>
-                <h3>{item.title}</h3>
-                <p>{item.note}</p>
-                <Link href={`/work/${item.slug}`}>Explore ↗</Link>
+        <div className={styles.projectList}>
+          {projects.map((project) => (
+            <article
+              className={styles.project}
+              data-tone={project.tone}
+              id={`project-${project.slug}`}
+              key={project.slug}
+            >
+              <Link
+                href={`/work/${project.slug}`}
+                className={styles.projectArtwork}
+                aria-label={`View ${project.category.toLowerCase()} case`}
+              >
+                <span className={styles.projectArtworkTop}>
+                  <span>{project.number} / {String(projects.length).padStart(2, "0")}</span>
+                  <span>{project.category}</span>
+                </span>
+                <span className={styles.projectVisual} aria-hidden="true">
+                  <i />
+                  <b>{project.visual}</b>
+                  <em />
+                </span>
+                <span className={styles.projectArtworkBottom}>
+                  <span>DIGITALE / EDITION {project.number}</span>
+                  <span>VIEW CASE ↗</span>
+                </span>
+              </Link>
+              <div className={styles.projectCopy}>
+                <span className={styles.projectCategory}>{project.category}</span>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+                <Link href={`/work/${project.slug}`}>
+                  VIEW CASE <span aria-hidden="true">↗</span>
+                </Link>
               </div>
             </article>
           ))}
         </div>
+        <Link href="/work" className={styles.allWork}>
+          ALL WORK <span aria-hidden="true">↗</span>
+        </Link>
       </section>
 
-      <section id="capabilities" className={styles.conviction}>
-        <div className={styles.sectionHead}><span>THE CONVICTION</span><span>NO BOXES</span></div>
-        <div className={styles.convictionGrid}>
-          <div>
-            <h2>WE DON’T<br />START WITH<br /><em>SERVICES.</em></h2>
+      <section className={styles.capabilities} id="services" aria-labelledby="capabilities-title">
+        <div className={styles.capabilityVisual} aria-hidden="true">
+          <div className={styles.capabilityRing} />
+          <span className={styles.capabilityWord}>ONE<br />SYSTEM.</span>
+          <span className={styles.capabilityAside}>CREATIVE / GROWTH / TECHNOLOGY / EXPERIENCES</span>
+        </div>
+        <div className={styles.capabilityContent}>
+          <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`}>
+            <span>04 / ONE SHARED PROCESS</span>
+            <span id="capabilities-title">FIVE STAGES / ONE TEAM</span>
           </div>
-          <div>
-            <p className={styles.bigSerif}>Bring us the problem. We’ll figure out what it needs to become.</p>
-            <p className={styles.smallCopy}>A film. A brand. A digital product. A growth engine. A live experience. Sometimes one of them. Often more than one.</p>
-          </div>
-        </div>
-        <div className={styles.capList}>
-          {capabilities.map(([n, name, detail]) => (
-            <article key={n}>
-              <span>{n}</span>
-              <h3>{name}</h3>
-              <p>{detail}</p>
-              <b>↗</b>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="experiences" className={styles.experiences}>
-        <div className={styles.expImage}>
-          <span className={styles.expMark}>EXPERIENCE / 01</span>
-          <div className={styles.expOrb} />
-        </div>
-        <div className={styles.expContent}>
-          <div className={styles.sectionHeadDark}><span>THE PHYSICAL WORLD</span><span>EXPERIENCES</span></div>
-          <p className={styles.expLead}>Some things shouldn’t live on a screen.</p>
-          <h2>MAKE THE<br /><em>MOMENT MOVE.</em></h2>
-          <div className={styles.expTypes}>
-            {experienceTypes.map((item, i) => (
-              <div key={item}><span>0{i + 1}</span><strong>{item}</strong><b>↗</b></div>
+          <h2>NO HANDOFFS.<br /><em>NO FRAGMENTED<br />TEAMS.</em></h2>
+          <div className={styles.capabilityList}>
+            {capabilities.map((capability, index) => (
+              <details className={styles.capability} key={capability.number} open={index === 0}>
+                <summary>
+                  <span className={styles.capabilityNumber}>{capability.number}</span>
+                  <span className={styles.capabilityName}>{capability.title}</span>
+                  <span className={styles.capabilityItems}>{capability.detail}</span>
+                  <span className={styles.capabilityToggle} aria-hidden="true">+</span>
+                </summary>
+                <div className={styles.capabilityExpanded}>
+                  <span>{capability.visual}</span>
+                  <p>{capability.expanded}</p>
+                </div>
+              </details>
             ))}
           </div>
-          <Link href="/start?practice=experiences" className={styles.lightButton}>BUILD AN EXPERIENCE ↗</Link>
+          <Link href="/services" className={styles.serviceLink}>
+            EXPLORE SERVICES <span aria-hidden="true">↗</span>
+          </Link>
         </div>
       </section>
 
-      <section className={styles.engine}>
-        <div className={styles.sectionHead}><span>THE INVISIBLE BACKBONE</span><span>TECHNOLOGY</span></div>
-        <div className={styles.engineGrid}>
-          <div><span className={styles.kicker}>THE IDEA DOESN’T END</span><h2>WHEN IT<br /><em>LAUNCHES.</em></h2></div>
-          <p className={styles.bigSerif}>Technology stays backstage — making research faster, products smarter and every next decision better informed.</p>
+      <section className={styles.experiences} id="experiences" aria-labelledby="experiences-title">
+        <div className={styles.experienceScene} aria-hidden="true">
+          <span className={styles.sceneLight} />
+          <span className={styles.sceneCurtain} />
+          <span className={styles.sceneStage} />
+          <span className={styles.sceneBeam} />
+          <span className={styles.sceneCaption}>A MOMENT, MADE TO LAST</span>
         </div>
-        <div className={styles.engineFlow}><span>RESEARCH</span><b>→</b><span>BUILD</span><b>→</b><span>LAUNCH</span><b>→</b><span>MEASURE</span><b>→</b><span>LEARN</span></div>
-      </section>
-
-      <section id="people" className={styles.people}>
-        <div className={styles.sectionHead}><span>THE PEOPLE BEHIND THE WORK</span><span>FOUNDERS</span></div>
-        <div className={styles.peopleIntro}>
-          <h2>BUILT BY<br /><em>PEOPLE.</em></h2>
-          <p>Two perspectives. One company. Creative instinct, product thinking and the willingness to make the idea real.</p>
-        </div>
-        <div className={styles.founderGrid}>
-          <article>
-            <div className={styles.sivaPlaceholder}>
-              <Image
-                src="/media/founders/siva-veerapaneni.webp"
-                alt="Siva Veerapaneni"
-                fill
-                sizes="(max-width: 760px) 100vw, 50vw"
-              />
-            </div>
-            <div className={styles.founderMeta}><h3>Siva Veerapaneni</h3><span>FOUNDER</span><p>BRAND / CREATIVE / EXPERIENCES</p></div>
-          </article>
-          <article>
-            <div className={styles.umaPortrait}>
-              <Image
-                src="/media/founders/uma-saravana-kumar.webp"
-                alt="Gudali Uma Saravana Kumar"
-                fill
-                sizes="(max-width: 760px) 100vw, 50vw"
-              />
-              <span>USK</span>
-            </div>
-            <div className={styles.founderMeta}><h3>Gudali Uma Saravana Kumar</h3><span>FOUNDER</span><p>PRODUCT / AI / GROWTH</p></div>
-          </article>
+        <div className={styles.experienceContent}>
+          <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`}>
+            <span>05 / EXPERIENCES</span>
+            <span>CULTURE / PRODUCTION / STORY / SPACE / PEOPLE / MOMENT</span>
+          </div>
+          <h2 id="experiences-title">MOMENTS<br /><em>MATTER.</em></h2>
+          <p>
+            Weddings and celebrations, red carpets, corporate events, product
+            launches and brand activations — made for the room and everything
+            that follows.
+          </p>
+          <ul className={styles.experienceTypes}>
+            {experienceTypes.map((type, index) => (
+              <li key={type}>
+                <span>0{index + 1}</span>
+                <strong>{type}</strong>
+                <span aria-hidden="true">↗</span>
+              </li>
+            ))}
+          </ul>
+          <Link href="/start?practice=experiences" className={styles.experienceLink}>
+            START AN EXPERIENCE <span aria-hidden="true">↗</span>
+          </Link>
         </div>
       </section>
 
-      <section className={styles.cadence}>
-        <span className={styles.kicker}>OUR RHYTHM</span>
-        <div className={styles.cadenceWords}>
-          <span>THINK.</span>
-          <span>MAKE.</span>
-          <span>LAUNCH.</span>
-          <span>LEARN.</span>
-          <span><em>REPEAT.</em></span>
+      <section className={styles.technology} id="technology" aria-labelledby="technology-title">
+        <div className={styles.technologyTop}>
+          <div className={styles.sectionLabel}>
+            <span>06 / DIGITAL & TECHNOLOGY</span>
+            <span>THE LAYER BENEATH THE STORY</span>
+          </div>
+          <div className={styles.technologyHeading}>
+            <h2 id="technology-title">BUILT FOR<br /><em>WHAT&apos;S NEXT.</em></h2>
+            <p>
+              Digital is not the destination. It is the system that helps
+              ideas travel further and work harder.
+            </p>
+          </div>
+        </div>
+        <div className={styles.digitalComposition}>
+          <div className={styles.digitalIndex}>
+            <span>THE DIGITAL STUDIO</span>
+            <span>TOOLS WITH A PURPOSE</span>
+          </div>
+          <div className={styles.digitalOrbit} aria-hidden="true">
+            <span />
+            <span />
+            <span />
+            <b>DIGITALE</b>
+          </div>
+          <div className={styles.technologyLayers}>
+            {technologyLayers.map((layer, index) => (
+              <div key={layer}>
+                <span>0{index + 1}</span>
+                <strong>{layer}</strong>
+                <i aria-hidden="true">↗</i>
+              </div>
+            ))}
+          </div>
+        </div>
+        <Link href="/work/digital-systems" className={styles.technologyLink}>
+          EXPLORE DIGITAL SYSTEMS <span aria-hidden="true">↗</span>
+        </Link>
+      </section>
+
+      <section className={styles.founders} id="about" aria-labelledby="founders-title">
+        <div className={styles.sectionLabel}>
+          <span>07 / FOUNDERS</span>
+          <span>THE PEOPLE BEHIND DIGITALE</span>
+        </div>
+        <div className={styles.founderHeading}>
+          <h2 id="founders-title">THE PEOPLE<br />BEHIND<br /><em>DIGITALE.</em></h2>
+          <p>
+            Two perspectives, working inside one connected practice.
+          </p>
+        </div>
+        <div className={styles.founderList}>
+          {founders.map((founder) => (
+            <article className={styles.founder} key={founder.number}>
+              <div className={styles.founderPortrait}>
+                <Image
+                  src={founder.image}
+                  alt={founder.alt}
+                  fill
+                  sizes="(max-width: 760px) 100vw, 50vw"
+                />
+                <span>{founder.number} / FOUNDER</span>
+                <i aria-hidden="true" />
+              </div>
+              <div className={styles.founderMeta}>
+                <div>
+                  <h3>{founder.name}</h3>
+                  <span>FOUNDER</span>
+                </div>
+                <p>{founder.discipline}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
-      <section className={styles.finalCta}>
-        <span className={styles.kickerLight}>THE NEXT CHAPTER</span>
-        <h2>WHAT ARE YOU<br />TRYING TO MAKE<br /><em>MATTER?</em></h2>
-        <p>A brand to launch. A product to build. A market to enter. An experience to create.</p>
-        <Link href="/start">START A PROJECT <span>↗</span></Link>
+      <section className={styles.system} aria-labelledby="system-title">
+        <div className={styles.systemArtwork} aria-hidden="true">
+          <span className={styles.systemFrame} />
+          <span className={styles.systemAxis} />
+          <span className={styles.systemCore}>ONE</span>
+          <span className={styles.systemCaption}>ONE PRACTICE / MANY DISCIPLINES</span>
+        </div>
+        <div className={styles.systemCopy}>
+          <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`}>
+            <span>08 / THE DIGITALE PRINCIPLE</span>
+            <span>FROM FIRST THOUGHT TO FINAL FRAME</span>
+          </div>
+          <h2 id="system-title">ONE TEAM.<br /><em>ONE SYSTEM.</em></h2>
+          <p>
+            From the first thought to the final frame, everyone works inside
+            the same system.
+          </p>
+          <div className={styles.systemFlow}>
+            {["STRATEGY", "CREATIVE", "DIGITAL", "EXPERIENCE", "EXECUTION"].map((step, index) => (
+              <div key={step}>
+                <span>0{index + 1}</span>
+                <strong>{step}</strong>
+                {index < 4 && <i aria-hidden="true">→</i>}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.finalCta} aria-labelledby="cta-title">
+        <div className={styles.finalArtwork} aria-hidden="true">
+          <span />
+          <span />
+          <span />
+          <b>D.</b>
+        </div>
+        <span className={styles.finalLabel}>THE NEXT FRAME / YOURS</span>
+        <h2 id="cta-title">HAVE SOMETHING<br /><em>WORTH BUILDING?</em></h2>
+        <div className={styles.finalBottom}>
+          <p>Let&apos;s turn the idea into something people can see, feel and remember.</p>
+          <Link href="/start" className={styles.buttonLight}>
+            START A PROJECT <span aria-hidden="true">↗</span>
+          </Link>
+        </div>
       </section>
 
       <footer className={styles.footer}>
-        <span>© 2026 DIGITALE MEDIA. ALL RIGHTS RESERVED.</span>
-        <span>CREATIVE × GROWTH × TECHNOLOGY × EXPERIENCES</span>
-        <span>digitalemedia.group</span>
+        <div className={styles.footerTop}>
+          <Link href="/" className={styles.footerLogo} aria-label="DIGITALE MEDIA home">
+            <Image
+              src="/media/brand/digitale-media-logo.webp"
+              alt=""
+              width={270}
+              height={70}
+              sizes="184px"
+            />
+          </Link>
+          <span>HYDERABAD, INDIA · 2026</span>
+        </div>
+        <div className={styles.footerBottom}>
+          <nav aria-label="Footer navigation">
+            {navigation.map(([label, href]) => (
+              <Link href={href} key={href}>{label}</Link>
+            ))}
+            <Link href="/insights">INSIGHTS</Link>
+          </nav>
+          <Link href="/start">PROJECT ENQUIRIES ↗</Link>
+          <span>© 2026 DIGITALE MEDIA</span>
+        </div>
       </footer>
     </main>
   );
