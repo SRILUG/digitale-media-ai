@@ -223,6 +223,45 @@
     linear-gradient(0deg, transparent 68.8%, rgba(239, 237, 231, .06) 69%, transparent 69.1%);
 }
 
+.heroBlueprint {
+  position: absolute;
+  z-index: 1;
+  top: 7%;
+  right: 1%;
+  width: min(72vw, 1080px);
+  height: 89%;
+  overflow: visible;
+  color: rgba(227, 210, 177, .78);
+  opacity: .8;
+  pointer-events: none;
+}
+
+.heroBlueprint > g {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.heroBlueprint > g:first-child {
+  opacity: .58;
+}
+
+.heroBlueprint .blueprintTicks {
+  stroke-width: 1.5;
+  opacity: .7;
+}
+
+@media (max-width: 800px) {
+  .heroBlueprint {
+    top: 12%;
+    right: -17%;
+    width: 112%;
+    height: 72%;
+    opacity: .66;
+  }
+}
+
 .heroArchitecture::before {
   position: absolute;
   top: 9%;
@@ -655,11 +694,11 @@
 
 .project {
   display: grid;
-  min-height: 460px;
+  min-height: 480px;
   grid-template-columns: 1.18fr .82fr;
   align-items: center;
   gap: 7vw;
-  padding: 34px 0;
+  padding: 42px 0;
   border-bottom: 1px solid var(--line-dark);
   scroll-margin-top: 100px;
 }
@@ -675,14 +714,14 @@
 .projectArtwork {
   position: relative;
   display: flex;
-  min-height: 385px;
+  min-height: 390px;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   background:
-    linear-gradient(115deg, transparent 49.7%, rgba(239, 237, 231, .1) 49.85%, transparent 50.1%),
-    radial-gradient(ellipse at 59% 46%, rgba(178, 153, 109, .28), transparent 39%),
-    linear-gradient(138deg, #23211d 0%, #141310 45%, #080807 100%);
+    linear-gradient(115deg, transparent 49.7%, rgba(239, 237, 231, .08) 49.85%, transparent 50.1%),
+    radial-gradient(ellipse at 59% 46%, rgba(178, 153, 109, .2), transparent 42%),
+    linear-gradient(138deg, #201d18 0%, #12110f 51%, #080807 100%);
   isolation: isolate;
 }
 
@@ -724,114 +763,133 @@
 
 .projectVisual {
   position: relative;
-  display: flex;
-  width: 78%;
-  min-height: 240px;
-  align-items: center;
-  justify-content: center;
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: block;
   overflow: hidden;
-  border: 1px solid rgba(213, 195, 159, .23);
-  background:
-    repeating-linear-gradient(0deg, transparent 0 42px, rgba(239, 237, 231, .06) 43px, transparent 44px),
-    linear-gradient(145deg, rgba(239, 237, 231, .06), rgba(0, 0, 0, .35));
-  box-shadow: 22px 26px 60px rgba(0, 0, 0, .35);
-  transform: rotate(-4deg);
+  pointer-events: none;
+}
+
+.projectDrawing {
+  position: absolute;
+  inset: 1% 1% 8%;
+  width: 98%;
+  height: 91%;
+  overflow: visible;
+  color: var(--study-line, rgba(223, 204, 166, .9));
   transition: transform .8s cubic-bezier(.2, .7, .2, 1);
 }
 
-.projectArtwork:hover .projectVisual {
-  transform: rotate(-1deg) scale(1.04);
+.projectArtwork:hover .projectDrawing {
+  transform: scale(1.035);
 }
 
-.projectVisual > i {
-  position: absolute;
-  top: 50%;
-  left: -10%;
-  width: 120%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(221, 201, 163, .8), transparent);
-  transform: rotate(-23deg);
+.projectDrawing .drawingGrid {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: .7;
+  opacity: .1;
+}
+
+.projectDrawing .drawingFrame,
+.projectDrawing .drawingFine,
+.projectDrawing .drawingLight {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+
+.projectDrawing .drawingFrame {
+  stroke: currentColor;
+  stroke-width: 1.2;
+  opacity: .78;
+}
+
+.projectDrawing .drawingFine {
+  stroke: currentColor;
+  stroke-width: .8;
+  opacity: .5;
+}
+
+.projectDrawing .drawingLight {
+  stroke: var(--study-accent, #d2bc90);
+  stroke-width: 1.2;
+  opacity: .76;
+}
+
+.projectDrawing .drawingAccent {
+  fill: var(--study-accent, #d2bc90);
+  fill-opacity: .11;
+  stroke: var(--study-accent, #d2bc90);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.projectDrawing .drawingBlock {
+  fill: var(--study-accent, #d2bc90);
+  fill-opacity: .76;
+}
+
+.projectDrawing .drawingPanel {
+  fill: rgba(220, 209, 185, .08);
+  stroke: currentColor;
+  stroke-width: .8;
+  vector-effect: non-scaling-stroke;
+}
+
+.projectDrawing .drawingBeam {
+  fill: var(--study-accent, #d2bc90);
+  fill-opacity: .08;
+  stroke: var(--study-accent, #d2bc90);
+  stroke-width: .9;
+  vector-effect: non-scaling-stroke;
+  opacity: .65;
 }
 
 .projectVisual > b {
-  position: relative;
-  z-index: 1;
-  color: rgba(239, 237, 231, .92);
-  font-size: clamp(34px, 5.6vw, 82px);
-  font-weight: 600;
-  letter-spacing: -.09em;
-  text-align: center;
+  position: absolute;
+  z-index: 2;
+  right: auto;
+  bottom: 13%;
+  left: 9%;
+  color: rgba(239, 237, 231, .88);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(24px, 3.8vw, 52px);
+  font-weight: 500;
+  letter-spacing: -.055em;
+  line-height: .9;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, .38);
 }
 
-.projectVisual > em {
-  position: absolute;
-  top: 16%;
-  right: 11%;
-  bottom: 16%;
-  width: 1px;
-  background: linear-gradient(transparent, rgba(221, 201, 163, .65), transparent);
-  transform: rotate(22deg);
+.project[data-tone="brand"] {
+  --study-line: rgba(229, 210, 178, .9);
+  --study-accent: #c59d70;
+}
+
+.project[data-tone="brand"] .projectArtwork {
+  background:
+    radial-gradient(ellipse at 52% 48%, rgba(157, 100, 65, .25), transparent 41%),
+    linear-gradient(135deg, #261b15 0%, #15110e 58%, #090807 100%);
 }
 
 .project[data-tone="digital"] .projectArtwork {
   background:
-    repeating-linear-gradient(90deg, transparent 0 59px, rgba(239, 237, 231, .07) 60px, transparent 61px),
-    radial-gradient(ellipse at 40% 60%, rgba(168, 155, 127, .26), transparent 35%),
-    linear-gradient(125deg, #1a1b19, #090909 73%);
-}
-
-.project[data-tone="digital"] .projectVisual {
-  width: 62%;
-  min-height: 290px;
-  margin-left: 12%;
-  border-color: rgba(213, 195, 159, .4);
-  transform: skewY(-8deg) rotate(9deg);
-}
-
-.project[data-tone="digital"] .projectArtwork:hover .projectVisual {
-  transform: skewY(-4deg) rotate(5deg) scale(1.04);
+    radial-gradient(ellipse at 58% 46%, rgba(104, 133, 127, .21), transparent 39%),
+    linear-gradient(125deg, #17201e, #101311 58%, #080908 100%);
 }
 
 .project[data-tone="live"] .projectArtwork {
   background:
     linear-gradient(0deg, rgba(0, 0, 0, .56), transparent 52%),
-    radial-gradient(ellipse at 50% 73%, rgba(205, 172, 119, .38), transparent 30%),
-    linear-gradient(135deg, #201c17, #080807 78%);
-}
-
-.project[data-tone="live"] .projectVisual {
-  width: 66%;
-  min-height: 280px;
-  border-color: rgba(213, 195, 159, .45);
-  background:
-    linear-gradient(90deg, transparent 48%, rgba(225, 206, 169, .42) 49%, transparent 50%),
-    repeating-linear-gradient(90deg, transparent 0 42px, rgba(239, 237, 231, .07) 43px, transparent 44px),
-    linear-gradient(160deg, rgba(207, 186, 147, .12), rgba(0, 0, 0, .5));
-  transform: perspective(700px) rotateY(-12deg) rotate(-2deg);
-}
-
-.project[data-tone="live"] .projectArtwork:hover .projectVisual {
-  transform: perspective(700px) rotateY(-4deg) rotate(0) scale(1.04);
+    radial-gradient(ellipse at 50% 69%, rgba(207, 166, 103, .3), transparent 35%),
+    linear-gradient(135deg, #211a13, #110f0c 58%, #080807 100%);
 }
 
 .project[data-tone="growth"] .projectArtwork {
   background:
-    repeating-linear-gradient(155deg, transparent 0 35px, rgba(214, 195, 159, .1) 36px, transparent 37px 62px),
-    radial-gradient(ellipse at 48% 50%, rgba(182, 157, 112, .24), transparent 36%),
-    linear-gradient(140deg, #222019, #090908 72%);
-}
-
-.project[data-tone="growth"] .projectVisual {
-  width: 66%;
-  border-left: 3px solid rgba(218, 196, 155, .55);
-  background:
-    repeating-linear-gradient(90deg, transparent 0 38px, rgba(239, 237, 231, .09) 39px, transparent 40px),
-    linear-gradient(140deg, rgba(239, 237, 231, .08), rgba(0, 0, 0, .42));
-  transform: skewY(-5deg) rotate(-3deg);
-}
-
-.project[data-tone="growth"] .projectArtwork:hover .projectVisual {
-  transform: skewY(-2deg) rotate(0) scale(1.04);
+    repeating-linear-gradient(155deg, transparent 0 62px, rgba(203, 214, 185, .06) 63px, transparent 64px 98px),
+    radial-gradient(ellipse at 50% 48%, rgba(139, 160, 125, .22), transparent 40%),
+    linear-gradient(140deg, #1a211b, #111410 58%, #080908 100%);
 }
 
 .projectCopy {
@@ -906,8 +964,7 @@
   isolation: isolate;
 }
 
-.capabilityVisual::before,
-.capabilityVisual::after {
+.capabilityVisual::before {
   position: absolute;
   z-index: -1;
   content: "";
@@ -918,29 +975,42 @@
   border: 1px solid rgba(239, 237, 231, .18);
 }
 
-.capabilityVisual::after {
-  top: 17%;
-  left: 17%;
-  width: 66%;
-  aspect-ratio: 1;
-  border: 1px solid rgba(214, 194, 155, .35);
-  border-radius: 50%;
-  box-shadow: 0 0 90px rgba(214, 194, 155, .1), inset 0 0 60px rgba(214, 194, 155, .09);
+.capabilityDrawing {
+  position: absolute;
+  inset: 4%;
+  width: 92%;
+  height: 92%;
+  overflow: visible;
+  color: rgba(221, 202, 166, .72);
 }
 
-.capabilityRing {
-  position: absolute;
-  top: 24%;
-  left: 24%;
-  width: 52%;
-  aspect-ratio: 1;
-  border: 1px solid rgba(239, 237, 231, .3);
-  border-radius: 50%;
-  transform: rotateX(68deg) rotate(-25deg);
-  box-shadow: 0 0 40px rgba(214, 194, 155, .12);
+.capabilityDrawing path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.capabilityDrawing path:nth-of-type(2) {
+  opacity: .48;
+}
+
+.capabilityDrawing path:nth-of-type(3) {
+  opacity: .55;
+}
+
+.capabilityDrawing circle {
+  fill: #d2bc90;
+  stroke: #8d7954;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
 }
 
 .capabilityWord {
+  position: relative;
+  z-index: 1;
+  padding: 8px 15px 12px;
+  background: rgba(10, 10, 9, .79);
   color: rgba(239, 237, 231, .91);
   font-size: clamp(54px, 7vw, 104px);
   font-weight: 600;
@@ -1040,7 +1110,7 @@
 
 .capabilityExpanded {
   display: grid;
-  grid-template-columns: 90px 1fr;
+  grid-template-columns: 120px minmax(0, 1fr);
   gap: 20px;
   padding: 0 25px 23px 48px;
   animation: detailsIn .35s ease both;
@@ -1048,7 +1118,7 @@
 
 .capabilityExpanded > span {
   color: rgba(239, 237, 231, .19);
-  font-size: 25px;
+  font-size: clamp(16px, 1.7vw, 24px);
   font-weight: 500;
   letter-spacing: -.06em;
 }
@@ -1082,67 +1152,43 @@
   isolation: isolate;
 }
 
-.experienceScene::before {
+.experienceDrawing {
   position: absolute;
-  z-index: -1;
-  inset: 0;
-  background:
-    repeating-linear-gradient(90deg, transparent 0 10%, rgba(239, 237, 231, .045) 10.1%, transparent 10.25%),
-    linear-gradient(0deg, rgba(0, 0, 0, .75), transparent 45%);
-  content: "";
+  z-index: 1;
+  inset: 5% 2% 7%;
+  width: 96%;
+  height: 88%;
+  overflow: visible;
+  color: rgba(224, 202, 163, .85);
+  filter: drop-shadow(0 0 20px rgba(213, 177, 116, .1));
 }
 
-.sceneLight {
-  position: absolute;
-  top: 5%;
-  left: 29%;
-  width: 50%;
-  aspect-ratio: 1;
-  border: 1px solid rgba(221, 197, 152, .35);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(218, 191, 144, .12), transparent 67%);
-  box-shadow: 0 0 130px rgba(218, 191, 144, .13), inset 0 0 70px rgba(218, 191, 144, .08);
+.experienceDrawing path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.1;
+  vector-effect: non-scaling-stroke;
 }
 
-.sceneCurtain {
-  position: absolute;
-  top: 0;
-  right: 7%;
-  bottom: 0;
-  width: 14%;
-  border-right: 1px solid rgba(225, 207, 173, .3);
-  border-left: 1px solid rgba(225, 207, 173, .18);
-  background: repeating-linear-gradient(90deg, rgba(4, 4, 4, .7) 0 10px, rgba(177, 151, 108, .16) 11px, rgba(4, 4, 4, .8) 18px);
-  transform: skewY(-5deg);
+.experienceDrawing path:nth-of-type(2) {
+  opacity: .66;
 }
 
-.sceneStage {
-  position: absolute;
-  right: 13%;
-  bottom: 20%;
-  left: 11%;
-  height: 24%;
-  border: 1px solid rgba(223, 202, 164, .45);
-  background:
-    linear-gradient(90deg, transparent 49.8%, rgba(223, 202, 164, .3) 50%, transparent 50.2%),
-    linear-gradient(145deg, rgba(223, 202, 164, .17), rgba(0, 0, 0, .58));
-  box-shadow: 0 35px 75px rgba(0, 0, 0, .55), inset 0 1px rgba(255, 255, 255, .16);
-  transform: perspective(700px) rotateX(12deg) skewY(-5deg);
+.experienceDrawing path:nth-of-type(3) {
+  fill: rgba(213, 177, 116, .055);
+  stroke: rgba(224, 202, 163, .52);
 }
 
-.sceneBeam {
-  position: absolute;
-  top: 9%;
-  left: 46%;
-  width: 1px;
-  height: 76%;
-  background: linear-gradient(rgba(229, 205, 161, .5), rgba(229, 205, 161, .09), transparent);
-  box-shadow: 0 0 70px 28px rgba(198, 169, 116, .08);
-  transform: rotate(13deg);
+.experienceDrawing circle {
+  fill: #d7bd8d;
+  stroke: rgba(224, 202, 163, .8);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
 }
 
 .sceneCaption {
   position: absolute;
+  z-index: 2;
   bottom: 25px;
   left: 7%;
   color: rgba(239, 237, 231, .58);
@@ -1175,26 +1221,59 @@
 }
 
 .experienceTypes li {
-  display: grid;
-  grid-template-columns: 32px 1fr 18px;
-  align-items: center;
-  gap: 10px;
-  padding: 13px 0;
   border-bottom: 1px solid rgba(239, 237, 231, .14);
 }
 
-.experienceTypes li span:first-child {
+.experienceTypes li > a {
+  display: grid;
+  grid-template-columns: 32px 1fr 18px;
+  align-items: start;
+  gap: 10px;
+  padding: 15px 0;
+}
+
+.experienceTypes li > a > span:first-child {
   color: rgba(239, 237, 231, .46);
 }
 
 .experienceTypes li strong {
+  display: block;
   font-size: 10px;
   font-weight: 500;
   letter-spacing: .08em;
 }
 
-.experienceTypes li span:last-child {
+.experienceTypes li small {
+  display: block;
+  margin-top: 6px;
   color: var(--champagne);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.experienceTypes li p {
+  margin: 6px 0 0;
+  color: rgba(239, 237, 231, .6);
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+.experienceTypes li > a > span:last-child {
+  color: var(--champagne);
+  text-align: right;
+  transition: transform .25s ease;
+}
+
+.experienceTypes li > a:hover strong {
+  color: var(--champagne);
+}
+
+.experienceTypes li > a:hover > span:last-child {
+  transform: translate(2px, -2px);
+}
+
+.experienceTypes li > a > div {
+  min-width: 0;
 }
 
 .experienceLink {
@@ -1278,29 +1357,49 @@
   justify-self: center;
 }
 
-.digitalOrbit span {
+.digitalDrawing {
   position: absolute;
-  inset: 8%;
-  border: 1px solid rgba(110, 93, 62, .55);
-  border-radius: 50%;
-  transform: rotateX(67deg) rotate(-22deg);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  color: #76684d;
 }
 
-.digitalOrbit span:nth-child(2) {
-  inset: 20%;
-  border-color: rgba(110, 93, 62, .4);
-  transform: rotateY(67deg) rotate(24deg);
+.digitalDrawing path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
 }
 
-.digitalOrbit span:nth-child(3) {
-  inset: 32%;
-  border-color: rgba(110, 93, 62, .62);
-  transform: rotate(-41deg);
+.digitalDrawing path:nth-of-type(2) {
+  opacity: .47;
+}
+
+.digitalDrawing path:nth-of-type(3) {
+  opacity: .66;
+}
+
+.digitalDrawing circle {
+  fill: #b49b6b;
+  stroke: #76684d;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
 }
 
 .digitalOrbit b {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 27%;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgba(110, 93, 62, .62);
+  border-radius: 50%;
+  background: rgba(245, 243, 237, .82);
   color: #201e19;
-  font-size: clamp(18px, 2.2vw, 32px);
+  font-size: clamp(12px, 1.6vw, 20px);
   font-weight: 600;
   letter-spacing: -.06em;
 }
@@ -1312,6 +1411,7 @@
 
 .technologyLayers > div {
   display: grid;
+  min-width: 0;
   grid-template-columns: 35px 1fr 16px;
   align-items: center;
   gap: 10px;
@@ -1324,9 +1424,10 @@
 }
 
 .technologyLayers > div > strong {
-  font-size: clamp(11px, 1.3vw, 17px);
+  font-size: clamp(10px, 1.15vw, 15px);
   font-weight: 500;
   letter-spacing: .07em;
+  line-height: 1.4;
 }
 
 .technologyLayers > div > i {
@@ -1378,8 +1479,8 @@
 
 .founderPortrait {
   position: relative;
-  height: min(56vw, 710px);
-  min-height: 450px;
+  height: auto;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
   background: #292722;
 }
@@ -1393,7 +1494,7 @@
 
 .founderPortrait img {
   object-fit: cover;
-  object-position: center 20%;
+  object-position: center 18%;
   filter: saturate(.73);
   transition: transform 1s cubic-bezier(.2, .7, .2, 1), filter .6s ease;
 }
@@ -1450,6 +1551,14 @@
   text-align: right;
 }
 
+.founderBio {
+  max-width: 520px;
+  margin: 14px 0 0;
+  color: #68665e;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
 .system {
   display: grid;
   min-height: 660px;
@@ -1468,6 +1577,7 @@
     linear-gradient(0deg, transparent 59.8%, rgba(239, 237, 231, .06) 60%, transparent 60.2%),
     radial-gradient(ellipse at 52% 52%, rgba(185, 158, 112, .19), transparent 38%),
     linear-gradient(145deg, #201e19, #090909 72%);
+  isolation: isolate;
 }
 
 .systemArtwork::before {
@@ -1477,37 +1587,51 @@
   content: "";
 }
 
-.systemFrame {
+.systemDrawing {
   position: absolute;
-  top: 16%;
-  left: 20%;
-  width: 61%;
-  height: 66%;
-  border: 1px solid rgba(216, 196, 159, .44);
-  background:
-    linear-gradient(125deg, transparent 49.7%, rgba(216, 196, 159, .17) 50%, transparent 50.3%),
-    linear-gradient(145deg, rgba(239, 237, 231, .04), transparent 52%);
-  box-shadow: inset 0 0 80px rgba(0, 0, 0, .45), 24px 35px 75px rgba(0, 0, 0, .35);
-  transform: perspective(900px) rotateY(14deg) rotateZ(-4deg);
+  inset: 5% 4% 10%;
+  width: 92%;
+  height: 85%;
+  overflow: visible;
+  color: rgba(221, 202, 166, .77);
 }
 
-.systemAxis {
-  position: absolute;
-  top: 9%;
-  left: 51%;
-  width: 1px;
-  height: 82%;
-  background: linear-gradient(transparent, rgba(223, 203, 167, .65), transparent);
-  box-shadow: 0 0 70px 20px rgba(198, 169, 116, .09);
-  transform: rotate(-16deg);
+.systemDrawing path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.systemDrawing path:nth-of-type(2) {
+  opacity: .65;
+}
+
+.systemDrawing path:nth-of-type(3) {
+  opacity: .48;
+}
+
+.systemDrawing circle {
+  fill: #d2bc90;
+  stroke: #8d7954;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
 }
 
 .systemCore {
   position: relative;
+  z-index: 1;
+  display: grid;
+  width: 136px;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgba(221, 202, 166, .65);
+  border-radius: 50%;
+  background: rgba(11, 11, 10, .8);
   color: rgba(239, 237, 231, .84);
-  font-size: clamp(74px, 10vw, 150px);
+  font-size: clamp(44px, 6vw, 78px);
   font-weight: 600;
-  letter-spacing: -.14em;
+  letter-spacing: -.11em;
   text-shadow: 0 12px 40px rgba(0, 0, 0, .3);
 }
 
@@ -1564,6 +1688,123 @@
   color: var(--champagne);
   font-size: 15px;
   font-style: normal;
+}
+
+.insights {
+  padding: 100px 8vw 104px;
+  background: var(--paper);
+  color: var(--black);
+}
+
+.insights > .sectionLabel {
+  border-color: var(--line-light);
+  color: #69675f;
+}
+
+.insightsHeading {
+  display: grid;
+  grid-template-columns: 1fr .55fr;
+  align-items: end;
+  gap: 8vw;
+  padding: 66px 0 45px;
+}
+
+.insightsHeading h2 {
+  margin: 0;
+  font-size: clamp(58px, 8vw, 120px);
+  font-weight: 600;
+  letter-spacing: -.09em;
+  line-height: .83;
+}
+
+.insightsHeading h2 em {
+  color: #887858;
+}
+
+.insightsHeading > p {
+  max-width: 390px;
+  margin: 0 0 8px;
+  color: #69675f;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.insightList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 38px;
+  border-top: 1px solid var(--line-light);
+}
+
+.insight {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 34px 1fr auto;
+  align-content: start;
+  gap: 12px;
+  padding: 23px 0 25px;
+  border-bottom: 1px solid var(--line-light);
+}
+
+.insight > span,
+.insight > b {
+  color: #81775f;
+  font-family: "DM Mono", monospace;
+  font-size: 8px;
+  letter-spacing: .1em;
+}
+
+.insight > div {
+  min-width: 0;
+}
+
+.insight small {
+  color: #81775f;
+  font-family: "DM Mono", monospace;
+  font-size: 8px;
+  letter-spacing: .1em;
+}
+
+.insight h3 {
+  margin: 12px 0 8px;
+  font-size: clamp(15px, 1.6vw, 22px);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -.035em;
+}
+
+.insight p {
+  max-width: 440px;
+  margin: 0;
+  color: #69675f;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.insight > b {
+  align-self: end;
+  white-space: nowrap;
+}
+
+.insight:hover h3,
+.insight:hover > b {
+  color: #887858;
+}
+
+.insightsLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  margin-top: 25px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(5, 5, 5, .4);
+  font-family: "DM Mono", monospace;
+  font-size: 9px;
+  letter-spacing: .12em;
+}
+
+.insightsLink span {
+  color: #887858;
 }
 
 .finalCta {
@@ -1835,7 +2076,8 @@
 
   .work,
   .technology,
-  .founders {
+  .founders,
+  .insights {
     padding: 78px 6vw;
   }
 
@@ -1866,15 +2108,6 @@
     min-height: min(54vw, 410px);
   }
 
-  .projectVisual {
-    min-height: 220px;
-  }
-
-  .project[data-tone="digital"] .projectVisual,
-  .project[data-tone="live"] .projectVisual {
-    min-height: 230px;
-  }
-
   .projectCopy {
     padding: 4px 0;
   }
@@ -1897,16 +2130,10 @@
     inset: 7%;
   }
 
-  .capabilityVisual::after {
-    top: 9%;
-    left: 35%;
-    width: 30%;
-  }
-
-  .capabilityRing {
-    top: 15%;
-    left: 40%;
-    width: 20%;
+  .capabilityDrawing {
+    inset: 1%;
+    width: 98%;
+    height: 98%;
   }
 
   .capabilityWord {
@@ -1952,6 +2179,12 @@
     padding-top: 52px;
   }
 
+  .insightsHeading {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding-top: 52px;
+  }
+
   .technologyHeading h2 {
     font-size: clamp(59px, 11vw, 87px);
   }
@@ -1985,8 +2218,8 @@
   }
 
   .founderPortrait {
-    min-height: 350px;
-    height: 67vw;
+    height: auto;
+    aspect-ratio: 4 / 5;
   }
 
   .founderMeta {
@@ -1996,6 +2229,10 @@
 
   .founderMeta > p {
     text-align: left;
+  }
+
+  .founderBio {
+    font-size: 11px;
   }
 
   .system {
@@ -2008,6 +2245,10 @@
 
   .systemCopy {
     padding: 70px 6vw;
+  }
+
+  .insightList {
+    column-gap: 24px;
   }
 
   .systemCopy h2 {
@@ -2162,7 +2403,8 @@
 
   .work,
   .technology,
-  .founders {
+  .founders,
+  .insights {
     padding: 61px 6vw 67px;
   }
 
@@ -2204,18 +2446,8 @@
     bottom: 17px;
   }
 
-  .projectVisual {
-    width: 78%;
-    min-height: 185px;
-  }
-
   .projectVisual > b {
     font-size: clamp(31px, 9vw, 43px);
-  }
-
-  .project[data-tone="digital"] .projectVisual,
-  .project[data-tone="live"] .projectVisual {
-    min-height: 190px;
   }
 
   .projectCopy h3 {
@@ -2288,11 +2520,26 @@
   }
 
   .experienceTypes li {
-    padding: 12px 0;
+    padding: 0;
+  }
+
+  .experienceTypes li > a {
+    grid-template-columns: 24px 1fr 13px;
+    gap: 8px;
+    padding: 13px 0;
   }
 
   .experienceTypes li strong {
     font-size: 9px;
+    line-height: 1.5;
+  }
+
+  .experienceTypes li small {
+    font-size: 9px;
+  }
+
+  .experienceTypes li p {
+    font-size: 10px;
   }
 
   .experienceScene {
@@ -2336,8 +2583,8 @@
 
   .technologyLayers {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0 20px;
+    grid-template-columns: 1fr;
+    gap: 0;
     padding: 12px 16px 15px;
   }
 
@@ -2348,8 +2595,40 @@
   }
 
   .technologyLayers > div > strong {
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: .04em;
+  }
+
+  .insightsHeading {
+    gap: 18px;
+    padding: 44px 0 30px;
+  }
+
+  .insightsHeading h2 {
+    font-size: clamp(46px, 12vw, 68px);
+  }
+
+  .insightsHeading > p {
+    font-size: 11px;
+  }
+
+  .insightList {
+    grid-template-columns: 1fr;
+  }
+
+  .insight {
+    grid-template-columns: 25px 1fr auto;
+    gap: 8px;
+    padding: 18px 0 20px;
+  }
+
+  .insight h3 {
+    margin: 10px 0 7px;
+    font-size: 15px;
+  }
+
+  .insight p {
+    font-size: 10px;
   }
 
   .founderHeading {
@@ -2371,7 +2650,8 @@
   }
 
   .founderPortrait {
-    height: 112vw;
+    height: auto;
+    aspect-ratio: 4 / 5;
     min-height: 0;
     max-height: 540px;
   }
@@ -2390,6 +2670,10 @@
   .founderMeta > p {
     font-size: 6px;
     text-align: right;
+  }
+
+  .founderBio {
+    font-size: 11px;
   }
 
   .system {
@@ -2503,7 +2787,7 @@
 
   .heroArchitectureFrame,
   .projectArtwork::before,
-  .projectVisual,
+  .projectDrawing,
   .founderPortrait img,
   .buttonLight,
   .capabilityToggle {
@@ -2516,10 +2800,7 @@
   }
 
   .buttonLight:hover,
-  .projectArtwork:hover .projectVisual,
-  .project[data-tone="digital"] .projectArtwork:hover .projectVisual,
-  .project[data-tone="live"] .projectArtwork:hover .projectVisual,
-  .project[data-tone="growth"] .projectArtwork:hover .projectVisual,
+  .projectArtwork:hover .projectDrawing,
   .founder:hover .founderPortrait img {
     transform: none;
   }
