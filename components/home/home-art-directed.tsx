@@ -13,7 +13,6 @@ const navigation = [
 const projects = [
   {
     slug: "brand-worlds",
-    number: "01",
     category: "BRAND / CAMPAIGN",
     title: "MAKE THEM REMEMBER.",
     description:
@@ -23,7 +22,6 @@ const projects = [
   },
   {
     slug: "digital-systems",
-    number: "02",
     category: "DIGITAL / SYSTEMS",
     title: "MAKE IT USEFUL.",
     description:
@@ -33,7 +31,6 @@ const projects = [
   },
   {
     slug: "live-experiences",
-    number: "03",
     category: "EXPERIENCES / LIVE",
     title: "MAKE THE MOMENT MATTER.",
     description:
@@ -43,7 +40,6 @@ const projects = [
   },
   {
     slug: "growth-engine",
-    number: "04",
     category: "GROWTH / PERFORMANCE",
     title: "MAKE DEMAND MOVE.",
     description:
@@ -55,35 +51,30 @@ const projects = [
 
 const capabilities = [
   {
-    number: "01",
     title: "DISCOVER",
     detail: "START WITH THE PROBLEM",
     expanded: "We don't force a brief into a predefined service. We start by understanding what needs to change.",
     visual: "DISCOVER",
   },
   {
-    number: "02",
     title: "DEFINE",
     detail: "THE WORK DECIDES THE SHAPE",
     expanded: "Sometimes the answer is a campaign. Sometimes it is a product, an experience, a growth system or a combination of all four.",
     visual: "DEFINE",
   },
   {
-    number: "03",
     title: "MAKE",
     detail: "MAKE THE IDEA MOVE",
     expanded: "Strategy only matters when it becomes something people can see, use, feel or act on.",
     visual: "MAKE",
   },
   {
-    number: "04",
     title: "LAUNCH",
     detail: "KEEP THE SYSTEM CONNECTED",
     expanded: "Creative, growth, technology and experience work better when the handoffs disappear.",
     visual: "LAUNCH",
   },
   {
-    number: "05",
     title: "LEARN",
     detail: "LEARN FROM THE NEXT MOVE",
     expanded: "Launch is not the finish line. We measure, listen, improve and keep the work moving.",
@@ -144,7 +135,6 @@ const founders = [
     discipline: "BRAND / CREATIVE / EXPERIENCES",
     image: "/media/founders/siva-veerapaneni.webp",
     alt: "Siva Veerapaneni",
-    number: "01",
     role: "FOUNDER",
     bio: "Brand, creative and experiences. Building the world around the idea — from the first thought to the moment people encounter it.",
   },
@@ -153,7 +143,6 @@ const founders = [
     discipline: "PRODUCT / AI / GROWTH",
     image: "/media/founders/uma-saravana-kumar.webp",
     alt: "Uma Saravana Kumar Gudali",
-    number: "02",
     role: "CO-FOUNDER",
     bio: "Product, AI and growth. Turning complex problems into products, systems and measurable ways forward.",
   },
@@ -161,28 +150,24 @@ const founders = [
 
 const insights = [
   {
-    number: "01",
     tag: "AI / PRODUCT",
     title: "WHAT AI CHANGES INSIDE A PRODUCT TEAM",
     description: "A practical look at where intelligence belongs in research, workflows, products and decision systems.",
     href: "/insights/ai-product",
   },
   {
-    number: "02",
     tag: "GROWTH / SEARCH",
     title: "SEARCH IS BECOMING AN ANSWER SYSTEM",
     description: "How search, answer engines, content and conversion increasingly meet in one discovery journey.",
     href: "/insights/search-answer-systems",
   },
   {
-    number: "03",
     tag: "EXPERIENCES / CULTURE",
     title: "THE EXPERIENCE DOESN'T END AT THE VENUE",
     description: "Why the strongest physical moments now need a digital life before, during and after the room.",
     href: "/insights/experience-afterlife",
   },
   {
-    number: "04",
     tag: "BRAND / STRATEGY",
     title: "A BRAND IS A SYSTEM, NOT A LOGO",
     description: "The identity is only the visible layer. The real brand lives in every interaction that follows.",
@@ -326,10 +311,8 @@ export default function HomeArtDirected() {
           </div>
           <div className={styles.heroFoot}>
             <span>HYDERABAD, INDIA · 2026</span>
-            <span>01 — OPENING</span>
           </div>
         </div>
-        <span className={styles.heroSeal} aria-hidden="true">01 <span>/ 10</span></span>
       </section>
 
       <section className={styles.transition} aria-labelledby="transition-title">
@@ -337,11 +320,10 @@ export default function HomeArtDirected() {
           <span className={styles.transitionFrame} />
           <span className={styles.transitionLight} />
           <span className={styles.transitionIndex}>A THOUGHT / TAKING SHAPE</span>
-          <strong>01</strong>
         </div>
         <div className={styles.transitionCopy}>
           <div className={styles.sectionLabel}>
-            <span>02 / MANIFESTO</span>
+            <span>MANIFESTO</span>
             <span>ONE CONNECTED PRACTICE</span>
           </div>
           <h2 id="transition-title">AN IDEA<br /><em>WANTS TO MOVE.</em></h2>
@@ -360,7 +342,7 @@ export default function HomeArtDirected() {
 
       <section className={styles.work} id="work" aria-labelledby="work-title">
         <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`}>
-          <span>03 / SELECTED WORK</span>
+          <span>SELECTED WORK</span>
           <span>EXISTING EDITORIAL DIRECTIONS</span>
         </div>
         <div className={styles.workHeading}>
@@ -385,7 +367,6 @@ export default function HomeArtDirected() {
                 aria-label={`View ${project.category.toLowerCase()} direction`}
               >
                 <span className={styles.projectArtworkTop}>
-                  <span>{project.number} / {String(projects.length).padStart(2, "0")}</span>
                   <span>{project.category} / DIRECTION</span>
                 </span>
                 <span className={styles.projectVisual} aria-hidden="true">
@@ -393,7 +374,6 @@ export default function HomeArtDirected() {
                   <b>{project.visual}</b>
                 </span>
                 <span className={styles.projectArtworkBottom}>
-                  <span>DIGITALE / DIRECTION {project.number}</span>
                   <span>VIEW DIRECTION ↗</span>
                 </span>
               </Link>
@@ -432,15 +412,14 @@ export default function HomeArtDirected() {
         </div>
         <div className={styles.capabilityContent}>
           <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`}>
-            <span>04 / ONE SHARED PROCESS</span>
+            <span>ONE SHARED PROCESS</span>
             <span id="capabilities-title">DISCOVER / DEFINE / MAKE / LAUNCH / LEARN</span>
           </div>
           <h2>NO HANDOFFS.<br /><em>NO FRAGMENTED<br />TEAMS.</em></h2>
           <div className={styles.capabilityList}>
             {capabilities.map((capability, index) => (
-              <details className={styles.capability} key={capability.number} open={index === 0}>
+              <details className={styles.capability} key={capability.title} open={index === 0}>
                 <summary>
-                  <span className={styles.capabilityNumber}>{capability.number}</span>
                   <span className={styles.capabilityName}>{capability.title}</span>
                   <span className={styles.capabilityItems}>{capability.detail}</span>
                   <span className={styles.capabilityToggle} aria-hidden="true">+</span>
@@ -472,7 +451,7 @@ export default function HomeArtDirected() {
         </div>
         <div className={styles.experienceContent}>
           <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`}>
-            <span>05 / EXPERIENCES</span>
+            <span>EXPERIENCES</span>
             <span>CULTURE / PRODUCTION / STORY / SPACE / PEOPLE / MOMENT</span>
           </div>
           <h2 id="experiences-title">MOMENTS<br /><em>MATTER.</em></h2>
@@ -482,10 +461,9 @@ export default function HomeArtDirected() {
             concept to the final cue.
           </p>
           <ul className={styles.experienceTypes}>
-            {experienceTypes.map((type, index) => (
+            {experienceTypes.map((type) => (
               <li key={type.focus}>
                 <Link href={`/start?practice=experiences&focus=${encodeURIComponent(type.focus)}`}>
-                  <span>0{index + 1}</span>
                   <div>
                     <strong>{type.name}</strong>
                     <small>{type.line}</small>
@@ -505,7 +483,7 @@ export default function HomeArtDirected() {
       <section className={styles.technology} id="technology" aria-labelledby="technology-title">
         <div className={styles.technologyTop}>
           <div className={styles.sectionLabel}>
-            <span>06 / DIGITAL & TECHNOLOGY</span>
+            <span>DIGITAL & TECHNOLOGY</span>
             <span>THE LAYER BENEATH THE STORY</span>
           </div>
           <div className={styles.technologyHeading}>
@@ -538,9 +516,8 @@ export default function HomeArtDirected() {
             <b>ONE</b>
           </div>
           <div className={styles.technologyLayers}>
-            {technologyLayers.map((layer, index) => (
+            {technologyLayers.map((layer) => (
               <div key={layer}>
-                <span>0{index + 1}</span>
                 <strong>{layer}</strong>
                 <i aria-hidden="true">↗</i>
               </div>
@@ -554,7 +531,7 @@ export default function HomeArtDirected() {
 
       <section className={styles.founders} id="about" aria-labelledby="founders-title">
         <div className={styles.sectionLabel}>
-          <span>07 / FOUNDERS</span>
+          <span>FOUNDERS</span>
           <span>THE PEOPLE BEHIND DIGITALE</span>
         </div>
         <div className={styles.founderHeading}>
@@ -565,7 +542,7 @@ export default function HomeArtDirected() {
         </div>
         <div className={styles.founderList}>
           {founders.map((founder) => (
-            <article className={styles.founder} key={founder.number}>
+            <article className={styles.founder} key={founder.name}>
               <div className={styles.founderPortrait}>
                 <Image
                   src={founder.image}
@@ -573,7 +550,6 @@ export default function HomeArtDirected() {
                   fill
                   sizes="(max-width: 760px) 100vw, 50vw"
                 />
-                <span>{founder.number} / {founder.role}</span>
                 <i aria-hidden="true" />
               </div>
               <div className={styles.founderMeta}>
@@ -609,7 +585,7 @@ export default function HomeArtDirected() {
         </div>
         <div className={styles.systemCopy}>
           <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`}>
-            <span>08 / THE DIGITALE PRINCIPLE</span>
+            <span>THE DIGITALE PRINCIPLE</span>
             <span>FROM FIRST THOUGHT TO FINAL FRAME</span>
           </div>
           <h2 id="system-title">ONE TEAM.<br /><em>ONE SYSTEM.</em></h2>
@@ -620,7 +596,6 @@ export default function HomeArtDirected() {
           <div className={styles.systemFlow}>
             {capabilities.map((capability, index) => (
               <div key={capability.title}>
-                <span>0{index + 1}</span>
                 <strong>{capability.title}</strong>
                 {index < 4 && <i aria-hidden="true">→</i>}
               </div>
@@ -631,7 +606,7 @@ export default function HomeArtDirected() {
 
       <section className={styles.insights} id="insights" aria-labelledby="insights-title">
         <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`}>
-          <span>09 / INSIGHTS</span>
+          <span>INSIGHTS</span>
           <span>CREATIVE / GROWTH / TECHNOLOGY / EXPERIENCES</span>
         </div>
         <div className={styles.insightsHeading}>
@@ -641,7 +616,6 @@ export default function HomeArtDirected() {
         <div className={styles.insightList}>
           {insights.map((insight) => (
             <Link href={insight.href} className={styles.insight} key={insight.href}>
-              <span>{insight.number}</span>
               <div>
                 <small>{insight.tag}</small>
                 <h3>{insight.title}</h3>
@@ -661,7 +635,7 @@ export default function HomeArtDirected() {
           <span />
           <b>D.</b>
         </div>
-        <span className={styles.finalLabel}>10 / THE NEXT FRAME / YOURS</span>
+        <span className={styles.finalLabel}>THE NEXT FRAME / YOURS</span>
         <h2 id="cta-title">HAVE SOMETHING<br /><em>WORTH BUILDING?</em></h2>
         <div className={styles.finalBottom}>
           <p>Tell us what you&apos;re trying to build. We&apos;ll route the conversation to the right DIGITALE practice.</p>

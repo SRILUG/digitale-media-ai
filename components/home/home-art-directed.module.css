@@ -352,7 +352,6 @@
 .sectionLabel,
 .heroFoot,
 .heroVisualNote,
-.heroSeal,
 .projectArtworkTop,
 .projectArtworkBottom,
 .projectCategory,
@@ -360,13 +359,10 @@
 .sceneCaption,
 .technologyTop,
 .digitalIndex,
-.technologyLayers > div > span:first-child,
 .technologyLayers > div > i,
-.founderPortrait > span,
 .founderMeta > div > span,
 .founderMeta > p,
 .systemCaption,
-.systemFlow > div > span,
 .finalLabel,
 .footerBottom {
   font-family: "DM Mono", monospace;
@@ -478,37 +474,11 @@
 }
 
 .heroFoot {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
   max-width: 1420px;
   margin: 45px auto 0;
   padding-top: 14px;
   border-top: 1px solid rgba(239, 237, 231, .19);
   color: rgba(239, 237, 231, .53);
-}
-
-.heroSeal {
-  position: absolute;
-  z-index: 4;
-  top: 20%;
-  right: 7%;
-  display: flex;
-  width: 74px;
-  aspect-ratio: 1;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(239, 237, 231, .52);
-  border-radius: 50%;
-  color: var(--ivory);
-  font-size: 12px;
-  letter-spacing: .04em;
-  transform: rotate(-13deg);
-}
-
-.heroSeal span {
-  padding: 0 3px;
-  color: var(--champagne);
 }
 
 .transition {
@@ -573,16 +543,6 @@
   font-family: "DM Mono", monospace;
   font-size: 8px;
   letter-spacing: .16em;
-}
-
-.transitionVisual > strong {
-  position: relative;
-  z-index: 1;
-  color: rgba(5, 5, 5, .77);
-  font-size: clamp(120px, 19vw, 270px);
-  font-weight: 500;
-  letter-spacing: -.12em;
-  line-height: .7;
 }
 
 .transitionCopy {
@@ -1057,7 +1017,7 @@
 .capability summary {
   display: grid;
   min-height: 79px;
-  grid-template-columns: 36px 1fr 20px;
+  grid-template-columns: 1fr 20px;
   align-items: center;
   gap: 12px;
   cursor: pointer;
@@ -1066,12 +1026,6 @@
 
 .capability summary::-webkit-details-marker {
   display: none;
-}
-
-.capabilityNumber {
-  color: var(--champagne);
-  font-family: "DM Mono", monospace;
-  font-size: 9px;
 }
 
 .capabilityName {
@@ -1087,7 +1041,7 @@
 }
 
 .capabilityItems {
-  grid-column: 2;
+  grid-column: 1;
   margin-top: -18px;
   padding-bottom: 17px;
   color: rgba(239, 237, 231, .53);
@@ -1096,7 +1050,7 @@
 }
 
 .capabilityToggle {
-  grid-column: 3;
+  grid-column: 2;
   grid-row: 1;
   color: var(--champagne);
   font-size: 22px;
@@ -1112,7 +1066,7 @@
   display: grid;
   grid-template-columns: 120px minmax(0, 1fr);
   gap: 20px;
-  padding: 0 25px 23px 48px;
+  padding: 0 25px 23px;
   animation: detailsIn .35s ease both;
 }
 
@@ -1226,14 +1180,10 @@
 
 .experienceTypes li > a {
   display: grid;
-  grid-template-columns: 32px 1fr 18px;
+  grid-template-columns: 1fr 18px;
   align-items: start;
   gap: 10px;
   padding: 15px 0;
-}
-
-.experienceTypes li > a > span:first-child {
-  color: rgba(239, 237, 231, .46);
 }
 
 .experienceTypes li strong {
@@ -1412,15 +1362,11 @@
 .technologyLayers > div {
   display: grid;
   min-width: 0;
-  grid-template-columns: 35px 1fr 16px;
+  grid-template-columns: 1fr 16px;
   align-items: center;
   gap: 10px;
   padding: 13px 0;
   border-bottom: 1px solid rgba(5, 5, 5, .22);
-}
-
-.technologyLayers > div > span:first-child {
-  color: #81775f;
 }
 
 .technologyLayers > div > strong {
@@ -1502,14 +1448,6 @@
 .founder:hover .founderPortrait img {
   filter: saturate(.9);
   transform: scale(1.035);
-}
-
-.founderPortrait > span {
-  position: absolute;
-  z-index: 1;
-  bottom: 22px;
-  left: 22px;
-  color: #fff;
 }
 
 .founderPortrait > i {
@@ -1667,15 +1605,11 @@
 
 .systemFlow > div {
   display: grid;
-  grid-template-columns: 35px 1fr 18px;
+  grid-template-columns: 1fr 18px;
   align-items: center;
   gap: 12px;
   padding: 13px 0;
   border-bottom: 1px solid rgba(239, 237, 231, .13);
-}
-
-.systemFlow > div > span {
-  color: rgba(239, 237, 231, .42);
 }
 
 .systemFlow > div > strong {
@@ -1739,14 +1673,13 @@
 .insight {
   display: grid;
   min-width: 0;
-  grid-template-columns: 34px 1fr auto;
+  grid-template-columns: 1fr auto;
   align-content: start;
   gap: 12px;
   padding: 23px 0 25px;
   border-bottom: 1px solid var(--line-light);
 }
 
-.insight > span,
 .insight > b {
   color: #81775f;
   font-family: "DM Mono", monospace;
@@ -2045,13 +1978,6 @@
     margin-top: 33px;
   }
 
-  .heroSeal {
-    top: 17%;
-    right: 7%;
-    width: 58px;
-    font-size: 10px;
-  }
-
   .transition {
     grid-template-columns: .72fr 1.28fr;
   }
@@ -2342,21 +2268,10 @@
     font-size: 7px;
   }
 
-  .heroFoot span:last-child {
-    text-align: right;
-  }
-
   .heroVisualNote {
     top: 42%;
     right: 6vw;
     font-size: 6px;
-  }
-
-  .heroSeal {
-    top: 17%;
-    right: 7%;
-    width: 49px;
-    font-size: 9px;
   }
 
   .transition {
@@ -2366,10 +2281,6 @@
   .transitionVisual {
     min-height: 62vw;
     max-height: 360px;
-  }
-
-  .transitionVisual > strong {
-    font-size: 46vw;
   }
 
   .transitionCopy {
@@ -2589,7 +2500,7 @@
   }
 
   .technologyLayers > div {
-    grid-template-columns: 24px 1fr 13px;
+    grid-template-columns: 1fr 13px;
     gap: 5px;
     padding: 10px 0;
   }
@@ -2617,7 +2528,7 @@
   }
 
   .insight {
-    grid-template-columns: 25px 1fr auto;
+    grid-template-columns: 1fr auto;
     gap: 8px;
     padding: 18px 0 20px;
   }
