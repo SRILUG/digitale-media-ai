@@ -13,39 +13,31 @@ const navigation = [
 const projects = [
   {
     slug: "brand-worlds",
-    category: "BRAND / CAMPAIGN",
-    title: "MAKE THEM REMEMBER.",
-    description:
-      "A brand system, campaign world or content platform built around the idea people should remember.",
-    visual: "REMEMBER",
+    category: "BRAND SYSTEM / ENTERTAINMENT",
+    title: "Cultural Narrative & Identity System",
+    description: "Visual identity, design language, and launch collateral for a media franchise.",
     tone: "brand",
   },
   {
     slug: "digital-systems",
-    category: "DIGITAL / SYSTEMS",
-    title: "MAKE IT USEFUL.",
-    description:
-      "A digital product, website, automation layer or connected system built around a real business problem.",
-    visual: "USEFUL",
+    category: "DIGITAL PRODUCT / REAL ESTATE",
+    title: "Conversational Voice & Diagnostic Engine",
+    description: "Real-time multilingual voice interface replacing manual qualification friction.",
+    tone: "digital",
+  },
+  {
+    slug: "growth-engine",
+    category: "SYSTEMS / PROPTECH",
+    title: "Market Intelligence & Revenue Dashboard",
+    description: "Decision-support analytics platform turning fragmented data into operational clarity.",
     tone: "digital",
   },
   {
     slug: "live-experiences",
-    category: "EXPERIENCES / LIVE",
-    title: "MAKE THE MOMENT MATTER.",
-    description:
-      "A launch, corporate event, red carpet, activation or celebration designed from concept through the live moment.",
-    visual: "MOMENT",
+    category: "LIVE PRODUCTION / CULTURE",
+    title: "Flagship Stage & Experience Direction",
+    description: "Concept, environmental spatial design, and run-of-show for a high-visibility event.",
     tone: "live",
-  },
-  {
-    slug: "growth-engine",
-    category: "GROWTH / PERFORMANCE",
-    title: "MAKE DEMAND MOVE.",
-    description:
-      "A connected growth system across acquisition, search, conversion, analytics and retention.",
-    visual: "DEMAND",
-    tone: "growth",
   },
 ];
 
@@ -59,7 +51,7 @@ const capabilities = [
   {
     title: "DEFINE",
     detail: "THE WORK DECIDES THE SHAPE",
-    expanded: "Sometimes the answer is a campaign. Sometimes it is a product, an experience, a growth system or a combination of all four.",
+    expanded: "Sometimes the answer is a brand system. Sometimes it is a digital product, a live production or a combination of the three practices.",
     visual: "DEFINE",
   },
   {
@@ -71,7 +63,7 @@ const capabilities = [
   {
     title: "LAUNCH",
     detail: "KEEP THE SYSTEM CONNECTED",
-    expanded: "Creative, growth, technology and experience work better when the handoffs disappear.",
+    expanded: "Brand, digital, and production work better when the handoffs disappear.",
     visual: "LAUNCH",
   },
   {
@@ -84,40 +76,34 @@ const capabilities = [
 
 const experienceTypes = [
   {
-    name: "CORPORATE EVENTS",
-    focus: "Corporate event",
+    name: "FLAGSHIP LAUNCHES",
+    focus: "Flagship Launches",
     line: "Make the room remember.",
-    description: "From leadership gatherings to high-stakes corporate moments — concept, production and execution under one system.",
+    description: "Launch strategy, creative direction, production and guest journey built around the arrival.",
   },
   {
-    name: "PRODUCT LAUNCHES",
-    focus: "Product launch",
-    line: "Give the arrival a pulse.",
-    description: "Launch strategy, creative direction, stage, content, guest journey and the digital layer around the moment.",
+    name: "CORPORATE EVENTS",
+    focus: "Corporate Events",
+    line: "Bring the room together.",
+    description: "Leadership gatherings and high-stakes corporate moments, from concept through execution.",
   },
   {
     name: "RED CARPETS",
-    focus: "Red carpet",
+    focus: "Red Carpets",
     line: "Own the frame.",
     description: "Premieres, entertainment moments and high-visibility productions designed for the room, the camera and the audience beyond it.",
   },
   {
-    name: "ACTIVATIONS",
-    focus: "Brand activation",
+    name: "BRAND ACTIVATIONS",
+    focus: "Brand Activations",
     line: "Turn attention into participation.",
     description: "Brand activations that give people something to see, do, share and remember.",
   },
   {
-    name: "WEDDINGS & CELEBRATIONS",
-    focus: "Wedding",
-    line: "Make it unmistakably yours.",
-    description: "Creative direction, production and digital storytelling for weddings, private celebrations and milestone moments.",
-  },
-  {
-    name: "ENTERTAINMENT",
-    focus: "Entertainment",
+    name: "CULTURAL / ENTERTAINMENT EXPERIENCES",
+    focus: "Cultural / Entertainment Experiences",
     line: "Make the moment move.",
-    description: "Artist-led, culture-led and entertainment experiences built with production discipline and creative energy.",
+    description: "Artist-led and culture-led productions built with creative energy and production discipline.",
   },
 ];
 
@@ -156,7 +142,7 @@ const insights = [
     href: "/insights/ai-product",
   },
   {
-    tag: "GROWTH / SEARCH",
+    tag: "DIGITAL / SEARCH",
     title: "SEARCH IS BECOMING AN ANSWER SYSTEM",
     description: "How search, answer engines, content and conversion increasingly meet in one discovery journey.",
     href: "/insights/search-answer-systems",
@@ -215,18 +201,6 @@ function ProjectStudy({ tone }: { tone: (typeof projects)[number]["tone"] }) {
           <path className={styles.drawingLight} d="M331 453H669M380 476V507M620 476V507M350 507H650" />
           <path className={styles.drawingFine} d="M154 526H846M188 538H812" />
           <circle className={styles.drawingBlock} cx="500" cy="122" r="9" />
-        </g>
-      )}
-      {tone === "growth" && (
-        <g>
-          <path className={styles.drawingFine} d="M206 468H797M251 468V420M333 468V366M415 468V396M497 468V292M579 468V330M661 468V236M743 468V189" />
-          <path className={styles.drawingAccent} d="M221 394C300 390 307 316 380 324S471 379 531 292S626 311 686 215S757 188 795 132" />
-          <path className={styles.drawingLight} d="M221 394L795 132M221 394V132M221 394H795" />
-          <circle className={styles.drawingBlock} cx="380" cy="324" r="8" />
-          <circle className={styles.drawingBlock} cx="531" cy="292" r="8" />
-          <circle className={styles.drawingBlock} cx="686" cy="215" r="8" />
-          <path className={styles.drawingFrame} d="M744 130L795 132L780 181" />
-          <path className={styles.drawingFine} d="M250 493H315M332 493H397M414 493H479M496 493H561M578 493H643M660 493H725" />
         </g>
       )}
     </svg>
@@ -291,15 +265,15 @@ export default function HomeArtDirected() {
         </div>
         <div className={styles.heroContent}>
           <div className={styles.heroMeta}>
-            <span>DIGITALE MEDIA</span>
-            <span>CREATIVE × GROWTH × TECHNOLOGY × EXPERIENCES</span>
+            <span>DIGITALE MEDIA ·</span>
+            <span>CREATIVE × DIGITAL × EXPERIENCES</span>
           </div>
           <h1 id="hero-title">
             <span>IDEAS</span>
             <span className={styles.heroLife}>HAVE <em>A LIFE.</em></span>
           </h1>
           <div className={styles.heroBottom}>
-            <p>Ideas move when every discipline moves together.</p>
+            <p>We design brand systems, build digital products, and produce live experiences for companies shaping culture and technology.</p>
             <div className={styles.heroActions}>
               <Link href="/start" className={styles.buttonLight}>
                 START A PROJECT <span aria-hidden="true">↗</span>
@@ -348,9 +322,9 @@ export default function HomeArtDirected() {
         <div className={styles.workHeading}>
           <h2 id="work-title">BUILT TO<br /><em>BE SEEN.</em></h2>
           <p>
-            Selected directions across creative, digital, growth and
-            experiences. Built to show the thinking without inventing the
-            story.
+            Four concept directions across brand, digital products, property
+            technology and live production, presented until verified project
+            assets are linked.
           </p>
         </div>
         <div className={styles.projectList}>
@@ -367,11 +341,10 @@ export default function HomeArtDirected() {
                 aria-label={`View ${project.category.toLowerCase()} direction`}
               >
                 <span className={styles.projectArtworkTop}>
-                  <span>{project.category} / DIRECTION</span>
+                  <span>{project.category} / DIRECTION / CONCEPT</span>
                 </span>
                 <span className={styles.projectVisual} aria-hidden="true">
                   <ProjectStudy tone={project.tone} />
-                  <b>{project.visual}</b>
                 </span>
                 <span className={styles.projectArtworkBottom}>
                   <span>VIEW DIRECTION ↗</span>
@@ -408,7 +381,7 @@ export default function HomeArtDirected() {
             <circle cx="450" cy="370" r="6" />
           </svg>
           <span className={styles.capabilityWord}>ONE<br />SYSTEM.</span>
-          <span className={styles.capabilityAside}>CREATIVE / GROWTH / TECHNOLOGY / EXPERIENCES</span>
+          <span className={styles.capabilityAside}>BRAND &amp; CREATIVE / DIGITAL &amp; TECHNOLOGY / EXPERIENCES &amp; PRODUCTION</span>
         </div>
         <div className={styles.capabilityContent}>
           <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`}>
@@ -565,45 +538,6 @@ export default function HomeArtDirected() {
         </div>
       </section>
 
-      <section className={styles.system} aria-labelledby="system-title">
-        <div className={styles.systemArtwork} aria-hidden="true">
-          <svg className={styles.systemDrawing} viewBox="0 0 900 720" focusable="false">
-            <path d="M450 96L727 256V464L450 624L173 464V256L450 96Z" />
-            <path d="M450 96V360M727 256L450 360M727 464L450 360M450 624V360M173 464L450 360M173 256L450 360" />
-            <path d="M450 172L661 294V426L450 548L239 426V294L450 172Z" />
-            <path d="M450 248L595 332V388L450 472L305 388V332L450 248Z" />
-            <circle cx="450" cy="360" r="68" />
-            <circle cx="450" cy="96" r="8" />
-            <circle cx="727" cy="256" r="8" />
-            <circle cx="727" cy="464" r="8" />
-            <circle cx="450" cy="624" r="8" />
-            <circle cx="173" cy="464" r="8" />
-            <circle cx="173" cy="256" r="8" />
-          </svg>
-          <span className={styles.systemCore}>ONE</span>
-          <span className={styles.systemCaption}>ONE PRACTICE / MANY DISCIPLINES</span>
-        </div>
-        <div className={styles.systemCopy}>
-          <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`}>
-            <span>THE DIGITALE PRINCIPLE</span>
-            <span>FROM FIRST THOUGHT TO FINAL FRAME</span>
-          </div>
-          <h2 id="system-title">ONE TEAM.<br /><em>ONE SYSTEM.</em></h2>
-          <p>
-            From the first thought to the final frame, everyone works inside
-            the same system.
-          </p>
-          <div className={styles.systemFlow}>
-            {capabilities.map((capability, index) => (
-              <div key={capability.title}>
-                <strong>{capability.title}</strong>
-                {index < 4 && <i aria-hidden="true">→</i>}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className={styles.insights} id="insights" aria-labelledby="insights-title">
         <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`}>
           <span>INSIGHTS</span>
@@ -611,7 +545,7 @@ export default function HomeArtDirected() {
         </div>
         <div className={styles.insightsHeading}>
           <h2 id="insights-title">THINGS<br /><em>WORTH THINKING.</em></h2>
-          <p>Ideas, observations and practical thinking from the intersection of creative, growth, technology and experiences.</p>
+          <p>Ideas, observations and practical thinking from the intersection of brand, digital and live experiences.</p>
         </div>
         <div className={styles.insightList}>
           {insights.map((insight) => (

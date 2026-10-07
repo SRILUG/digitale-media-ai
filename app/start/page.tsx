@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 
-type Practice = "growth" | "creative" | "technology" | "experiences" | "not-sure" | "";
+type Practice = "creative" | "technology" | "experiences" | "not-sure" | "";
 type Currency = "INR" | "AED" | "USD" | "GBP" | "EUR";
 
 type FormState = {
@@ -33,19 +33,64 @@ const initial: FormState = {
 };
 
 const focusMap: Record<Exclude<Practice, "">, string[]> = {
-  growth: ["Lead generation", "Paid acquisition", "SEO / AEO / GEO", "Conversion rate", "E-commerce growth", "CRM / RevOps", "Full-funnel growth"],
-  creative: ["Brand identity", "Campaign", "Social & content", "Creator / influencer", "Film / production", "Rebrand", "Integrated campaign"],
-  technology: ["Website", "Web application", "Mobile app", "AI product", "AI automation", "CRM / lead system", "Marketing automation", "Analytics / dashboard", "Custom platform"],
-  experiences: ["Corporate event", "Product launch", "Brand activation", "Red carpet", "Entertainment", "Private celebration", "Wedding"],
+  creative: ["Brand Architecture", "Design Systems", "Campaign Worlds", "Content & Editorial"],
+  technology: ["Digital Products", "Conversational AI", "Internal Platforms", "Automation & Data"],
+  experiences: ["Flagship Launches", "Corporate Events", "Red Carpets", "Brand Activations", "Cultural / Entertainment Experiences"],
   "not-sure": ["I know the problem", "I need strategic direction", "I need a full partner"]
 };
 
 const scopePlaceholder: Record<Exclude<Practice, "">, string> = {
-  growth: "What is happening in your acquisition funnel today?",
-  creative: "What are you trying to make people think, feel or do?",
-  technology: "What does the system need to do?",
-  experiences: "Tell us about the event, audience and experience you want to create.",
+  creative: "What should the brand, campaign or content help people think, feel or do?",
+  technology: "What business friction should the digital product or intelligent system solve?",
+  experiences: "Tell us about the production, audience and live experience you want to create.",
   "not-sure": "Tell us what is not working or what you want to change."
+};
+
+const practiceAliases: Record<string, Exclude<Practice, "">> = {
+  creative: "creative",
+  brand: "creative",
+  "brand-creative": "creative",
+  "brand & creative": "creative",
+  technology: "technology",
+  digital: "technology",
+  growth: "technology",
+  "digital-technology": "technology",
+  "digital & technology": "technology",
+  experiences: "experiences",
+  production: "experiences",
+  "experiences-production": "experiences",
+  "experiences & production": "experiences",
+  "not-sure": "not-sure",
+  not_sure: "not-sure"
+};
+
+const legacyFocusAliases: Record<string, string> = {
+  "brand identity": "Brand Architecture",
+  campaign: "Campaign Worlds",
+  "social & content": "Content & Editorial",
+  "creator / influencer": "Content & Editorial",
+  "film / production": "Content & Editorial",
+  rebrand: "Design Systems",
+  "integrated campaign": "Campaign Worlds",
+  website: "Digital Products",
+  "web application": "Digital Products",
+  "mobile app": "Digital Products",
+  "ai product": "Conversational AI",
+  "crm / lead system": "Internal Platforms",
+  "custom platform": "Internal Platforms",
+  "ai automation": "Automation & Data",
+  "marketing automation": "Automation & Data",
+  "analytics / dashboard": "Automation & Data",
+  "seo / aeo / geo": "Content & Editorial",
+  "conversion rate": "Digital Products",
+  "e-commerce growth": "Digital Products",
+  "crm / revops": "Internal Platforms",
+  "full-funnel growth": "Internal Platforms",
+  "product launch": "Flagship Launches",
+  "corporate event": "Corporate Events",
+  "red carpet": "Red Carpets",
+  "brand activation": "Brand Activations",
+  entertainment: "Cultural / Entertainment Experiences"
 };
 
 const budgetMap: Record<Currency, string[]> = {
@@ -57,7 +102,22 @@ const budgetMap: Record<Currency, string[]> = {
 };
 
 const currencySymbols: Record<Currency, string> = { INR: "₹", AED: "AED", USD: "$", GBP: "£", EUR: "€" };
-const practices: Exclude<Practice, "">[] = ["growth", "creative", "technology", "experiences", "not-sure"];
+const practices: Exclude<Practice, "">[] = ["creative", "technology", "experiences", "not-sure"];
+
+function normalizePractice(value: string | null): Exclude<Practice, ""> | undefined {
+  return value ? practiceAliases[value.trim().toLowerCase()] : undefined;
+}
+
+function normalizeFocus(practice: Exclude<Practice, "">, values: unknown): string[] {
+  if (!Array.isArray(values)) return [];
+  return values.flatMap((value): string[] => {
+    if (typeof value !== "string") return [];
+    const normalizedValue = value.trim().toLowerCase();
+    const focus = focusMap[practice].find((option) => option.toLowerCase() === normalizedValue)
+      ?? legacyFocusAliases[normalizedValue];
+    return focus && focusMap[practice].includes(focus) ? [focus] : [];
+  });
+}
 
 function inferCurrency(): Currency {
   if (typeof navigator === "undefined") return "INR";
@@ -84,11 +144,9 @@ export default function StartProject() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const requestedPractice = params.get("practice");
-    const validPractice = practices.find((value) => value === requestedPractice);
-    const requestedFocus = params.get("focus");
-    const validFocus = validPractice
-      ? focusMap[validPractice].find((value) => value.toLowerCase() === requestedFocus?.toLowerCase())
+    const requestedPractice = normalizePractice(params.get("practice"));
+    const requestedFocus = requestedPractice
+      ? normalizeFocus(requestedPractice, [params.get("focus")])[0]
       : undefined;
     let saved: string | null = null;
     try {
@@ -99,23 +157,30 @@ export default function StartProject() {
 
     if (saved) {
       try {
+        const savedData = JSON.parse(saved) as Partial<FormState>;
+        const savedPractice = normalizePractice(savedData.practice || null);
+        const selectedPractice = requestedPractice ?? savedPractice ?? "";
         setData((v) => ({
           ...v,
-          ...JSON.parse(saved) as Partial<FormState>,
-          ...(validPractice ? { practice: validPractice, focus: validFocus ? [validFocus] : [] } : {}),
+          ...savedData,
+          practice: selectedPractice,
+          focus: requestedPractice
+            ? requestedFocus ? [requestedFocus] : []
+            : selectedPractice ? normalizeFocus(selectedPractice, savedData.focus) : [],
         }));
+        if (selectedPractice) setStep(2);
       } catch (error) {
         console.error("[PROJECT_INTAKE_STORAGE_PARSE_ERROR]", error);
         setData((v) => ({
           ...v,
           currency: inferCurrency(),
-          ...(validPractice ? { practice: validPractice, focus: validFocus ? [validFocus] : [] } : {}),
+          ...(requestedPractice ? { practice: requestedPractice, focus: requestedFocus ? [requestedFocus] : [] } : {}),
         }));
+        if (requestedPractice) setStep(2);
       }
-      if (validPractice) setStep(2);
     } else {
-      setData((v) => ({ ...v, currency: inferCurrency(), ...(validPractice ? { practice: validPractice, focus: validFocus ? [validFocus] : [] } : {}) }));
-      if (validPractice) setStep(2);
+      setData((v) => ({ ...v, currency: inferCurrency(), ...(requestedPractice ? { practice: requestedPractice, focus: requestedFocus ? [requestedFocus] : [] } : {}) }));
+      if (requestedPractice) setStep(2);
     }
   }, []);
 
@@ -246,7 +311,7 @@ export default function StartProject() {
         <section className="intakeCard">
           <input aria-hidden="true" tabIndex={-1} autoComplete="off" value={data.bot_field} onChange={e => update({bot_field:e.target.value})} name="website_confirm" style={{ position: "absolute", left: "-10000px", width: 1, height: 1, opacity: 0 }} />
           {step === 1 && <Step title="What are you looking to build?"><div className="practiceGrid">
-            {([["growth","Growth","Acquisition, demand, conversion and performance."],["creative","Creative","Brand, campaigns, content and production."],["technology","Technology","Web, products, AI and automation."],["experiences","Experiences","Launches, activations, events and live production."],["not-sure","Not sure","I know the problem, but not the answer yet."]] as const).map(([id,title,desc]) =>
+            {([["creative","Brand & Creative","Brand architecture, design systems, campaign worlds, content and editorial."],["technology","Digital & Technology","Digital products, conversational AI, internal platforms, automation and data."],["experiences","Experiences & Production","Flagship launches, corporate events, red carpets, activations and cultural experiences."],["not-sure","Not sure","I know the problem, but not the answer yet."]] as const).map(([id,title,desc]) =>
               <Link
                 key={id}
                 href={"/start?practice=" + id}
@@ -257,7 +322,7 @@ export default function StartProject() {
                   setStep(2);
                 }}
               >
-                <span>{id === "not-sure" ? "05" : "0" + (["growth","creative","technology","experiences"].indexOf(id)+1)}</span><strong>{title}</strong><small>{desc}</small><b>↗</b>
+                <span>{id === "not-sure" ? "04" : "0" + (practices.indexOf(id)+1)}</span><strong>{title}</strong><small>{desc}</small><b>↗</b>
               </Link>
             )}
           </div></Step>}
