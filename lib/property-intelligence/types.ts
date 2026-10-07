@@ -12,6 +12,23 @@ export interface PropertyPreferences {
   timeline?: string;
 }
 
+export type DiscoveryField =
+  | "purpose"
+  | "location"
+  | "budget"
+  | "bedrooms"
+  | "propertyType"
+  | "timeline"
+  | "priorities";
+
+export interface DiscoveryState {
+  askedFields: DiscoveryField[];
+  clarifiedFields: DiscoveryField[];
+  pendingField?: DiscoveryField;
+  pendingQuestion?: string;
+  stage: "discovery" | "matches";
+}
+
 export interface PrototypeProperty {
   id: string;
   name: string;

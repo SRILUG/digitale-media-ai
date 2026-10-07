@@ -9,6 +9,7 @@
     "lint": "tsc --noEmit",
     "verify:media": "node scripts/verify-media.mjs",
     "verify": "npm run lint && npm run verify:media",
+    "test:conversation": "node --test lib/property-intelligence/conversation.test.cjs",
     "prebuild": "npm run verify:media"
   },
   "dependencies": {

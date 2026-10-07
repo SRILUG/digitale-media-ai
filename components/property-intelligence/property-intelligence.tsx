@@ -3,10 +3,13 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import SiteHeader from "@/components/site/site-header";
-import { buildDiscoveryReply, nextDiscoveryQuestion } from "@/lib/property-intelligence/conversation";
+import {
+  advanceDiscovery,
+  createDiscoveryState,
+  nextDiscoveryQuestion,
+} from "@/lib/property-intelligence/conversation";
 import { properties } from "@/lib/property-intelligence/data";
 import { matchProperties } from "@/lib/property-intelligence/matcher";
-import { parsePreferences } from "@/lib/property-intelligence/parser";
 import type {
   ConversationMessage,
   ProductView,
@@ -63,6 +66,7 @@ function getLocalDate(): string {
 
 export default function PropertyIntelligence() {
   const [preferences, setPreferences] = useState<PropertyPreferences>(emptyPreferences);
+  const [discoveryState, setDiscoveryState] = useState(createDiscoveryState);
   const [messages, setMessages] = useState<ConversationMessage[]>([]);
   const [view, setView] = useState<ProductView>("discovery");
   const [savedIds, setSavedIds] = useState<string[]>([]);
@@ -110,8 +114,8 @@ export default function PropertyIntelligence() {
     .map((id) => properties.find((property) => property.id === id))
     .filter((property): property is PrototypeProperty => Boolean(property));
 
-  const currentQuestion = nextDiscoveryQuestion(preferences);
-  const hasSearchResults = messages.length > 0 && !currentQuestion && !answeringPropertyId;
+  const currentQuestion = nextDiscoveryQuestion(preferences, discoveryState);
+  const hasSearchResults = messages.length > 0 && discoveryState.stage === "matches" && !answeringPropertyId;
   const preferenceSummary = [
     preferences.location,
     preferences.bedrooms ? `${preferences.bedrooms}BHK` : undefined,
@@ -135,20 +139,24 @@ export default function PropertyIntelligence() {
 
     let reply: string;
     let nextPreferences = preferences;
+    let nextDiscoveryState = discoveryState;
     if (propertyContextId) {
       const property = properties.find((item) => item.id === propertyContextId);
       reply = property
         ? answerPropertyQuestion(trimmed, property)
         : "That property is no longer available in this prototype. Start a new search to continue.";
     } else {
-      nextPreferences = parsePreferences(trimmed, preferences);
+      const turn = advanceDiscovery(trimmed, preferences, discoveryState);
+      nextPreferences = turn.preferences;
+      nextDiscoveryState = turn.state;
       setPreferences(nextPreferences);
-      reply = buildDiscoveryReply(nextPreferences);
+      setDiscoveryState(nextDiscoveryState);
+      reply = turn.reply;
     }
 
     await new Promise((resolve) => window.setTimeout(resolve, 240));
     setMessages([...nextMessages, createMessage("assistant", reply)]);
-    setView(propertyContextId ? "discovery" : nextDiscoveryQuestion(nextPreferences) ? "discovery" : "matches");
+    setView(propertyContextId ? "discovery" : nextDiscoveryState.stage === "discovery" ? "discovery" : "matches");
     setIsProcessing(false);
   }
 
@@ -203,6 +211,7 @@ export default function PropertyIntelligence() {
 
   function restartDiscovery() {
     setPreferences(emptyPreferences());
+    setDiscoveryState(createDiscoveryState());
     setMessages([]);
     setCompareIds([]);
     setSelectedPropertyId(null);

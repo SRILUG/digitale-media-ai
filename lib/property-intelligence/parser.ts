@@ -1,5 +1,5 @@
 import { properties } from "./data";
-import type { PropertyPreferences } from "./types";
+import type { DiscoveryField, PropertyPreferences } from "./types";
 
 const amenityTerms = [
   "pool",
@@ -21,11 +21,14 @@ const locationNames = [
   ]),
 ].sort((a, b) => b.length - a.length);
 
-function extractBudget(input: string): number | undefined {
+function extractBudget(input: string, expectedField?: DiscoveryField): number | undefined {
   const currencyAmount = input.match(/(?:₹|rs\.?\s*)(\d[\d,]*(?:\.\d+)?)\s*(crores?|cr|lakhs?|lacs?|lac|l)?/i);
   const unitAmount = input.match(/(\d+(?:\.\d+)?)\s*(crores?|cr|lakhs?|lacs?|lac)\b/i);
   const explicitBudget = input.match(/budget(?:\s+(?:is|of|around|near))?\s*(\d+(?:\.\d+)?)/i);
-  const match = currencyAmount ?? unitAmount ?? explicitBudget;
+  const contextualAmount = expectedField === "budget"
+    ? input.match(/^\s*(?:up to|under|around|about|approximately)?\s*₹?\s*(\d[\d,]*(?:\.\d+)?)\s*(crores?|cr|lakhs?|lacs?|lac|l)\s*$/i)
+    : null;
+  const match = currencyAmount ?? unitAmount ?? explicitBudget ?? contextualAmount;
   if (!match) return undefined;
 
   const value = Number(match[1].replaceAll(",", ""));
@@ -47,9 +50,14 @@ function extractLocation(input: string): string | undefined {
   return undefined;
 }
 
-export function parsePreferences(input: string, current: PropertyPreferences): PropertyPreferences {
+export function parsePreferences(
+  input: string,
+  current: PropertyPreferences,
+  expectedField?: DiscoveryField,
+): PropertyPreferences {
   const lowerInput = input.toLowerCase();
-  const bedroomMatch = lowerInput.match(/\b([1-6])[\s-]*(?:bhk|bed(?:room)?s?)\b|\b([1-6])[\s-]*br\b/);
+  const bedroomMatch = lowerInput.match(/\b([1-6])[\s-]*(?:bhk|bed(?:room)?s?)\b|\b([1-6])[\s-]*br\b/)
+    ?? (expectedField === "bedrooms" ? input.match(/^\s*(?:i need|looking for)?\s*([1-6])\s*$/i) : null);
   const bedrooms = bedroomMatch ? Number(bedroomMatch[1] ?? bedroomMatch[2] ?? bedroomMatch[3]) : undefined;
   const propertyType = /\b(villa|independent house|independent home)\b/i.test(input)
     ? "villa"
@@ -77,7 +85,7 @@ export function parsePreferences(input: string, current: PropertyPreferences): P
   return {
     location: extractLocation(input) ?? current.location,
     bedrooms: bedrooms ?? current.bedrooms,
-    budget: extractBudget(input) ?? current.budget,
+    budget: extractBudget(input, expectedField) ?? current.budget,
     purpose: purpose ?? current.purpose,
     propertyType: propertyType ?? current.propertyType,
     amenities: [...new Set([...current.amenities, ...amenities])],
