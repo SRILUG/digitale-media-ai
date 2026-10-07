@@ -13,43 +13,57 @@ const navigation = [
 const projects = [
   {
     slug: "brand-worlds",
-    number: "01",
-    category: "BRAND / CAMPAIGN",
-    title: "MAKE THEM REMEMBER.",
-    description:
-      "A brand system, campaign world or content platform built around the idea people should remember.",
+    category: "BRAND & CREATIVE",
+    title: "BRAND-WORLD SYSTEM",
+    problem: "Make one brand idea recognizable across identity, campaigns and content.",
+    contribution: "Connect brand architecture, visual language and editorial formats around that idea.",
     visual: "REMEMBER",
     tone: "brand",
   },
   {
     slug: "digital-systems",
-    number: "02",
-    category: "DIGITAL / SYSTEMS",
-    title: "MAKE IT USEFUL.",
-    description:
-      "A digital product, website, automation layer or connected system built around a real business problem.",
+    category: "DIGITAL & TECHNOLOGY",
+    title: "CONNECTED DIGITAL PLATFORM",
+    problem: "Connect a digital product with the information and workflows around it.",
+    contribution: "Map a system across interface, automation, data and integrations.",
     visual: "USEFUL",
     tone: "digital",
   },
   {
     slug: "live-experiences",
-    number: "03",
-    category: "EXPERIENCES / LIVE",
-    title: "MAKE THE MOMENT MATTER.",
-    description:
-      "A launch, corporate event, red carpet, activation or celebration designed from concept through the live moment.",
+    category: "EXPERIENCES & PRODUCTION",
+    title: "LIVE LAUNCH EXPERIENCE",
+    problem: "Carry a launch idea from the live room into the audience journey beyond it.",
+    contribution: "Connect creative concept, spatial production, content and digital touchpoints.",
     visual: "MOMENT",
     tone: "live",
   },
   {
     slug: "growth-engine",
-    number: "04",
-    category: "GROWTH / PERFORMANCE",
-    title: "MAKE DEMAND MOVE.",
-    description:
-      "A connected growth system across acquisition, search, conversion, analytics and retention.",
+    category: "DIGITAL & TECHNOLOGY",
+    title: "GROWTH OPERATING MODEL",
+    problem: "Make acquisition, search, conversion and measurement work as one system.",
+    contribution: "Connect channel strategy, landing experiences and analytics into one operating model.",
     visual: "DEMAND",
     tone: "growth",
+  },
+];
+
+const practices = [
+  {
+    name: "BRAND & CREATIVE",
+    capabilities: "Brand architecture · Design systems · Campaign worlds · Content & editorial",
+    description: "Giving ideas a distinct form, voice and cultural presence.",
+  },
+  {
+    name: "DIGITAL & TECHNOLOGY",
+    capabilities: "Digital products · Conversational AI · Internal platforms · Automation & data",
+    description: "Building digital and intelligent systems that solve concrete business friction.",
+  },
+  {
+    name: "EXPERIENCES & PRODUCTION",
+    capabilities: "Flagship launches · Spatial activations · Red carpets · Cultural moments",
+    description: "Designing physical spaces and high-stakes rooms people remember.",
   },
 ];
 
@@ -57,36 +71,36 @@ const capabilities = [
   {
     number: "01",
     title: "DISCOVER",
-    detail: "START WITH THE PROBLEM",
-    expanded: "We don't force a brief into a predefined service. We start by understanding what needs to change.",
+    detail: "BUSINESS / AUDIENCE / OPPORTUNITY / CONSTRAINTS",
+    expanded: "Understand the business, audience, opportunity and constraints.",
     visual: "DISCOVER",
   },
   {
     number: "02",
     title: "DEFINE",
-    detail: "THE WORK DECIDES THE SHAPE",
-    expanded: "Sometimes the answer is a campaign. Sometimes it is a product, an experience, a growth system or a combination of all four.",
+    detail: "SET A CLEAR DIRECTION",
+    expanded: "Turn ambiguity into a clear strategic and creative direction.",
     visual: "DEFINE",
   },
   {
     number: "03",
     title: "MAKE",
-    detail: "MAKE THE IDEA MOVE",
-    expanded: "Strategy only matters when it becomes something people can see, use, feel or act on.",
+    detail: "BUILD WHAT THE WORK NEEDS",
+    expanded: "Build the identity, product, system or experience.",
     visual: "MAKE",
   },
   {
     number: "04",
     title: "LAUNCH",
-    detail: "KEEP THE SYSTEM CONNECTED",
-    expanded: "Creative, growth, technology and experience work better when the handoffs disappear.",
+    detail: "BRING THE WORK INTO THE WORLD",
+    expanded: "Bring the work into the real world.",
     visual: "LAUNCH",
   },
   {
     number: "05",
     title: "LEARN",
-    detail: "LEARN FROM THE NEXT MOVE",
-    expanded: "Launch is not the finish line. We measure, listen, improve and keep the work moving.",
+    detail: "OBSERVE / MEASURE / EVOLVE",
+    expanded: "Measure, observe and evolve the work.",
     visual: "LEARN",
   },
 ];
@@ -95,47 +109,41 @@ const experienceTypes = [
   {
     name: "CORPORATE EVENTS",
     focus: "Corporate event",
-    line: "Make the room remember.",
-    description: "From leadership gatherings to high-stakes corporate moments — concept, production and execution under one system.",
+    line: "Leadership gatherings and company events.",
+    description: "Plan the programme and environment through live production.",
   },
   {
     name: "PRODUCT LAUNCHES",
     focus: "Product launch",
-    line: "Give the arrival a pulse.",
-    description: "Launch strategy, creative direction, stage, content, guest journey and the digital layer around the moment.",
+    line: "Bring a new offer into the room.",
+    description: "Connect concept, staging, content and audience journey.",
   },
   {
     name: "RED CARPETS",
     focus: "Red carpet",
-    line: "Own the frame.",
-    description: "Premieres, entertainment moments and high-visibility productions designed for the room, the camera and the audience beyond it.",
+    line: "Premieres and public-facing productions.",
+    description: "Design for the room, the camera and the audience beyond it.",
   },
   {
     name: "ACTIVATIONS",
     focus: "Brand activation",
-    line: "Turn attention into participation.",
-    description: "Brand activations that give people something to see, do, share and remember.",
-  },
-  {
-    name: "WEDDINGS & CELEBRATIONS",
-    focus: "Wedding",
-    line: "Make it unmistakably yours.",
-    description: "Creative direction, production and digital storytelling for weddings, private celebrations and milestone moments.",
+    line: "Give people a role in the brand.",
+    description: "Create participation within a clear live setting.",
   },
   {
     name: "ENTERTAINMENT",
     focus: "Entertainment",
-    line: "Make the moment move.",
-    description: "Artist-led, culture-led and entertainment experiences built with production discipline and creative energy.",
+    line: "Artist-led and culture-led productions.",
+    description: "Take the work from creative concept through event delivery.",
   },
 ];
 
 const technologyLayers = [
-  "WEBSITES & DIGITAL PRODUCTS",
-  "APPS & PLATFORMS",
-  "AI & AUTOMATION",
+  "DIGITAL PRODUCTS & WEBSITES",
+  "CONVERSATIONAL AI",
+  "INTERNAL PLATFORMS",
+  "AUTOMATION & WORKFLOWS",
   "DATA & DASHBOARDS",
-  "INTEGRATIONS & WORKFLOWS",
 ];
 
 const founders = [
@@ -144,18 +152,16 @@ const founders = [
     discipline: "BRAND / CREATIVE / EXPERIENCES",
     image: "/media/founders/siva-veerapaneni.webp",
     alt: "Siva Veerapaneni",
-    number: "01",
     role: "FOUNDER",
-    bio: "Brand, creative and experiences. Building the world around the idea — from the first thought to the moment people encounter it.",
+    bio: "Leads brand, creative direction and experiences, staying close from the first brief through production.",
   },
   {
     name: "UMA SARAVANA KUMAR GUDALI",
     discipline: "PRODUCT / AI / GROWTH",
     image: "/media/founders/uma-saravana-kumar.webp",
     alt: "Uma Saravana Kumar Gudali",
-    number: "02",
     role: "CO-FOUNDER",
-    bio: "Product, AI and growth. Turning complex problems into products, systems and measurable ways forward.",
+    bio: "Leads product, AI and growth, shaping digital products and connected systems around real business needs.",
   },
 ];
 
@@ -307,14 +313,14 @@ export default function HomeArtDirected() {
         <div className={styles.heroContent}>
           <div className={styles.heroMeta}>
             <span>DIGITALE MEDIA</span>
-            <span>CREATIVE × GROWTH × TECHNOLOGY × EXPERIENCES</span>
+            <span>CREATIVE × DIGITAL × EXPERIENCES</span>
           </div>
           <h1 id="hero-title">
             <span>IDEAS</span>
             <span className={styles.heroLife}>HAVE <em>A LIFE.</em></span>
           </h1>
           <div className={styles.heroBottom}>
-            <p>Ideas move when every discipline moves together.</p>
+            <p>Founder-led studio for companies shaping brands, digital products and high-stakes experiences.</p>
             <div className={styles.heroActions}>
               <Link href="/start" className={styles.buttonLight}>
                 START A PROJECT <span aria-hidden="true">↗</span>
@@ -326,10 +332,9 @@ export default function HomeArtDirected() {
           </div>
           <div className={styles.heroFoot}>
             <span>HYDERABAD, INDIA · 2026</span>
-            <span>01 — OPENING</span>
+            <span>FOUNDER-LED STUDIO</span>
           </div>
         </div>
-        <span className={styles.heroSeal} aria-hidden="true">01 <span>/ 10</span></span>
       </section>
 
       <section className={styles.transition} aria-labelledby="transition-title">
@@ -337,38 +342,35 @@ export default function HomeArtDirected() {
           <span className={styles.transitionFrame} />
           <span className={styles.transitionLight} />
           <span className={styles.transitionIndex}>A THOUGHT / TAKING SHAPE</span>
-          <strong>01</strong>
         </div>
         <div className={styles.transitionCopy}>
           <div className={styles.sectionLabel}>
-            <span>02 / MANIFESTO</span>
-            <span>ONE CONNECTED PRACTICE</span>
+            <span>THREE CORE PRACTICES</span>
+            <span>CREATIVE / DIGITAL / EXPERIENCES</span>
           </div>
-          <h2 id="transition-title">AN IDEA<br /><em>WANTS TO MOVE.</em></h2>
-          <p>
-            Four disciplines, moving together from the first thought to the
-            finished work.
-          </p>
-          <div className={styles.ideaFlow} aria-label="Idea becomes story, attention, and impact">
-            <span>IDEA</span><i aria-hidden="true">→</i>
-            <span>STORY</span><i aria-hidden="true">→</i>
-            <span>ATTENTION</span><i aria-hidden="true">→</i>
-            <span>IMPACT</span>
+          <h2 id="transition-title">THREE CORE<br /><em>PRACTICES.</em></h2>
+          <div className={styles.practiceList}>
+            {practices.map((practice) => (
+              <article className={styles.practice} key={practice.name}>
+                <h3>{practice.name}</h3>
+                <p>{practice.description}</p>
+                <span>{practice.capabilities}</span>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
       <section className={styles.work} id="work" aria-labelledby="work-title">
         <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`}>
-          <span>03 / SELECTED WORK</span>
-          <span>EXISTING EDITORIAL DIRECTIONS</span>
+          <span>SELECTED WORK</span>
+          <span>SELECTED STUDIO DIRECTIONS</span>
         </div>
         <div className={styles.workHeading}>
-          <h2 id="work-title">BUILT TO<br /><em>BE SEEN.</em></h2>
+          <h2 id="work-title">STUDIO<br /><em>CONCEPTS.</em></h2>
           <p>
-            Selected directions across creative, digital, growth and
-            experiences. Built to show the thinking without inventing the
-            story.
+            A selection of concepts showing how DIGITALE approaches brand,
+            digital and experience problems.
           </p>
         </div>
         <div className={styles.projectList}>
@@ -385,24 +387,25 @@ export default function HomeArtDirected() {
                 aria-label={`View ${project.category.toLowerCase()} direction`}
               >
                 <span className={styles.projectArtworkTop}>
-                  <span>{project.number} / {String(projects.length).padStart(2, "0")}</span>
-                  <span>{project.category} / DIRECTION</span>
+                  <span>STUDIO CONCEPT</span>
+                  <span>{project.category}</span>
                 </span>
                 <span className={styles.projectVisual} aria-hidden="true">
                   <ProjectStudy tone={project.tone} />
                   <b>{project.visual}</b>
                 </span>
                 <span className={styles.projectArtworkBottom}>
-                  <span>DIGITALE / DIRECTION {project.number}</span>
-                  <span>VIEW DIRECTION ↗</span>
+                  <span>DIGITALE / CONCEPT</span>
+                  <span>EXPLORE CONCEPT ↗</span>
                 </span>
               </Link>
               <div className={styles.projectCopy}>
                 <span className={styles.projectCategory}>{project.category}</span>
                 <h3>{project.title}</h3>
-                <p>{project.description}</p>
+                <p><strong>Problem explored:</strong> {project.problem}</p>
+                <p><strong>DIGITALE direction:</strong> {project.contribution}</p>
                 <Link href={`/work/${project.slug}`}>
-                  VIEW DIRECTION <span aria-hidden="true">↗</span>
+                  EXPLORE CONCEPT <span aria-hidden="true">↗</span>
                 </Link>
               </div>
             </article>
@@ -428,14 +431,14 @@ export default function HomeArtDirected() {
             <circle cx="450" cy="370" r="6" />
           </svg>
           <span className={styles.capabilityWord}>ONE<br />SYSTEM.</span>
-          <span className={styles.capabilityAside}>CREATIVE / GROWTH / TECHNOLOGY / EXPERIENCES</span>
+          <span className={styles.capabilityAside}>CREATIVE / DIGITAL / EXPERIENCES</span>
         </div>
         <div className={styles.capabilityContent}>
           <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`}>
-            <span>04 / ONE SHARED PROCESS</span>
+            <span>HOW WE WORK</span>
             <span id="capabilities-title">DISCOVER / DEFINE / MAKE / LAUNCH / LEARN</span>
           </div>
-          <h2>NO HANDOFFS.<br /><em>NO FRAGMENTED<br />TEAMS.</em></h2>
+          <h2>ONE TEAM.<br /><em>ALL THE WAY THROUGH.</em></h2>
           <div className={styles.capabilityList}>
             {capabilities.map((capability, index) => (
               <details className={styles.capability} key={capability.number} open={index === 0}>
@@ -472,14 +475,13 @@ export default function HomeArtDirected() {
         </div>
         <div className={styles.experienceContent}>
           <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`}>
-            <span>05 / EXPERIENCES</span>
-            <span>CULTURE / PRODUCTION / STORY / SPACE / PEOPLE / MOMENT</span>
+            <span>EXPERIENCES & PRODUCTION</span>
+            <span>LAUNCHES / ACTIVATIONS / RED CARPETS / CULTURE</span>
           </div>
           <h2 id="experiences-title">MOMENTS<br /><em>MATTER.</em></h2>
           <p>
-            Some ideas should not live on a screen. We create the spaces,
-            stages, stories and experiences people remember — from the first
-            concept to the final cue.
+            We design and produce launches, activations, red carpets and
+            cultural moments—from the first brief through showtime.
           </p>
           <ul className={styles.experienceTypes}>
             {experienceTypes.map((type, index) => (
@@ -505,14 +507,14 @@ export default function HomeArtDirected() {
       <section className={styles.technology} id="technology" aria-labelledby="technology-title">
         <div className={styles.technologyTop}>
           <div className={styles.sectionLabel}>
-            <span>06 / DIGITAL & TECHNOLOGY</span>
-            <span>THE LAYER BENEATH THE STORY</span>
+            <span>DIGITAL & TECHNOLOGY</span>
+            <span>PRODUCTS / PLATFORMS / AUTOMATION / DATA</span>
           </div>
           <div className={styles.technologyHeading}>
-            <h2 id="technology-title">BUILT FOR<br /><em>WHAT&apos;S NEXT.</em></h2>
+            <h2 id="technology-title">SYSTEMS FOR<br /><em>REAL WORK.</em></h2>
             <p>
-              Digital is not the destination. It is the system that helps
-              ideas travel further and work harder.
+              Digital products, websites, apps, automation and data systems
+              built around concrete business needs.
             </p>
           </div>
         </div>
@@ -554,18 +556,19 @@ export default function HomeArtDirected() {
 
       <section className={styles.founders} id="about" aria-labelledby="founders-title">
         <div className={styles.sectionLabel}>
-          <span>07 / FOUNDERS</span>
-          <span>THE PEOPLE BEHIND DIGITALE</span>
+          <span>FOUNDERS</span>
+          <span>PRINCIPAL-LED / DIRECT ACCESS</span>
         </div>
         <div className={styles.founderHeading}>
           <h2 id="founders-title">THE PEOPLE<br />BEHIND<br /><em>DIGITALE.</em></h2>
           <p>
-            Two perspectives, working inside one connected practice.
+            Senior people stay close to the work. Clients work directly with
+            the founders from direction through delivery.
           </p>
         </div>
         <div className={styles.founderList}>
           {founders.map((founder) => (
-            <article className={styles.founder} key={founder.number}>
+            <article className={styles.founder} key={founder.name}>
               <div className={styles.founderPortrait}>
                 <Image
                   src={founder.image}
@@ -573,7 +576,7 @@ export default function HomeArtDirected() {
                   fill
                   sizes="(max-width: 760px) 100vw, 50vw"
                 />
-                <span>{founder.number} / {founder.role}</span>
+                <span>{founder.role}</span>
                 <i aria-hidden="true" />
               </div>
               <div className={styles.founderMeta}>
@@ -589,50 +592,10 @@ export default function HomeArtDirected() {
         </div>
       </section>
 
-      <section className={styles.system} aria-labelledby="system-title">
-        <div className={styles.systemArtwork} aria-hidden="true">
-          <svg className={styles.systemDrawing} viewBox="0 0 900 720" focusable="false">
-            <path d="M450 96L727 256V464L450 624L173 464V256L450 96Z" />
-            <path d="M450 96V360M727 256L450 360M727 464L450 360M450 624V360M173 464L450 360M173 256L450 360" />
-            <path d="M450 172L661 294V426L450 548L239 426V294L450 172Z" />
-            <path d="M450 248L595 332V388L450 472L305 388V332L450 248Z" />
-            <circle cx="450" cy="360" r="68" />
-            <circle cx="450" cy="96" r="8" />
-            <circle cx="727" cy="256" r="8" />
-            <circle cx="727" cy="464" r="8" />
-            <circle cx="450" cy="624" r="8" />
-            <circle cx="173" cy="464" r="8" />
-            <circle cx="173" cy="256" r="8" />
-          </svg>
-          <span className={styles.systemCore}>ONE</span>
-          <span className={styles.systemCaption}>ONE PRACTICE / MANY DISCIPLINES</span>
-        </div>
-        <div className={styles.systemCopy}>
-          <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`}>
-            <span>08 / THE DIGITALE PRINCIPLE</span>
-            <span>FROM FIRST THOUGHT TO FINAL FRAME</span>
-          </div>
-          <h2 id="system-title">ONE TEAM.<br /><em>ONE SYSTEM.</em></h2>
-          <p>
-            From the first thought to the final frame, everyone works inside
-            the same system.
-          </p>
-          <div className={styles.systemFlow}>
-            {capabilities.map((capability, index) => (
-              <div key={capability.title}>
-                <span>0{index + 1}</span>
-                <strong>{capability.title}</strong>
-                {index < 4 && <i aria-hidden="true">→</i>}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className={styles.insights} id="insights" aria-labelledby="insights-title">
         <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`}>
-          <span>09 / INSIGHTS</span>
-          <span>CREATIVE / GROWTH / TECHNOLOGY / EXPERIENCES</span>
+          <span>INSIGHTS</span>
+          <span>CREATIVE / DIGITAL / EXPERIENCES</span>
         </div>
         <div className={styles.insightsHeading}>
           <h2 id="insights-title">THINGS<br /><em>WORTH THINKING.</em></h2>
@@ -661,7 +624,7 @@ export default function HomeArtDirected() {
           <span />
           <b>D.</b>
         </div>
-        <span className={styles.finalLabel}>10 / THE NEXT FRAME / YOURS</span>
+        <span className={styles.finalLabel}>THE NEXT FRAME / YOURS</span>
         <h2 id="cta-title">HAVE SOMETHING<br /><em>WORTH BUILDING?</em></h2>
         <div className={styles.finalBottom}>
           <p>Tell us what you&apos;re trying to build. We&apos;ll route the conversation to the right DIGITALE practice.</p>
